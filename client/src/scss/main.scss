@@ -1,0 +1,17 @@
+@import './base/reset';
+@import './theme/theme';
+@import './helpers/function';
+@import './helpers/mixin';
+@import './helpers/responsive';
+@import './components/header';
+@import './components/carousel';
+@import './layouts/home';
+@import './components/login';
+@import './components/register';
+@import './components/courses';
+@import './components/detailCourse';
+@import './components/profile';
+@import './components/admin';
+@import './components/users';
+
+@import './components/footer';

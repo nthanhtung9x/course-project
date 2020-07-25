@@ -1,0 +1,1295 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif; }
+
+html {
+  font-size: 62.5%; }
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #fff;
+  height: 11.8rem; }
+  .header .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px; }
+    .header .nav .logo a {
+      display: inline-block; }
+      .header .nav .logo a img {
+        width: 150px;
+        height: 60px;
+        object-fit: cover; }
+    .header .nav .nav__list {
+      display: flex;
+      align-items: center;
+      margin-right: 36px; }
+      .header .nav .nav__list li {
+        margin-left: 24px; }
+        .header .nav .nav__list li a {
+          color: #22075e;
+          font-size: 1.6rem;
+          font-weight: 600; }
+        .header .nav .nav__list li .cart {
+          position: relative;
+          background-color: #22075e;
+          border-radius: 50%;
+          display: inline-block;
+          padding: 8px 12px; }
+          .header .nav .nav__list li .cart span {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            z-index: 1;
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background-color: #DC3545;
+            border-radius: 50%;
+            padding: 2px 4px; }
+          .header .nav .nav__list li .cart i {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 600; }
+          .header .nav .nav__list li .cart .nav__cart {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 50%;
+            transform: translateX(50%);
+            z-index: 11;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 4px #c5c5c5;
+            padding: 8px;
+            display: none; }
+            .header .nav .nav__list li .cart .nav__cart .list li {
+              margin: 0 0 8px 0;
+              border-bottom: 1px solid #c5c5c5; }
+              .header .nav .nav__list li .cart .nav__cart .list li a {
+                display: flex;
+                width: 300px; }
+                .header .nav .nav__list li .cart .nav__cart .list li a img {
+                  width: 120px;
+                  height: 60px;
+                  object-fit: cover; }
+                .header .nav .nav__list li .cart .nav__cart .list li a .item__info {
+                  flex: 1; }
+                  .header .nav .nav__list li .cart .nav__cart .list li a .item__info article {
+                    color: #22075e;
+                    font-size: 1.6rem;
+                    font-weight: 600; }
+                  .header .nav .nav__list li .cart .nav__cart .list li a .item__info p {
+                    color: #DC3545;
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                    padding-top: 4px; }
+            .header .nav .nav__list li .cart .nav__cart .btn__cart {
+              background-color: #22075e;
+              color: #fff;
+              font-size: 1.6rem;
+              font-weight: 400;
+              border-radius: 4px;
+              display: block;
+              text-align: center;
+              padding: 8px; }
+          .header .nav .nav__list li .cart:hover .nav__cart {
+            display: block; }
+          .header .nav .nav__list li .cart::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            top: calc(100%);
+            right: 0;
+            left: 0;
+            transform: scale(2);
+            height: 50px;
+            background-color: transparent;
+            display: none; }
+          .header .nav .nav__list li .cart::after {
+            content: "";
+            position: absolute;
+            top: calc(0% + 16px);
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom: 16px solid #22075e;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid transparent;
+            display: none; }
+          .header .nav .nav__list li .cart:hover::after, .header .nav .nav__list li .cart:hover::before {
+            display: block; }
+        .header .nav .nav__list li .user {
+          position: relative; }
+          .header .nav .nav__list li .user .content {
+            display: flex;
+            align-items: center;
+            margin: 0; }
+            .header .nav .nav__list li .user .content i {
+              color: #c5c5c5;
+              font-size: 1.6rem;
+              font-weight: 600; }
+            .header .nav .nav__list li .user .content .avatar {
+              font-size: 3.2rem; }
+            .header .nav .nav__list li .user .content span {
+              color: #22075e;
+              font-size: 1.8rem;
+              font-weight: 600;
+              margin: 0 12px; }
+          .header .nav .nav__list li .user .user__feature {
+            position: absolute;
+            top: calc(100%);
+            right: 0;
+            left: 0;
+            z-index: 2;
+            background-color: #fff;
+            padding: 8px;
+            box-shadow: 0 0 4px #c5c5c5;
+            text-align: center;
+            display: none; }
+            .header .nav .nav__list li .user .user__feature a {
+              color: #22075e;
+              font-size: 1.8rem;
+              font-weight: 400;
+              display: block;
+              margin: 4px 0; }
+              .header .nav .nav__list li .user .user__feature a:hover {
+                color: #fff;
+                background-color: #22075e; }
+          .header .nav .nav__list li .user:hover .user__feature {
+            display: block; }
+        .header .nav .nav__list li .information {
+          position: relative;
+          background-color: #22075e;
+          border-radius: 50%;
+          display: inline-block;
+          padding: 8px 12px; }
+          .header .nav .nav__list li .information span {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            z-index: 1;
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background-color: #DC3545;
+            border-radius: 50%;
+            padding: 2px 4px; }
+          .header .nav .nav__list li .information i {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 600; }
+          .header .nav .nav__list li .information .information__wrapper {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 50%;
+            transform: translateX(50%);
+            z-index: 11;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 4px #c5c5c5;
+            padding: 8px;
+            display: none; }
+            .header .nav .nav__list li .information .information__wrapper .list li {
+              margin: 0 0 8px 0;
+              border-bottom: 1px solid #c5c5c5; }
+              .header .nav .nav__list li .information .information__wrapper .list li a {
+                display: flex;
+                width: 300px; }
+                .header .nav .nav__list li .information .information__wrapper .list li a img {
+                  width: 70px;
+                  height: 60px;
+                  object-fit: cover; }
+                .header .nav .nav__list li .information .information__wrapper .list li a .item__info {
+                  flex: 1; }
+                  .header .nav .nav__list li .information .information__wrapper .list li a .item__info article {
+                    color: #22075e;
+                    font-size: 1.6rem;
+                    font-weight: 600; }
+                  .header .nav .nav__list li .information .information__wrapper .list li a .item__info p {
+                    color: #c5c5c5;
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    padding-top: 4px; }
+          .header .nav .nav__list li .information:hover .information__wrapper {
+            display: block; }
+          .header .nav .nav__list li .information::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            top: calc(100%);
+            right: 0;
+            left: 0;
+            transform: scale(2);
+            height: 50px;
+            background-color: transparent;
+            display: none; }
+          .header .nav .nav__list li .information::after {
+            content: "";
+            position: absolute;
+            top: calc(0% + 16px);
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom: 16px solid #22075e;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid transparent;
+            display: none; }
+          .header .nav .nav__list li .information:hover::after, .header .nav .nav__list li .information:hover::before {
+            display: block; }
+  .header .nav__courses {
+    margin-top: 4px; }
+    .header .nav__courses ul {
+      display: flex;
+      align-items: center;
+      margin: 0; }
+      .header .nav__courses ul li {
+        flex: 1; }
+        .header .nav__courses ul li .ant-select {
+          width: 100%; }
+          .header .nav__courses ul li .ant-select .ant-select-selector {
+            background-color: #22075e; }
+            .header .nav__courses ul li .ant-select .ant-select-selector .ant-select-selection-item, .header .nav__courses ul li .ant-select .ant-select-selector .ant-select-selection-placeholder {
+              color: #fff;
+              font-size: 1.6rem;
+              font-weight: 400;
+              opacity: 1; }
+          .header .nav__courses ul li .ant-select .ant-select-arrow {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 400; }
+
+.carousel__banner {
+  position: relative;
+  background: url("../images/banner.png") no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  margin-top: 11.8rem;
+  z-index: 1; }
+  .carousel__banner .carousel__text {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 4px #c5c5c5;
+    padding: 24px;
+    width: 30%; }
+    .carousel__banner .carousel__text h1 {
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: 400; }
+    .carousel__banner .carousel__text p {
+      color: #000;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin: 12px 0; }
+    .carousel__banner .carousel__text .carousel__form {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      transition: all 0.4s; }
+      .carousel__banner .carousel__text .carousel__form input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: transparent;
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 400;
+        padding: 10px;
+        width: 100%;
+        padding-right: 10%;
+        border-radius: 2px;
+        border: none;
+        outline: none; }
+      .carousel__banner .carousel__text .carousel__form i {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%;
+        width: 10%;
+        z-index: 5;
+        color: #22075e;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; }
+      .carousel__banner .carousel__text .carousel__form:hover {
+        border: 1px solid #aaa; }
+  .carousel__banner .carousel__img {
+    position: absolute;
+    bottom: 30%;
+    right: 0;
+    width: 50%;
+    height: 50%; }
+    .carousel__banner .carousel__img img {
+      width: 400px;
+      margin-left: 10%;
+      object-fit: cover; }
+    .carousel__banner .carousel__img .slick-prev, .carousel__banner .carousel__img .slick-next {
+      display: none !important; }
+
+.home .welcome {
+  display: flex;
+  width: 80%;
+  margin: 36px auto; }
+  .home .welcome-left {
+    width: 60%; }
+    .home .welcome-left h1 {
+      color: #000;
+      font-size: 3.2rem;
+      font-weight: 400; }
+    .home .welcome-left p {
+      color: #000;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin: 12px 0;
+      line-height: 2.4rem; }
+  .home .welcome-right {
+    width: 40%; }
+    .home .welcome-right form {
+      background-color: #22075e;
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      margin: auto;
+      padding: 12px 24px;
+      border-radius: 4px; }
+      .home .welcome-right form h4 {
+        color: #fff;
+        font-size: 2.4rem;
+        font-weight: 400;
+        text-align: center;
+        padding: 12px; }
+      .home .welcome-right form label {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin: 8px 0 4px; }
+      .home .welcome-right form select {
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: 400;
+        background-color: #22075e;
+        padding: 4px;
+        border: 1px solid; }
+      .home .welcome-right form button {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 400;
+        background-color: transparent;
+        border: 1px solid;
+        border-radius: 4px;
+        padding: 8px 12px;
+        margin: 24px 0 12px; }
+.home .special {
+  background: url("../images/background.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed; }
+  .home .special-bg {
+    width: 80%;
+    margin: auto;
+    padding: 36px 0; }
+    .home .special-bg h1 {
+      color: #000;
+      font-size: 3.2rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 24px; }
+    .home .special-bg .special__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: -16px; }
+      .home .special-bg .special__row .special__col {
+        width: 33.3333%;
+        padding: 8px;
+        margin-bottom: 12px; }
+        .home .special-bg .special__row .special__col .special__wrap {
+          background-color: #fff;
+          padding: 16px;
+          height: 300px;
+          overflow: hidden;
+          text-align: center;
+          border-radius: 4px; }
+          .home .special-bg .special__row .special__col .special__wrap span {
+            display: inline-block;
+            padding: 12px;
+            border-radius: 50%;
+            border: 2px solid #22075e;
+            transition: all 0.2s; }
+            .home .special-bg .special__row .special__col .special__wrap span i {
+              color: #22075e;
+              font-size: 2.4rem;
+              font-weight: 600;
+              transition: all 0.2s; }
+            .home .special-bg .special__row .special__col .special__wrap span:hover {
+              background-color: #22075e; }
+            .home .special-bg .special__row .special__col .special__wrap span:hover i {
+              color: #fff; }
+          .home .special-bg .special__row .special__col .special__wrap h4 {
+            color: #000;
+            font-size: 2.4rem;
+            font-weight: 600;
+            text-align: left;
+            margin: 12px 0; }
+          .home .special-bg .special__row .special__col .special__wrap p {
+            text-align: left;
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 400; }
+.home .about__wrapper {
+  width: 80%;
+  margin: auto;
+  padding: 36px 0; }
+  .home .about__wrapper h1 {
+    color: #000;
+    font-size: 3.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 36px; }
+  .home .about__wrapper .about__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; }
+    .home .about__wrapper .about__row .about__col {
+      width: 50%;
+      text-align: center;
+      margin-bottom: 36px; }
+      .home .about__wrapper .about__row .about__col img {
+        width: 90%;
+        object-fit: cover; }
+      .home .about__wrapper .about__row .about__col h4 {
+        color: #000;
+        font-size: 2.4rem;
+        font-weight: 600;
+        text-align: left;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 24px; }
+        .home .about__wrapper .about__row .about__col h4 span {
+          color: #000;
+          font-size: 3.2rem;
+          font-weight: 600; }
+      .home .about__wrapper .about__row .about__col p {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-align: left;
+        width: 80%;
+        margin: auto; }
+.home .customer {
+  background: url("https://i.pinimg.com/originals/3f/54/94/3f54947eccae5188be4c05bc298a3ee8.png") no-repeat left bottom;
+  background-size: 50%;
+  border-top: 1px solid #c5c5c5; }
+  .home .customer .customer__wrapper {
+    width: 80%;
+    margin: auto;
+    padding: 36px 0 48px; }
+    .home .customer .customer__wrapper h1 {
+      color: #000;
+      font-size: 3.2rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 24px; }
+    .home .customer .customer__wrapper .item {
+      padding: 0 12px;
+      border: none; }
+      .home .customer .customer__wrapper .item img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover; }
+      .home .customer .customer__wrapper .item h4 {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 600;
+        padding: 12px 12px 0;
+        margin: 0; }
+      .home .customer .customer__wrapper .item p {
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 400;
+        padding: 12px; }
+    .home .customer .customer__wrapper .slick-prev {
+      left: -40px; }
+    .home .customer .customer__wrapper .slick-prev::before, .home .customer .customer__wrapper .slick-next::before {
+      color: #22075e;
+      font-size: 3.2rem;
+      font-weight: 600; }
+    .home .customer .customer__wrapper .slick-dots {
+      bottom: -35px;
+      margin-top: 24px; }
+      .home .customer .customer__wrapper .slick-dots li button::before {
+        color: #22075e;
+        font-size: 1.2rem;
+        font-weight: 400; }
+.home .contact {
+  background-color: #22075e; }
+  .home .contact .contact__wrapper {
+    width: 80%;
+    margin: auto;
+    padding: 36px 0;
+    display: flex;
+    flex-wrap: wrap; }
+    .home .contact .contact__wrapper-left {
+      width: 50%;
+      display: flex;
+      align-items: center; }
+      .home .contact .contact__wrapper-left img {
+        width: 80%;
+        object-fit: cover;
+        filter: drop-shadow(2px 6px 6px #000); }
+    .home .contact .contact__wrapper-right {
+      width: 50%; }
+      .home .contact .contact__wrapper-right form {
+        background-color: #fff;
+        width: 80%;
+        margin: auto;
+        padding: 24px; }
+        .home .contact .contact__wrapper-right form h1 {
+          color: #DC3545;
+          font-size: 2.4rem;
+          font-weight: 600;
+          text-align: center; }
+        .home .contact .contact__wrapper-right form hr {
+          border-bottom: 2px solid #DC3545;
+          width: 42px;
+          margin: 12px auto; }
+        .home .contact .contact__wrapper-right form .form-group {
+          display: flex;
+          align-items: center;
+          border: 1px solid #22075e;
+          margin: 24px 0;
+          padding: 4px; }
+          .home .contact .contact__wrapper-right form .form-group span {
+            flex: 1;
+            display: inline-block;
+            text-align: center; }
+            .home .contact .contact__wrapper-right form .form-group span i {
+              color: #000;
+              font-size: 1.8rem;
+              font-weight: 600; }
+          .home .contact .contact__wrapper-right form .form-group input {
+            width: 95%;
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 600;
+            padding: 4px;
+            border: none;
+            outline: none; }
+          .home .contact .contact__wrapper-right form .form-group textarea {
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 600;
+            width: 100%;
+            border: none;
+            outline: none; }
+        .home .contact .contact__wrapper-right form button {
+          color: #fff;
+          font-size: 1.6rem;
+          font-weight: 600;
+          background-color: #DC3545;
+          padding: 8px 16px;
+          border: none; }
+
+.login {
+  margin-top: 11.8rem;
+  background: url("../images/background.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 24px; }
+  .login .login__wrapper {
+    background-color: #fff;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    margin: 48px auto;
+    width: 30%;
+    padding: 24px; }
+    .login .login__wrapper h1 {
+      color: #000;
+      font-size: 2.4rem;
+      font-weight: 600;
+      text-align: center; }
+    .login .login__wrapper .login-form-forgot {
+      float: right; }
+    .login .login__wrapper .ant-col-rtl .login-form-forgot {
+      float: left; }
+    .login .login__wrapper .login-form-button {
+      width: 100%; }
+
+.register {
+  margin-top: 11.8rem;
+  background: url("../images/background.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 24px; }
+  .register .register__wrapper {
+    background-color: #fff;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    margin: 48px auto;
+    width: 40%;
+    padding: 24px; }
+    .register .register__wrapper h1 {
+      color: #000;
+      font-size: 2.4rem;
+      font-weight: 600;
+      text-align: center; }
+    .register .register__wrapper .ant-form-horizontal .ant-form-item-label {
+      text-align: left; }
+
+.courses__wrapper {
+  width: 80%;
+  margin: auto;
+  padding: 36px 0; }
+  @media (max-width: 992px) {
+    .courses__wrapper {
+      width: 100%; } }
+  .courses__wrapper-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px; }
+    @media (max-width: 992px) {
+      .courses__wrapper-top {
+        padding: 0 12px; } }
+    .courses__wrapper-top h1 {
+      color: #000;
+      font-size: 2.4rem;
+      font-weight: 600;
+      width: 60%; }
+      @media (max-width: 992px) {
+        .courses__wrapper-top h1 {
+          width: 40%; } }
+      @media (max-width: 767px) {
+        .courses__wrapper-top h1 {
+          width: 100%; } }
+    .courses__wrapper-top .ant-input-group-wrapper {
+      width: 40%; }
+      @media (max-width: 992px) {
+        .courses__wrapper-top .ant-input-group-wrapper {
+          width: 60%; } }
+      @media (max-width: 767px) {
+        .courses__wrapper-top .ant-input-group-wrapper {
+          width: 100%; } }
+      .courses__wrapper-top .ant-input-group-wrapper .ant-input-group {
+        width: 100%; }
+  .courses__wrapper-main .item {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    max-height: 500px;
+    height: 360px;
+    overflow: hidden; }
+    .courses__wrapper-main .item .ant-card {
+      height: 100%; }
+    .courses__wrapper-main .item .ant-card-cover {
+      height: 50%; }
+      .courses__wrapper-main .item .ant-card-cover img {
+        height: 180px;
+        object-fit: cover; }
+    .courses__wrapper-main .item .ant-card-body {
+      padding: 12px;
+      margin-top: 8px; }
+      .courses__wrapper-main .item .ant-card-body .ant-card-meta-title {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: 0; }
+      .courses__wrapper-main .item .ant-card-body .ant-card-meta-description {
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 400;
+        opacity: 0.75;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden; }
+      .courses__wrapper-main .item .ant-card-body .price {
+        color: #DC3545;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: 8px 0; }
+        .courses__wrapper-main .item .ant-card-body .price span {
+          color: #000;
+          font-size: 1.4rem;
+          font-weight: 400;
+          text-decoration: line-through;
+          opacity: 0.75; }
+      .courses__wrapper-main .item .ant-card-body .rating {
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin: 8px 0; }
+        .courses__wrapper-main .item .ant-card-body .rating i {
+          color: yellow;
+          font-size: 1.8rem;
+          font-weight: 600;
+          margin-left: 4px; }
+      .courses__wrapper-main .item .ant-card-body .detail {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 600;
+        background-color: #DC3545;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px; }
+  .courses__wrapper-main .ant-pagination {
+    text-align: center;
+    margin-top: 24px; }
+
+.DetailCourse {
+  margin-top: 11.8rem; }
+  .DetailCourse__wrapper {
+    width: 80%;
+    margin: 24px auto;
+    padding: 24px; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__name {
+      color: #000;
+      font-size: 3.2rem;
+      font-weight: 600;
+      margin: 0; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__subcribe {
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 8px 0; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__rating {
+      color: #000;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin: 0; }
+      .DetailCourse__wrapper .DetailCourse__content .detail__rating i {
+        color: yellow;
+        font-size: 1.8rem;
+        font-weight: 600; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__description {
+      border: 1px solid #c5c5c5;
+      border-radius: 4px;
+      margin: 24px 0;
+      padding: 12px; }
+      .DetailCourse__wrapper .DetailCourse__content .detail__description h4 {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 600; }
+      .DetailCourse__wrapper .DetailCourse__content .detail__description__list li {
+        display: flex;
+        align-items: center;
+        padding: 8px 0; }
+        .DetailCourse__wrapper .DetailCourse__content .detail__description__list li span {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 400;
+          border-radius: 50%; }
+          .DetailCourse__wrapper .DetailCourse__content .detail__description__list li span i {
+            color: #DC3545;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background-color: #fff;
+            margin-right: 4px; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__course-other h4 {
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: 600; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__course-other .rating i {
+      color: yellow;
+      margin-left: 4px; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__course-other .detail {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 600;
+      background-color: #DC3545;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px; }
+    .DetailCourse__wrapper .DetailCourse__content .detail__course-other .btn-back {
+      color: #22075e;
+      font-size: 2.4rem;
+      font-weight: 600;
+      border: 1px solid #c5c5c5;
+      padding: 0px 12px;
+      border-radius: 2px; }
+    .DetailCourse__wrapper .DetailCourse__control {
+      padding: 4px;
+      border: 1px solid #c5c5c5; }
+      .DetailCourse__wrapper .DetailCourse__control__img img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover; }
+      .DetailCourse__wrapper .DetailCourse__control__content {
+        padding: 0 12px; }
+        .DetailCourse__wrapper .DetailCourse__control__content .detail__price {
+          margin: 8px 0; }
+          .DetailCourse__wrapper .DetailCourse__control__content .detail__price-new {
+            color: #000;
+            font-size: 2.4rem;
+            font-weight: 600; }
+          .DetailCourse__wrapper .DetailCourse__control__content .detail__price-old {
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-decoration: line-through;
+            opacity: 0.75; }
+        .DetailCourse__wrapper .DetailCourse__control__content button {
+          display: block;
+          width: 100%;
+          border-radius: 4px;
+          border: none;
+          padding: 8px 0;
+          margin: 12px 0; }
+        .DetailCourse__wrapper .DetailCourse__control__content .btn-cart {
+          color: #fff;
+          font-size: 1.8rem;
+          font-weight: 600;
+          background-color: #DC3545; }
+        .DetailCourse__wrapper .DetailCourse__control__content .btn-buy {
+          color: #22075e;
+          font-size: 1.8rem;
+          font-weight: 600;
+          background-color: transparent;
+          border: 1px solid #22075e; }
+        .DetailCourse__wrapper .DetailCourse__control__content p {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 400;
+          margin: 0; }
+        .DetailCourse__wrapper .DetailCourse__control__content ul li {
+          display: flex;
+          align-items: center;
+          padding: 4px 0; }
+          .DetailCourse__wrapper .DetailCourse__control__content ul li span {
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 400; }
+            .DetailCourse__wrapper .DetailCourse__control__content ul li span:first-child {
+              width: 8%; }
+            .DetailCourse__wrapper .DetailCourse__control__content ul li span i {
+              color: #000;
+              font-size: 1.8rem;
+              font-weight: 600;
+              margin-right: 4px; }
+
+.profile {
+  margin-top: 11.8rem; }
+  .profile__top {
+    background-color: #22075e;
+    padding: 36px 0;
+    text-align: center; }
+    .profile__top .profile__avatar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; }
+    .profile__top .profile__name {
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 600;
+      padding-top: 12px; }
+  .profile__main__control {
+    width: 90%;
+    margin: auto; }
+  .profile__main .wall, .profile__main .profile__courses, .profile__main .profile__friends, .profile__main .profile__detail {
+    width: 90%;
+    margin: 12px auto;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px; }
+    .profile__main .wall-col, .profile__main .profile__courses-col, .profile__main .profile__friends-col, .profile__main .profile__detail-col {
+      height: 100%;
+      padding: 12px;
+      border-right: 1px solid #c5c5c5; }
+      .profile__main .wall-col .label-title, .profile__main .profile__courses-col .label-title, .profile__main .profile__friends-col .label-title, .profile__main .profile__detail-col .label-title {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 0; }
+      .profile__main .wall-col .ant-input-group-wrapper, .profile__main .profile__courses-col .ant-input-group-wrapper, .profile__main .profile__friends-col .ant-input-group-wrapper, .profile__main .profile__detail-col .ant-input-group-wrapper {
+        margin: 8px 0; }
+      .profile__main .wall-col-content-disabled, .profile__main .profile__courses-col-content-disabled, .profile__main .profile__friends-col-content-disabled, .profile__main .profile__detail-col-content-disabled {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-align: center;
+        padding: 24px 0; }
+      .profile__main .wall-col .item .ant-card-cover img, .profile__main .profile__courses-col .item .ant-card-cover img, .profile__main .profile__friends-col .item .ant-card-cover img, .profile__main .profile__detail-col .item .ant-card-cover img {
+        height: 180px;
+        object-fit: cover; }
+      .profile__main .wall-col .item .ant-card-body, .profile__main .profile__courses-col .item .ant-card-body, .profile__main .profile__friends-col .item .ant-card-body, .profile__main .profile__detail-col .item .ant-card-body {
+        padding: 12px;
+        margin-top: 8px; }
+        .profile__main .wall-col .item .ant-card-body .ant-card-meta-title, .profile__main .profile__courses-col .item .ant-card-body .ant-card-meta-title, .profile__main .profile__friends-col .item .ant-card-body .ant-card-meta-title, .profile__main .profile__detail-col .item .ant-card-body .ant-card-meta-title {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 600;
+          margin: 0; }
+        .profile__main .wall-col .item .ant-card-body .ant-card-meta-description, .profile__main .profile__courses-col .item .ant-card-body .ant-card-meta-description, .profile__main .profile__friends-col .item .ant-card-body .ant-card-meta-description, .profile__main .profile__detail-col .item .ant-card-body .ant-card-meta-description {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 400;
+          opacity: 0.75;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden; }
+        .profile__main .wall-col .item .ant-card-body .timeStart, .profile__main .profile__courses-col .item .ant-card-body .timeStart, .profile__main .profile__friends-col .item .ant-card-body .timeStart, .profile__main .profile__detail-col .item .ant-card-body .timeStart {
+          color: #000;
+          font-size: 1.4rem;
+          font-weight: 400;
+          margin: 8px 0; }
+        .profile__main .wall-col .item .ant-card-body .rating, .profile__main .profile__courses-col .item .ant-card-body .rating, .profile__main .profile__friends-col .item .ant-card-body .rating, .profile__main .profile__detail-col .item .ant-card-body .rating {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 400;
+          margin: 8px 0; }
+          .profile__main .wall-col .item .ant-card-body .rating i, .profile__main .profile__courses-col .item .ant-card-body .rating i, .profile__main .profile__friends-col .item .ant-card-body .rating i, .profile__main .profile__detail-col .item .ant-card-body .rating i {
+            color: yellow;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-left: 4px; }
+        .profile__main .wall-col .item .ant-card-body .accept, .profile__main .profile__courses-col .item .ant-card-body .accept, .profile__main .profile__friends-col .item .ant-card-body .accept, .profile__main .profile__detail-col .item .ant-card-body .accept {
+          color: #fff;
+          font-size: 1.8rem;
+          font-weight: 600;
+          background-color: #DC3545;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 4px; }
+      .profile__main .wall-col .list-loadmore-edit, .profile__main .profile__courses-col .list-loadmore-edit, .profile__main .profile__friends-col .list-loadmore-edit, .profile__main .profile__detail-col .list-loadmore-edit {
+        padding: 8px;
+        background-color: #22075e;
+        color: #fff;
+        border-radius: 4px; }
+      .profile__main .wall-col .list-loadmore-more, .profile__main .profile__courses-col .list-loadmore-more, .profile__main .profile__friends-col .list-loadmore-more, .profile__main .profile__detail-col .list-loadmore-more {
+        padding: 8px;
+        background-color: #DC3545;
+        color: #fff;
+        border-radius: 4px; }
+  .profile__main .video__courses {
+    border: none; }
+    .profile__main .video__courses .ant-row {
+      border-radius: 4px; }
+      .profile__main .video__courses .ant-row .ant-col {
+        border: 1px solid #c5c5c5; }
+      .profile__main .video__courses .ant-row .wall-col {
+        border: none;
+        padding: 12px 0; }
+        .profile__main .video__courses .ant-row .wall-col .ant-list-item {
+          padding: 12px;
+          border-radius: 4px;
+          transition: all 0.2s; }
+          .profile__main .video__courses .ant-row .wall-col .ant-list-item:hover {
+            background-color: #22075e; }
+          .profile__main .video__courses .ant-row .wall-col .ant-list-item:hover .ant-list-item-meta .ant-list-item-meta-content .ant-list-item-meta-title, .profile__main .video__courses .ant-row .wall-col .ant-list-item:hover .ant-list-item-meta .ant-list-item-meta-content .ant-list-item-meta-description {
+            color: #fff; }
+          .profile__main .video__courses .ant-row .wall-col .ant-list-item button {
+            background-color: transparent;
+            border: none;
+            outline: none; }
+            .profile__main .video__courses .ant-row .wall-col .ant-list-item button .ant-list-item-meta {
+              align-items: center; }
+              .profile__main .video__courses .ant-row .wall-col .ant-list-item button .ant-list-item-meta .ant-avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: unset; }
+              .profile__main .video__courses .ant-row .wall-col .ant-list-item button .ant-list-item-meta .ant-list-item-meta-content {
+                text-align: left; }
+                .profile__main .video__courses .ant-row .wall-col .ant-list-item button .ant-list-item-meta .ant-list-item-meta-content .ant-list-item-meta-title {
+                  color: #000;
+                  font-size: 1.6rem;
+                  font-weight: 600;
+                  transition: all 0.2s; }
+                .profile__main .video__courses .ant-row .wall-col .ant-list-item button .ant-list-item-meta .ant-list-item-meta-content .ant-list-item-meta-description {
+                  color: #000;
+                  font-size: 1.6rem;
+                  font-weight: 400;
+                  opacity: 0.75;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 1;
+                  overflow: hidden;
+                  transition: all 0.2s; }
+
+.admin .logo img {
+  width: 100%;
+  object-fit: cover;
+  padding: 12px;
+  border-radius: 50%; }
+.admin .site-layout {
+  background-color: #22075e; }
+  .admin .site-layout .site__wrapper {
+    width: 90%;
+    margin: 36px auto; }
+    .admin .site-layout .site__wrapper .site__user {
+      text-align: right; }
+      .admin .site-layout .site__wrapper .site__user .ant-avatar {
+        color: #fff;
+        background-color: #DC3545;
+        margin-right: 4px; }
+      .admin .site-layout .site__wrapper .site__user span {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 400; }
+    .admin .site-layout .site__wrapper .common {
+      margin: 12px 0; }
+      .admin .site-layout .site__wrapper .common__item {
+        background-color: #fff;
+        border-radius: 4px;
+        text-align: center;
+        padding: 24px 0; }
+        .admin .site-layout .site__wrapper .common__item .anticon-book {
+          background-color: #DC3545;
+          color: #fff;
+          padding: 12px;
+          border-radius: 50%; }
+        .admin .site-layout .site__wrapper .common__item .anticon-user {
+          background-color: yellow;
+          color: #fff;
+          padding: 12px;
+          border-radius: 50%; }
+        .admin .site-layout .site__wrapper .common__item .anticon-codepen {
+          background-color: #22075e;
+          color: #fff;
+          padding: 12px;
+          border-radius: 50%; }
+        .admin .site-layout .site__wrapper .common__item p {
+          color: #000;
+          font-size: 2.4rem;
+          font-weight: 400;
+          margin: 12px 0; }
+      .admin .site-layout .site__wrapper .common__users, .admin .site-layout .site__wrapper .common__courses {
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 4px; }
+        .admin .site-layout .site__wrapper .common__users h1, .admin .site-layout .site__wrapper .common__courses h1 {
+          color: #000;
+          font-size: 2.4rem;
+          font-weight: 400;
+          text-align: center;
+          padding: 8px 0; }
+        .admin .site-layout .site__wrapper .common__users .ant-pagination, .admin .site-layout .site__wrapper .common__courses .ant-pagination {
+          display: none; }
+        .admin .site-layout .site__wrapper .common__users .ant-table-thead .ant-table-cell, .admin .site-layout .site__wrapper .common__courses .ant-table-thead .ant-table-cell {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 600; }
+        .admin .site-layout .site__wrapper .common__users .ant-table-cell, .admin .site-layout .site__wrapper .common__courses .ant-table-cell {
+          color: #000;
+          font-size: 1.6rem;
+          font-weight: 400;
+          text-align: center; }
+    .admin .site-layout .site__wrapper .manager__courses h1 {
+      color: #fff;
+      font-size: 3.2rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 8px 0;
+      margin: 0; }
+    .admin .site-layout .site__wrapper .manager__courses .search__courses {
+      width: 100%; }
+    .admin .site-layout .site__wrapper .manager__courses .manager__course-item {
+      position: relative;
+      height: 320px; }
+      .admin .site-layout .site__wrapper .manager__courses .manager__course-item .ant-card {
+        height: 100%; }
+        .admin .site-layout .site__wrapper .manager__courses .manager__course-item .ant-card .ant-card-cover {
+          height: 80%; }
+          .admin .site-layout .site__wrapper .manager__courses .manager__course-item .ant-card .ant-card-cover img {
+            height: 100%;
+            object-fit: revert; }
+        .admin .site-layout .site__wrapper .manager__courses .manager__course-item .ant-card .ant-card-body {
+          padding: 12px; }
+          .admin .site-layout .site__wrapper .manager__courses .manager__course-item .ant-card .ant-card-body .ant-card-meta-title {
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0; }
+          .admin .site-layout .site__wrapper .manager__courses .manager__course-item .ant-card .ant-card-body .ant-card-meta-description {
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin: 0; }
+      .admin .site-layout .site__wrapper .manager__courses .manager__course-item .item-feature {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 0.2s; }
+        .admin .site-layout .site__wrapper .manager__courses .manager__course-item .item-feature .btn-feature {
+          color: #fff;
+          font-size: 1.6rem;
+          font-weight: 600;
+          padding: 4px 12px;
+          display: block;
+          width: 80%;
+          margin: 4px auto;
+          border: none;
+          border-radius: 4px;
+          outline: none;
+          transition: all 0.2s; }
+          .admin .site-layout .site__wrapper .manager__courses .manager__course-item .item-feature .btn-feature:hover {
+            opacity: 0.9; }
+      .admin .site-layout .site__wrapper .manager__courses .manager__course-item:hover .item-feature {
+        opacity: 1; }
+    .admin .site-layout .site__wrapper .manager__users h1 {
+      color: #fff;
+      font-size: 3.2rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 8px 0;
+      margin: 0; }
+    .admin .site-layout .site__wrapper .manager__users p {
+      color: #000;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin: 0; }
+    .admin .site-layout .site__wrapper .manager__users .ant-table-thead .ant-table-cell {
+      color: #000;
+      font-size: 1.6rem;
+      font-weight: 600; }
+    .admin .site-layout .site__wrapper .manager__users .ant-table-cell {
+      color: #000;
+      font-size: 1.4rem;
+      font-weight: 400;
+      text-align: center; }
+      .admin .site-layout .site__wrapper .manager__users .ant-table-cell .ant-space-item button span {
+        font-size: 1.6rem; }
+    .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-item {
+      background-color: #fff;
+      margin: 0 2px;
+      height: unset;
+      line-height: unset; }
+      .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-item a {
+        padding: 8px 16px; }
+    .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-prev, .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-next {
+      height: unset;
+      line-height: unset; }
+      .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-prev .ant-pagination-item-link, .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-next .ant-pagination-item-link {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 600; }
+
+.modal__addCourse .ant-modal-header .ant-modal-title, .modal__updateCourse .ant-modal-header .ant-modal-title, .modal__addUser .ant-modal-header .ant-modal-title {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 600; }
+.modal__addCourse .ant-modal-body, .modal__updateCourse .ant-modal-body, .modal__addUser .ant-modal-body {
+  padding: 16px 24px 0px; }
+  .modal__addCourse .ant-modal-body .ant-form .ant-form-item-label, .modal__updateCourse .ant-modal-body .ant-form .ant-form-item-label, .modal__addUser .ant-modal-body .ant-form .ant-form-item-label {
+    text-align: left; }
+    .modal__addCourse .ant-modal-body .ant-form .ant-form-item-label label, .modal__updateCourse .ant-modal-body .ant-form .ant-form-item-label label, .modal__addUser .ant-modal-body .ant-form .ant-form-item-label label {
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: 400; }
+  .modal__addCourse .ant-modal-body .ant-form .ant-btn, .modal__updateCourse .ant-modal-body .ant-form .ant-btn, .modal__addUser .ant-modal-body .ant-form .ant-btn {
+    margin: 12px 4px; }
+  .modal__addCourse .ant-modal-body .ant-form .ant-btn-icon-only, .modal__updateCourse .ant-modal-body .ant-form .ant-btn-icon-only, .modal__addUser .ant-modal-body .ant-form .ant-btn-icon-only {
+    margin: 0; }
+
+.ant-modal.modal__addUser {
+  width: 700px !important; }
+
+.modal__registerCourse .ant-modal-header .ant-modal-title, .modal__listUserCourse .ant-modal-header .ant-modal-title {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 600; }
+.modal__registerCourse .ant-modal-body, .modal__listUserCourse .ant-modal-body {
+  padding: 16px 24px 0px; }
+  .modal__registerCourse .ant-modal-body .ant-list-item-meta, .modal__listUserCourse .ant-modal-body .ant-list-item-meta {
+    flex: unset;
+    width: 100%; }
+  .modal__registerCourse .ant-modal-body button, .modal__listUserCourse .ant-modal-body button {
+    margin: 2px 0; }
+.modal__registerCourse .demo-infinite-container, .modal__listUserCourse .demo-infinite-container {
+  width: 100%;
+  height: 300px;
+  overflow: auto;
+  padding: 0 12px;
+  margin: 12px 0; }
+
+.table__users .ant-space {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center; }
+  .table__users .ant-space .ant-space-item {
+    width: 100%;
+    margin: 4px 0px !important; }
+
+.footer {
+  border-top: 1px solid #c5c5c5; }
+  .footer__wrapper {
+    width: 80%;
+    margin: auto;
+    padding: 36px 0 48px; }
+    .footer__wrapper .footer__row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -16px; }
+      .footer__wrapper .footer__row .footer__col {
+        width: 33.3333%;
+        padding: 8px; }
+        .footer__wrapper .footer__row .footer__col__item {
+          text-align: center; }
+          .footer__wrapper .footer__row .footer__col__item img {
+            width: 200px;
+            height: 100px;
+            object-fit: cover; }
+          .footer__wrapper .footer__row .footer__col__item p {
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 400; }
+          .footer__wrapper .footer__row .footer__col__item h1 {
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-transform: uppercase; }
+          .footer__wrapper .footer__row .footer__col__item a {
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 400;
+            display: block;
+            margin: 12px 0;
+            transition: all 0.2s; }
+            .footer__wrapper .footer__row .footer__col__item a:hover {
+              color: #DC3545; }
+          .footer__wrapper .footer__row .footer__col__item input {
+            color: #000;
+            font-size: 1.6rem;
+            font-weight: 600;
+            width: 80%;
+            margin: 8px auto;
+            padding: 4px; }
+          .footer__wrapper .footer__row .footer__col__item button {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 600;
+            background-color: #DC3545;
+            padding: 8px 16px;
+            border: none; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,54 @@
+.footer {
+    border-top: 1px solid getColor('grey');
+    &__wrapper {
+        width: 80%;
+        margin: auto;
+        padding: 36px 0 48px;
+        .footer__row {
+            display:flex;
+            flex-wrap: wrap;
+            margin: -16px;
+            .footer__col {
+                width: 33.3333%;
+                padding: 8px;
+                &__item {
+                    text-align: center;
+                    img {
+                        width: 200px;
+                        height: 100px;
+                        object-fit: cover;
+                    }
+                    p {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                    
+                    }
+                    h1 {
+                        @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                        text-transform: uppercase;
+                    }
+                    a {
+                        @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                        display:block;
+                        margin: 12px 0;
+                        transition: all 0.2s;
+                        &:hover {
+                            color: getColor('red');
+                        }
+                    }
+                    input {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                        width: 80%;
+                        margin: 8px auto;
+                        padding: 4px;
+                    }
+                    button {
+                        @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('medium'));
+                        background-color: getColor('red');
+                        padding: 8px 16px;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+}

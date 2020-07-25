@@ -1,0 +1,22 @@
+.register {
+    margin-top: $height-header;
+    background:url('../images/background.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 24px;
+    .register__wrapper {
+        background-color: getColor('white');
+        border: 1px solid getColor('grey');
+        border-radius: 4px;
+        margin: 48px auto;
+        width: 40%;
+        padding: 24px;
+        h1 {
+            @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('medium'));
+            text-align: center;
+        }
+        .ant-form-horizontal .ant-form-item-label {
+            text-align: left;
+        }
+    }
+}

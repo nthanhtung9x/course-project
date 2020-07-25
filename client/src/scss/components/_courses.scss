@@ -1,0 +1,105 @@
+.courses {
+    &__wrapper {
+        width: 80%;
+        margin: auto;
+        padding: 36px 0;
+        @include mediaQuery($lg) {
+            width: 100%;
+        }
+        
+        &-top {
+            display:flex;
+            align-items: center;
+            flex-wrap: wrap;;
+            margin-bottom: 36px;
+            @include mediaQuery($lg) {
+                padding: 0 12px;
+            }
+            h1 {
+                @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('medium'));
+                width: 60%;
+                @include mediaQuery($lg) {
+                    width: 40%;
+                }
+                @include mediaQuery($md) {
+                    width: 100%;
+                }
+            }
+            .ant-input-group-wrapper {
+                width: 40%;
+                @include mediaQuery($lg) {
+                    width: 60%;
+                }
+                @include mediaQuery($md) {
+                    width: 100%;
+                }
+                .ant-input-group {
+                    width: 100%;
+                }
+            }
+        }
+        &-main {
+            .item {
+                border: 1px solid getColor('grey');
+                border-radius: 4px;
+                max-height: 500px;
+                height: 360px;
+                overflow: hidden;
+                .ant-card {
+                    height: 100%;
+                }
+                .ant-card-cover {
+                    height: 50%;
+                    img {
+                        height: 180px;
+                        object-fit: cover;
+                    }
+                }
+                .ant-card-body {
+                    padding: 12px;
+                    margin-top: 8px;
+                    .ant-card-meta-title {
+                        @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                        margin: 0;
+                    }
+                    .ant-card-meta-description {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                        opacity: 0.75;
+                        display:-webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                    }
+                    .price {
+                        @include setText(getColor('red'),getFontSize('size-18'),getFontWeight('medium'));
+                        margin: 8px 0;
+                        span {
+                            @include setText(getColor('black'),getFontSize('size-14'),getFontWeight('regular'));
+                            text-decoration: line-through;
+                            opacity: 0.75;
+                        }
+                    }
+                    .rating {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                        margin: 8px 0;
+                        i {
+                            @include setText(getColor('yellow'),getFontSize('size-18'),getFontWeight('medium'));
+                            margin-left: 4px;
+                        }
+                    }
+                    .detail {
+                        @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
+                        background-color: getColor('red');
+                        padding: 8px 16px;
+                        border: none;
+                        border-radius: 4px;
+                    }
+                }
+            }
+            .ant-pagination {
+                text-align: center;
+                margin-top: 24px;
+            }
+        }
+    }
+}

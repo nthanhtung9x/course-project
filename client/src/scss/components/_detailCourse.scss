@@ -1,0 +1,140 @@
+.DetailCourse {
+    margin-top: $height-header;
+    &__wrapper {
+        width: 80%;
+        margin: 24px auto;
+        padding: 24px;
+        .DetailCourse__content {
+            .detail__name {
+                @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('medium'));
+                margin: 0;
+            }
+            .detail__subcribe {
+                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                margin: 8px 0;
+            }
+            .detail__rating {
+                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                margin: 0;
+                i {
+                    @include setText(getColor('yellow'),getFontSize('size-18'),getFontWeight('medium'));
+                }
+            
+            }
+            .detail__description {
+                border: 1px solid getColor('grey');
+                border-radius: 4px;
+                margin: 24px 0;
+                padding: 12px;
+                h4 {
+                    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                }
+                &__list {
+                    li {
+                        display: flex;
+                        align-items: center;
+                        padding: 8px 0;
+                        span {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                            border-radius: 50%;
+                            i {
+                                @include setText(getColor('red'),getFontSize('size-18'),getFontWeight('medium'));
+                                background-color: getColor('white');
+                                margin-right: 4px;
+                            }
+                        }
+                    }
+                }
+            }
+            .detail__course-other {
+                h4 {
+                    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                }
+                .rating {
+                    i {
+                        color: getColor('yellow');
+                        margin-left: 4px;
+                    }
+                }
+                .detail {
+                    @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
+                    background-color: getColor('red');
+                    padding: 8px 16px;
+                    border: none;
+                    border-radius: 4px;
+                }
+                .btn-back {
+                    @include setText(getColor('secondary'),getFontSize('size-24'),getFontWeight('medium'));
+                    border: 1px solid getColor('grey');
+                    
+                    padding: 0px 12px;
+                    border-radius: 2px;
+                }
+            }
+        }
+        .DetailCourse__control {
+            padding: 4px;
+            border: 1px solid getColor('grey');
+            &__img {
+                img {
+                    width: 100%;
+                    max-height: 300px;
+                    object-fit: cover;
+                }
+            }
+            &__content {
+                padding: 0 12px;
+                .detail__price {
+                    margin: 8px 0;
+                    &-new {
+                        @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('medium'));                   
+                    }
+                    &-old {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                        text-decoration: line-through;
+                        opacity: 0.75;
+                    }
+                }
+                button {
+                    display:block;
+                    width: 100%;
+                    border-radius: 4px;
+                    border: none;
+                    padding: 8px 0;
+                    margin: 12px 0;
+                }
+                
+                .btn-cart {
+                    @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
+                    background-color: getColor('red');
+                }
+                .btn-buy {
+                    @include setText(getColor('secondary'),getFontSize('size-18'),getFontWeight('medium'));
+                    background-color: transparent;
+                    border: 1px solid getColor('secondary');
+                }
+                p {
+                    @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                    margin: 0;
+                }
+                ul {
+                    li {
+                        display: flex;
+                        align-items: center;
+                        padding: 4px 0;
+                        span {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                            &:first-child {
+                                width: 8%;
+                            }
+                            i {
+                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                                margin-right: 4px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

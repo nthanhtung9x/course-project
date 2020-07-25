@@ -1,0 +1,279 @@
+.home {
+    .welcome {
+        display:flex;
+        width: 80%;
+        margin: 36px auto;
+        &-left {
+            width: 60%;
+            h1 {
+                @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('regular'));
+            }
+            p {
+                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                margin:12px 0;
+                line-height: 2.4rem;
+            }
+        }
+        &-right {
+            width: 40%;
+            form {
+                background-color: getColor('secondary');
+                display:flex;
+                flex-direction: column;
+                width: 80%;
+                margin: auto;
+                padding: 12px 24px;
+                border-radius: 4px;
+                h4 {
+                    @include setText(getColor('white'),getFontSize('size-24'),getFontWeight('regular'));
+                    text-align: center;
+                    padding: 12px;
+                }
+                label {
+                    @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('regular'));
+                    margin: 8px 0 4px;
+                }
+                select {
+                    @include setText(getColor('white'),getFontSize('size-14'),getFontWeight('regular'));
+                    background-color: getColor('secondary');
+                    padding: 4px;
+                    border: 1px solid;
+                }
+                button {
+                    @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('regular'));
+                    background-color: transparent;
+                    border: 1px solid;
+                    border-radius: 4px;
+                    padding: 8px 12px;
+                    margin: 24px 0 12px;
+                }
+            }
+        }
+    }
+
+    .special {
+        background:url('../images/background.jpg') no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        &-bg {
+            width: 80%;
+            margin: auto;
+            padding: 36px 0;
+            h1 {
+                @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('regular'));
+                text-align: center;
+                margin-bottom: 24px;
+            }
+            .special__row {
+                display:flex;
+                flex-wrap: wrap;
+                align-items: center;
+                margin: -16px;
+                .special__col {
+                    width: 33.3333%;
+                    padding: 8px;
+                    margin-bottom: 12px;
+                    .special__wrap {
+                        background-color: getColor('primary');
+                        padding: 16px;
+                        height: 300px;
+                        overflow: hidden;
+                        text-align: center;
+                        border-radius: 4px;
+                        span {
+                            display:inline-block;
+                            padding: 12px;
+                            border-radius: 50%;
+                            border:2px solid getColor('secondary');
+                            transition: all 0.2s;
+                            i {
+                                @include setText(getColor('secondary'),getFontSize('size-24'),getFontWeight('medium'));                         
+                                transition: all 0.2s;
+                            }
+                            &:hover {
+                                background-color: getColor('secondary');
+                            }
+                            &:hover i {
+                                color: getColor('white');
+                            }
+                        }
+                        h4 {
+                            @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('medium'));
+                            text-align: left;
+                            margin: 12px 0;
+                        }
+                        p {
+                            text-align: left;
+                            @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .about {
+        &__wrapper {
+            width: 80%;
+            margin: auto;
+            padding: 36px 0;
+            h1 {
+                @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('medium'));
+                text-align: center;
+                margin-bottom: 36px;
+            }
+            .about__row {
+                display:flex;
+                flex-wrap: wrap;
+                align-items: center;
+                .about__col {
+                    width: 50%;
+                    text-align: center;
+                    margin-bottom: 36px;
+                    img {
+                        width: 90%;
+                        object-fit: cover;
+                    }
+                    h4 {
+                        @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('medium'));
+                        text-align: left;
+                        width: 80%;
+                        margin:auto;
+                        margin-bottom: 24px;
+                        span {
+                            @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('medium'));
+                        }
+                    }
+                    p {
+                        @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                        text-align: left;
+                        width: 80%;
+                        margin:auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .customer {
+        background: url('https://i.pinimg.com/originals/3f/54/94/3f54947eccae5188be4c05bc298a3ee8.png') no-repeat left bottom;
+        background-size: 50%;
+        border-top: 1px solid getColor('grey');
+        .customer__wrapper {
+            width: 80%;
+            margin: auto;
+            padding: 36px 0 48px;
+            h1 {
+                @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('regular'));
+                text-align: center;
+                margin-bottom: 24px;
+            }
+            .item {
+                padding: 0 12px;
+                border: none;
+                img {
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+                }
+                h4 {
+                    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                    padding: 12px 12px 0;
+                    margin: 0;
+                }
+                p {
+                    @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                    padding: 12px;
+                }
+            }
+            .slick-prev {
+                left: -40px;
+            }
+            .slick-prev::before, .slick-next::before {
+                @include setText(getColor('secondary'),getFontSize('size-32'),getFontWeight('medium'));
+            }
+            .slick-dots {
+                bottom: -35px;
+                margin-top: 24px;
+                li {
+                    button::before {
+                        @include setText(getColor('secondary'),getFontSize('size-12'),getFontWeight('regular'));
+                    }
+                }
+            }
+        }
+    }
+
+    .contact {
+        background-color: getColor('secondary');
+        .contact__wrapper {
+            width: 80%;
+            margin: auto;
+            padding: 36px 0;
+            display:flex;
+            flex-wrap: wrap;
+            &-left {
+                width: 50%;
+                display:flex;
+                align-items: center;
+                img {
+                    width: 80%;
+                    object-fit: cover;
+                    filter: drop-shadow(2px 6px 6px getColor('black'));
+                }
+            }
+            &-right {
+                width: 50%;
+                form {
+                    background-color: getColor('white');
+                    width: 80%;
+                    margin: auto;
+                    padding: 24px;
+                    h1 {
+                        @include setText(getColor('red'),getFontSize('size-24'),getFontWeight('medium'));
+                        text-align: center;
+                    }
+                    hr {
+                        border-bottom: 2px solid getColor('red');
+                        width: 42px;
+                        margin: 12px auto;
+                    }
+                    .form-group {
+                        display:flex;
+                        align-items: center;
+                        border:1px solid getColor('secondary');
+                        margin: 24px 0;
+                        padding: 4px;
+                        span {
+                            flex: 1;
+                            display:inline-block;
+                            text-align: center;
+                            i {
+                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                            }
+                        }
+                        input {
+                            width: 95%;
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                            padding: 4px;
+                            border: none;
+                            outline:none;
+                        }
+                        textarea {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                            width: 100%;
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                    button {
+                        @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('medium'));
+                        background-color: getColor('red');
+                        padding: 8px 16px;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+}

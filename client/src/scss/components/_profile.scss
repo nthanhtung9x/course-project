@@ -1,0 +1,163 @@
+.profile {
+    margin-top: $height-header;
+    &__top {
+        background-color: getColor('secondary');
+        padding: 36px 0;
+        text-align: center;
+        .profile__avatar {
+            img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+            }
+        }
+        .profile__name {
+            @include setText(getColor('primary'),getFontSize('size-24'),getFontWeight('medium'));
+            padding-top: 12px;
+        }
+    }
+    &__main {
+        &__control {
+            width: 90%;
+            margin: auto;
+        }
+        .wall, .profile__courses, .profile__friends, .profile__detail {
+            width: 90%;
+            margin: 12px auto;
+            border: 1px solid getColor('grey');
+            border-radius: 4px;
+            &-col {
+                height: 100%;
+                padding: 12px;
+                border-right: 1px solid getColor('grey');
+                .label-title {
+                    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                    margin-bottom: 0;
+                }
+                .ant-input-group-wrapper {
+                    margin: 8px 0;
+                }
+                &-content-disabled {
+                    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                    text-align: center;
+                    padding: 24px 0;
+                }
+
+                .item {
+                    .ant-card-cover {
+                        img {
+                            height: 180px;
+                            object-fit: cover;
+                        }
+                    }
+                    .ant-card-body {
+                        padding: 12px;
+                        margin-top: 8px;
+                        .ant-card-meta-title {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                            margin: 0;
+                            
+                        }
+                        .ant-card-meta-description {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                            opacity: 0.75;
+                            display:-webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            overflow: hidden;
+                        }
+                        .timeStart {
+                            @include setText(getColor('black'),getFontSize('size-14'),getFontWeight('regular'));
+                            margin: 8px 0;
+                        }
+                        .rating {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                            margin: 8px 0;
+                            i {
+                                @include setText(getColor('yellow'),getFontSize('size-18'),getFontWeight('medium'));
+                                margin-left: 4px;
+                            }
+                        }
+                        .accept {
+                            @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
+                            background-color: getColor('red');
+                            padding: 8px 16px;
+                            border: none;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+
+                .list-loadmore-edit {
+                    padding: 8px;
+                    background-color: getColor('secondary');
+                    color: getColor('white');
+                    border-radius: 4px;
+                }
+                .list-loadmore-more {
+                    padding: 8px;
+                    background-color: getColor('red');
+                    color: getColor('white');
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .video__courses {
+            border: none;
+            .ant-row {
+                border-radius: 4px;
+                .ant-col {
+                    border: 1px solid getColor('grey');
+                }
+                .wall-col {
+                    border: none;
+                    padding: 12px 0;
+                    .ant-list {
+                        &-item {
+                            padding: 12px;
+                            border-radius: 4px;
+                            transition: all 0.2s;
+                            &:hover {
+                                background-color: rgba($color: getColor('secondary'), $alpha: 1);
+                            }
+                            &:hover .ant-list-item-meta .ant-list-item-meta-content .ant-list-item-meta-title,&:hover .ant-list-item-meta .ant-list-item-meta-content .ant-list-item-meta-description {
+                                color: getColor('white');
+                            }
+                            button {
+                                background-color: transparent;
+                                border: none;
+                                outline: none;
+                                .ant-list-item-meta {
+                                    align-items: center;
+                                    .ant-avatar {
+                                        width: 60px;
+                                        height: 60px;
+                                        border-radius: unset;
+                                    }
+                                    .ant-list-item-meta-content {
+                                        text-align: left;
+                                        .ant-list-item-meta-title {
+                                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                                            transition: all 0.2s;           
+                                        }
+                                        .ant-list-item-meta-description {
+                                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                                            opacity: 0.75;
+                                            display:-webkit-box;
+                                            -webkit-box-orient: vertical;
+                                            -webkit-line-clamp: 1;
+                                            overflow: hidden;
+                                            transition: all 0.2s;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

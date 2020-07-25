@@ -1,0 +1,257 @@
+.admin {
+    .logo {
+        img {
+            width: 100%;
+            object-fit: cover;
+            padding: 12px;
+            border-radius: 50%;
+        }
+    }
+    .site-layout {
+        background-color: getColor('secondary');
+        .site__wrapper {    
+            width: 90%;
+            margin: 36px auto;
+            .site__user {
+                text-align: right;
+                .ant-avatar {
+                    color: getColor('white');
+                    background-color: getColor('red');
+                    margin-right: 4px;
+                }
+                span {
+                    @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('regular'));
+                }
+            }
+            .common {
+                margin:12px 0;
+                &__item {
+                    background-color: getColor('white');
+                    border-radius: 4px;
+                    text-align: center;
+                    padding: 24px 0;
+                    .anticon-book {
+                        background-color: getColor('red');
+                        color: getColor('white');
+                        padding: 12px;
+                        border-radius: 50%;
+                    }
+                    .anticon-user {
+                        background-color: getColor('yellow');
+                        color: getColor('white');
+                        padding: 12px;
+                        border-radius: 50%;
+                    }
+                    .anticon-codepen {
+                        background-color: getColor('secondary');
+                        color: getColor('white');
+                        padding: 12px;
+                        border-radius: 50%;
+                    }
+                    p {
+                        @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('regular'));
+                        margin: 12px 0;
+                    }
+                }
+                &__users, &__courses {
+                    background-color: getColor('white');
+                    border-radius: 4px;
+                    padding: 4px;
+                    h1 {
+                        @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('regular'));
+                        text-align: center;
+                        padding: 8px 0;
+                    }
+                    .ant-pagination {
+                        display:none;
+                    }
+                    .ant-table-thead {
+                        .ant-table-cell {
+                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                        }
+                    }
+                    .ant-table-cell {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                        text-align: center;
+                    }
+    
+                }
+            }
+            .manager__courses {
+                h1 {
+                    @include setText(getColor('white'),getFontSize('size-32'),getFontWeight('medium'));
+                    text-align: center;
+                    padding: 8px 0;
+                    margin: 0;
+                }
+                .search__courses {
+                    width: 100%;
+                }
+                .manager__course-item {
+                    position: relative;
+                    height: 320px;
+                    .ant-card  {
+                        height: 100%;
+                        .ant-card-cover {
+                            height: 80%;
+                            img {
+                                height: 100%;
+                                object-fit: revert;
+                            }
+
+                        }
+                        .ant-card-body {
+                            padding: 12px;
+                            .ant-card-meta-title {
+                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                                margin: 0;
+                            }
+                            .ant-card-meta-description {
+                                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                                margin: 0;
+                            }
+                        }
+                    }
+                    .item-feature {
+                        position: absolute;
+                        top:50%;
+                        transform: translateY(-50%);
+                        z-index: 1;
+                        
+                        background-color: rgba($color: getColor('black'), $alpha: 0.6);
+                        
+                        display:flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        transition: all 0.2s;
+                        .btn-feature {
+                            @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('medium'));
+                            padding: 4px 12px;
+                            display:block;
+                            width: 80%;
+                            margin:4px auto;
+                            border: none;
+                            border-radius: 4px;
+                            outline: none;
+                            transition: all 0.2s;
+                            &:hover {
+                                opacity: 0.9;
+                            }
+                        }
+                    }
+                    &:hover .item-feature {
+                        opacity: 1;
+                    }
+                }
+            }
+            .manager__users {
+                h1 {
+                    @include setText(getColor('white'),getFontSize('size-32'),getFontWeight('medium'));
+                    text-align: center;
+                    padding: 8px 0;
+                    margin: 0;
+                }
+                p {
+                    @include setText(getColor('black'),getFontSize('size-14'),getFontWeight('regular'));
+                    margin: 0;
+                }
+                .ant-table-thead {
+                    .ant-table-cell {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                    }
+                }
+                .ant-table-cell {
+                    @include setText(getColor('black'),getFontSize('size-14'),getFontWeight('regular'));
+                    text-align: center;
+                    .ant-space-item {
+                        button {
+                            span {
+                                font-size: getFontSize('size-16');
+                            }
+                        }
+                    }
+                }
+
+                .ant-pagination.mini {
+                    .ant-pagination-item {
+                        background-color: getColor('white');
+                        margin: 0 2px;
+                        height: unset;
+                        line-height: unset;
+
+                        a {
+                            padding: 8px 16px;
+                        }
+                    }
+                    .ant-pagination-prev, .ant-pagination-next {
+                        height: unset;
+                        line-height: unset;
+                        .ant-pagination-item-link {
+                            @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('medium'));
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal__addCourse, .modal__updateCourse, .modal__addUser {
+    .ant-modal-header {
+        .ant-modal-title {
+            @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+        }
+    }
+    .ant-modal-body {
+        padding: 16px 24px 0px;
+        .ant-form {
+            .ant-form-item-label {
+                text-align: left;
+                label {
+                    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                }
+            }
+            .ant-btn {
+                margin: 12px 4px;
+            }
+            .ant-btn-icon-only {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.ant-modal.modal__addUser {
+    width: 700px !important;
+}
+
+.modal__registerCourse, .modal__listUserCourse {
+    .ant-modal-header {
+        .ant-modal-title {
+            @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+        }
+    }
+    .ant-modal-body {
+        padding: 16px 24px 0px;
+        .ant-list-item-meta {
+            flex:unset;
+            width: 100%;
+        }
+        button {
+            margin: 2px 0;
+        }
+    }
+
+    .demo-infinite-container {
+        width: 100%;
+        height: 300px;
+        overflow: auto;
+        padding: 0 12px;
+        margin: 12px 0;
+    }
+}
