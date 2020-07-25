@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import WOW from 'wow.js';
 import Slider from "react-slick";
 
 import Contact from '../../../images/contact.png';
 
-export const HomeComponent = () => {
+import {connect} from 'react-redux';
+import { Select, message } from 'antd';
+import { useHistory } from 'react-router-dom';
+const { Option } = Select;
+
+const HomeComponent = ({ courses }) => {
     
     const settings = {
         dots: true,
@@ -21,6 +26,40 @@ export const HomeComponent = () => {
         }).init();
     },[]);
 
+
+
+    const history = useHistory();
+    // const handleChange = (value) => {
+    //     return history.push(`/course/detail/${value}`);
+    // };
+    const [type, setType] = useState("");
+    const [searchText, setSearchText] = useState("");
+    const renderName = (type) => {
+        if(type) {
+            return courses.map((item, index) => {
+                if(item.type.toLowerCase().trim().indexOf(type.toLowerCase().trim()) !== -1) {
+                    return <Option value={item._id} key={index}>{item.name}</Option>
+                }
+            })
+        }
+    };
+
+    const handleChangeType = (value) => {
+        setType(value);
+    };
+
+    const handleChangeName = (value) => {
+        setSearchText(value);
+    };
+
+    const handleFindCourse = (e,id) => {
+        e.preventDefault();
+        if(searchText && type) {
+            return history.push(`/course/detail/${id}`)
+        }
+        return message.error('Vui lòng chọn đầy đủ!');
+    };
+
     return (
         <div className="home">
             <div className="welcome">
@@ -31,20 +70,19 @@ export const HomeComponent = () => {
                     </p>
                 </div>
                 <div className="welcome-right wow fadeInRight">
-                    <form>
+                    <form onSubmit={(e) => handleFindCourse(e,searchText)}>
                         <h4>Tìm kiếm khóa học</h4>
                         <label htmlFor="">Thể Loại</label>
-                        <select>
-                            <option>CHỌN THỂ LOẠI</option>
-                            <option>FRONT END</option>
-                            <option>BACK END</option>
-                        </select>
+                        <Select placeholder="Chọn loại khóa học" onChange={handleChangeType}>
+                            <Option value="FE">Front-End</Option>
+                            <Option value="BE">Back-End</Option>
+                            <Option value="Program">Lập trình nhúng</Option>
+                            <Option value="Thinking">Lập trình tư duy</Option>
+                        </Select>
                         <label htmlFor="">Môn học</label>
-                        <select>
-                            <option>CHỌN MÔN HỌC</option>
-                            <option>REACTJS</option>
-                            <option>VUEJS</option>
-                        </select>
+                        <Select placeholder="Chọn khóa học" onChange={handleChangeName}>
+                            {renderName(type)}
+                        </Select>
                         <button type="submit">Tìm Kiếm</button>
                     </form>
                 </div>
@@ -204,4 +242,12 @@ export const HomeComponent = () => {
             </div>
         </div>
     )
+};
+
+const mapStateToProps = state => {
+    return {
+        courses: state.courses
+    }
 }
+
+export default connect(mapStateToProps)(HomeComponent);

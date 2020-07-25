@@ -52,7 +52,7 @@ export const RegisterComponent = () => {
         setMessageSignUp("");
         axios({
             method:"POST",
-            url:'http://localhost:8080/signup',
+            url:'https://courses-project-api.herokuapp.com/signup',
             data: values
         }).then(res => {
             console.log(res.data.message);

@@ -20,7 +20,7 @@ const VideoCourse = ({ match }) => {
         let id = match.params.id;
         axios({
             method:'GET',
-            url:`http://localhost:8080/getVideoCourse/${id}`,
+            url:`https://courses-project-api.herokuapp.com/getVideoCourse/${id}`,
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,
                 "Content-Type": "application/json",

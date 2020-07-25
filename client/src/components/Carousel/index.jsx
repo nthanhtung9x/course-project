@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from "react-slick";
 
 import Slide1 from '../../images/slide1.png';
@@ -7,8 +7,13 @@ import Slide3 from '../../images/slide3.png';
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 
+import {connect} from 'react-redux';
+import { Select } from 'antd';
+import { useHistory } from 'react-router-dom';
+const { Option } = Select;
 
-export const CarouselComponent = () => {
+
+const CarouselComponent = ({ courses }) => {
     const settings = {
         dots: false,
         fade: true,
@@ -20,6 +25,27 @@ export const CarouselComponent = () => {
         slidesToScroll: 1
     };
     
+    const [searchText, setSearchText] = useState("");
+      
+    const onSearch = (val) => {
+        setSearchText(val);
+    };
+
+    const renderSearch = (searchText) => {
+        return courses.map((item, index) => {
+            if(item.name.toLowerCase().trim().indexOf(searchText.toLowerCase().trim()) !== -1) {
+                return <Option value={item._id} key={index}>{item.name}</Option>
+            }
+        });
+    };
+
+    const history = useHistory();
+    const handleChange = (value) => {
+        return history.push(`/course/detail/${value}`);
+    };
+
+    
+
     return (
         <div>
             <div className="carousel__banner">
@@ -27,8 +53,18 @@ export const CarouselComponent = () => {
                     <h1>Tìm kiếm khóa học</h1>
                     <p>Sale ends today! Count on courses as low as $10.99.</p>
                     <div className="carousel__form">
-                        <input type="text" placeholder="Nhập thông tin bạn cần tìm?" />
-                        <i className="fa fa-search" />
+                    <Select
+                        showSearch
+                        placeholder="Nhập tên khóa học cần tìm"
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        {renderSearch(searchText)}
+                    </Select>
                     </div>
                 </div>
                 <Slider {...settings} className="carousel__img">
@@ -46,4 +82,12 @@ export const CarouselComponent = () => {
 
         </div>
     )
+};
+
+const mapStateToProps = state => {
+    return {
+        courses: state.courses
+    }
 }
+
+export default connect(mapStateToProps)(CarouselComponent);

@@ -25,7 +25,7 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
 
     const getTeacher = (token) => {
         return axios({
-            url:'http://localhost:8080/getTeacher',
+            url:'https://courses-project-api.herokuapp.com/getTeacher',
             method:'GET',
             headers: {
                 'Authorization': token,

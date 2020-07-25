@@ -31,7 +31,8 @@ html {
     .header .nav .nav__list {
       display: flex;
       align-items: center;
-      margin-right: 36px; }
+      margin-right: 36px;
+      margin-bottom: 0; }
       .header .nav .nav__list li {
         margin-left: 24px; }
         .header .nav .nav__list li a {
@@ -300,42 +301,18 @@ html {
       position: relative;
       width: 100%;
       height: 50px;
-      border: 1px solid #ddd;
       border-radius: 2px;
       display: flex;
       align-items: center;
       transition: all 0.4s; }
-      .carousel__banner .carousel__text .carousel__form input {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        background-color: transparent;
-        color: #000;
-        font-size: 1.6rem;
-        font-weight: 400;
-        padding: 10px;
+      .carousel__banner .carousel__text .carousel__form .ant-select {
         width: 100%;
-        padding-right: 10%;
-        border-radius: 2px;
-        border: none;
-        outline: none; }
-      .carousel__banner .carousel__text .carousel__form i {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 100%;
-        width: 10%;
-        z-index: 5;
-        color: #22075e;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden; }
-      .carousel__banner .carousel__text .carousel__form:hover {
-        border: 1px solid #aaa; }
+        height: 100%; }
+        .carousel__banner .carousel__text .carousel__form .ant-select .ant-select-selector {
+          height: 100%;
+          align-items: center; }
+          .carousel__banner .carousel__text .carousel__form .ant-select .ant-select-selector .ant-select-selection-search-input {
+            height: 100%; }
   .carousel__banner .carousel__img {
     position: absolute;
     bottom: 30%;
@@ -380,10 +357,11 @@ html {
         font-size: 2.4rem;
         font-weight: 400;
         text-align: center;
-        padding: 12px; }
+        padding: 12px;
+        margin-bottom: 0; }
       .home .welcome-right form label {
         color: #fff;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: 400;
         margin: 8px 0 4px; }
       .home .welcome-right form select {
@@ -395,13 +373,16 @@ html {
         border: 1px solid; }
       .home .welcome-right form button {
         color: #fff;
-        font-size: 1.6rem;
-        font-weight: 400;
+        font-size: 1.8rem;
+        font-weight: 600;
         background-color: transparent;
         border: 1px solid;
         border-radius: 4px;
         padding: 8px 12px;
-        margin: 24px 0 12px; }
+        margin: 24px 0 12px;
+        transition: all 0.2s; }
+        .home .welcome-right form button:hover {
+          outline: auto; }
 .home .special {
   background: url("../images/background.jpg") no-repeat;
   background-size: cover;

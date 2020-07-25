@@ -40,7 +40,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const getUserRegisterCourse = (token, id) => {
         return axios({
-            url: 'http://localhost:8080/registerCoursesList',
+            url: 'https://courses-project-api.herokuapp.com/registerCoursesList',
             method: 'POST',
             headers: {
                 'Authorization': token,
@@ -56,7 +56,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const handleRegister = (token, idCourse, idUser) => {
         return axios({
-            url: 'http://localhost:8080/confirmRegister',
+            url: 'https://courses-project-api.herokuapp.com/confirmRegister',
             method: 'POST',
             headers: {
                 'Authorization': token,
@@ -74,7 +74,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const handleRemoveRegister = (token, idCourse, idUser) => {
         return axios({
-            url:'http://localhost:8080/removeRegister',
+            url:'https://courses-project-api.herokuapp.com/removeRegister',
             method:'DELETE',
             headers: {
                 'Authorization': token,
@@ -169,7 +169,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const getUserRegistedCourse = (token, id) => {
         return axios({
-            url: 'http://localhost:8080/registedCoursesList',
+            url: 'https://courses-project-api.herokuapp.com/registedCoursesList',
             method: 'POST',
             headers: {
                 'Authorization': token,
@@ -185,7 +185,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const handleCancelRegister = (token, idCourse, idUser) => {
         return axios({
-            url:'http://localhost:8080/cancelRegister',
+            url:'https://courses-project-api.herokuapp.com/cancelRegister',
             method:'PUT',
             headers: {
                 'Authorization': token,
@@ -223,7 +223,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const getTeacher = (token) => {
         return axios({
-            url:'http://localhost:8080/getTeacher',
+            url:'https://courses-project-api.herokuapp.com/getTeacher',
             method:'GET',
             headers: {
                 'Authorization': token,
@@ -329,7 +329,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
     const handleAddVideo = values => {
         console.log(values);
         axios({
-            url:"http://localhost:8080/addVideo",
+            url:"https://courses-project-api.herokuapp.com/addVideo",
             method:"POST",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,
@@ -366,14 +366,14 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
     // update video
     const [listVideo, setListVideo] = useState([]);
 
-    const getVideo = () => {
+    const getVideo = (id) => {
         axios({
             method:'GET',
-            url: 'http://localhost:8080/getVideo',
+            url: `https://courses-project-api.herokuapp.com/getVideo/${id}`,
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,
                 "Content-Type": "application/json",
-            }
+            },
         }).then(res => {
             setListVideo([...res.data]);
         }).catch(err => console.log(err));
@@ -390,7 +390,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
         loadingModalUpdateVideo: false,
     });
     const showModalUpdateVideo = async(item) => {
-        getVideo();
+        getVideo(item._id);
         await form.setFieldsValue({
             idUpdateCourseVideo:item._id,
             idUpdateVideo: "",
@@ -408,7 +408,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const handleUpdateVideo = values => {
         axios({
-            url:"http://localhost:8080/updateVideo",
+            url:"https://courses-project-api.herokuapp.com/updateVideo",
             method:"PUT",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,
@@ -452,7 +452,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
         loadingModalDeleteVideo: false,
     });
     const showModalDeleteVideo = async(item) => {
-        getVideo();
+        getVideo(item._id);
         await form.setFieldsValue({
             idDeleteCourseVideo:item._id,
             idDeleteVideo: ""
@@ -467,7 +467,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse }) => {
 
     const handleDeleteVideo = values => {
         axios({
-            url:"http://localhost:8080/deleteVideo",
+            url:"https://courses-project-api.herokuapp.com/deleteVideo",
             method:"DELETE",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,

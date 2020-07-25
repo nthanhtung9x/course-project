@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 import Logo from "../../images/logo.jpg";
 
@@ -10,23 +10,55 @@ import * as action from '../../redux/actions';
 import { Select } from 'antd';
 const { Option } = Select;
 
-const HeaderComponent = ({ userLogin, logOut, findUser, checkRole }) => {
-	const [checkFeature, setCheckFeature] = useState(-1);
+const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, courses }) => {
+    useEffect(() => {
+        getCourse();
+    }, []);
 
-    const handleChange = () => {
+    const renderFE = () => {
+        return courses.map((item, index) => {
+            if(item.type === "FE") {
+                return <Option value={item._id} key={index}>
+                           {item.name}
+                        </Option>
+            }
+        })
+    };
 
-    }
+    const renderBE = () => {
+        return courses.map((item, index) => {
+            if(item.type === "BE") {
+                return <Option value={item._id} key={index}>
+                           {item.name}
+                        </Option>
+            }
+        })
+    };
 
-    // const checkRole = () => {
-	// 	let feature = userLogin.features.findIndex((item) => {
-	// 		return item === '5f1015df39a6feaad03f4982';
-    //     });
-	// 	return feature;
-    // }
+    const renderProgram = () => {
+        return courses.map((item, index) => {
+            if(item.type === "program") {
+                return  <Option value={item._id} key={index}>
+                           {item.name}
+                        </Option>
+            }
+        })
+    };
 
-    // useEffect(() => {
-    //     checkRole();
-    // },[checkFeature]);
+    const renderThinking = () => {
+        return courses.map((item, index) => {
+            if(item.type === "thinking") {
+                return <Option value={item._id} key={index}>
+                           {item.name}
+                        </Option>
+            }
+        })
+    };
+    
+    const history = useHistory();
+    const handleChange = (value) => {
+        return history.push(`/course/detail/${value}`);
+    };
 
     return (
         <div className="header wow fadeInDown">
@@ -144,30 +176,22 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole }) => {
                 <ul>
                     <li>
                         <Select size="large" onChange={handleChange} placeholder="Lập trình Front-End">
-                            <Option value="lucy">HTML, CSS cơ bản</Option>
-                            <Option value="disabled">Javascript cơ bản</Option>
-                            <Option value="Yiminghe">Javascript nâng cao</Option>
+                            {renderFE()}
                         </Select>
                     </li>
                     <li>
                         <Select size="large" onChange={handleChange} placeholder="Lập trình Back-End">
-                            <Option value="lucy">HTML, CSS cơ bản</Option>
-                            <Option value="disabled">Javascript cơ bản</Option>
-                            <Option value="Yiminghe">Javascript nâng cao</Option>
+                            {renderBE()}
                         </Select>
                     </li>
                     <li>
                         <Select size="large" onChange={handleChange} placeholder="Lập trình Nhúng">
-                            <Option value="lucy">HTML, CSS cơ bản</Option>
-                            <Option value="disabled">Javascript cơ bản</Option>
-                            <Option value="Yiminghe">Javascript nâng cao</Option>
+                            {renderProgram()}
                         </Select>
                     </li>
                     <li>
                         <Select size="large" onChange={handleChange} placeholder="Lập trình Tư duy">
-                            <Option value="lucy">HTML, CSS cơ bản</Option>
-                            <Option value="disabled">Javascript cơ bản</Option>
-                            <Option value="Yiminghe">Javascript nâng cao</Option>
+                            {renderThinking()}
                         </Select>
                     </li>
                 </ul>
@@ -179,7 +203,8 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole }) => {
 const mapStateToProps = state => {
     return {
         userLogin: state.userLogin,
-        checkRole: state.checkRole
+        checkRole: state.checkRole,
+        courses: state.courses
     }
 }
 
@@ -190,6 +215,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         findUser: (id) => {
             dispatch(action.findUserById(id));
+        },
+        getCourse: () => {
+            dispatch(action.getCoursesAPI());
         }
     }
 }

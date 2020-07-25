@@ -7,7 +7,7 @@ export const checkUser = (token) => {
     return (dispatch) => {
         return axios({
             method:'GET',
-            url:'http://localhost:8080/checkUser',
+            url:'https://courses-project-api.herokuapp.com/checkUser',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const findUserById = (id) => {
     return (dispatch) => {
         return axios({
             method:'GET',
-            url:`http://localhost:8080/profile/${id}`,
+            url:`https://courses-project-api.herokuapp.com/profile/${id}`,
             headers: {
                 "Content-Type": "application/json",
             }
@@ -64,7 +64,7 @@ export const getUsersAPI = (token) => {
     return (dispatch) => {
         return axios({
             method:'GET',
-            url:'http://localhost:8080/users',
+            url:'https://courses-project-api.herokuapp.com/users',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export const updateUserAPI = (token, data) => {
     return (dispatch) => {
         return axios({
             method:'PUT',
-            url:'http://localhost:8080/updateUser',
+            url:'https://courses-project-api.herokuapp.com/updateUser',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -108,7 +108,7 @@ export const deleteUserAPI = (token, data) => {
     return (dispatch) => {
         return axios({
             method:'DELETE',
-            url:'http://localhost:8080/deleteUser',
+            url:'https://courses-project-api.herokuapp.com/deleteUser',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -130,7 +130,7 @@ export const createUserAPI = (token, data) => {
     return (dispatch) => {
         return axios({
             method:"POST",
-            url:'http://localhost:8080/createUser',
+            url:'https://courses-project-api.herokuapp.com/createUser',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -150,7 +150,7 @@ export const getCoursesAPI = () => {
     return (dispatch) => {
         return axios({
             method:'GET',
-            url:'http://localhost:8080/courses'
+            url:'https://courses-project-api.herokuapp.com/courses'
         }). then(res => {
             dispatch(getCourses(res.data));
         }).catch(err => console.log(err));
@@ -167,7 +167,7 @@ export const findCourseById = (id) => {
     return (dispatch) => {
         return axios({
             method:'GET',
-            url:`http://localhost:8080/course/detail/${id}`,
+            url:`https://courses-project-api.herokuapp.com/course/detail/${id}`,
             headers: {
                 "Content-Type": "application/json",
             }
@@ -188,7 +188,7 @@ export const registerCourseAPI = (token,data) => {
     return (dispatch) => {
         return axios({
             method:'POST',
-            url:'http://localhost:8080/registerCourses',
+            url:'https://courses-project-api.herokuapp.com/registerCourses',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -209,7 +209,7 @@ export const loadingUsersAfterRegisterCourse = (message) => {
 export const createCourseAPI = (token,data) => {
     return (dispatch) => {
         return axios({
-            url:'http://localhost:8080/createCourse',
+            url:'https://courses-project-api.herokuapp.com/createCourse',
             method:'POST',
             headers: {
                 'Authorization': token,
@@ -232,7 +232,7 @@ export const updateCourseAPI = (token, data) => {
     return (dispatch) => {
         return axios({
             method:"PUT",
-            url:'http://localhost:8080/updateCourse',
+            url:'https://courses-project-api.herokuapp.com/updateCourse',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -254,7 +254,7 @@ export const deleteCourseAPI = (token, id) => {
     return (dispatch) => {
         return axios({
             method:"DELETE",
-            url:'http://localhost:8080/deleteCourse',
+            url:'https://courses-project-api.herokuapp.com/deleteCourse',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -275,7 +275,7 @@ export const loadingCourseAfterDelete = (courses) => {
 export const getCoursesOfUserAPI = (token) => {
     return (dispatch) => {
         return axios({
-            url:'http://localhost:8080/getCoursesOfUser',
+            url:'https://courses-project-api.herokuapp.com/getCoursesOfUser',
             method:'GET',
             headers: {
                 'Authorization': token,

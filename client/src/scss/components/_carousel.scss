@@ -29,45 +29,55 @@
             position: relative;
             width: 100%;
             height: 50px;
-            border: 1px solid #ddd;
             border-radius: 2px;
             display:flex;
             align-items: center;
             transition: all 0.4s;
-            input {
-                position: absolute;
-                left: 0;
-                top:0;
-                bottom: 0;
-
-                background-color: transparent;
-                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
-                
-                padding: 10px;
+            .ant-select {
                 width: 100%;
-                padding-right: 10%;
-                border-radius: 2px;
-                border: none;
-                outline: none;
-            }
-            i {
-                position: absolute;
-                right:0;
-                top: 50%;
-                transform: translateY(-50%);
                 height: 100%;
-                width: 10%;
-                z-index: 5;
-                color: getColor('secondary');
-                font-size: 16px;
-                display:flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
+                .ant-select-selector {
+                    height: 100%;
+                    align-items: center;
+                    .ant-select-selection-search-input {
+                        height: 100%;
+                    }
+                }
             }
-            &:hover {
-                border: 1px solid #aaa;
-            }
+            // input {
+            //     position: absolute;
+            //     left: 0;
+            //     top:0;
+            //     bottom: 0;
+
+            //     background-color: transparent;
+            //     @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                
+            //     padding: 10px;
+            //     width: 100%;
+            //     padding-right: 10%;
+            //     border-radius: 2px;
+            //     border: none;
+            //     outline: none;
+            // }
+            // i {
+            //     position: absolute;
+            //     right:0;
+            //     top: 50%;
+            //     transform: translateY(-50%);
+            //     height: 100%;
+            //     width: 10%;
+            //     z-index: 5;
+            //     color: getColor('secondary');
+            //     font-size: 16px;
+            //     display:flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     overflow: hidden;
+            // }
+            // &:hover {
+            //     border: 1px solid #aaa;
+            // }
         }
 
     }

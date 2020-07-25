@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react';
 import CourseItem from '../CourseItem';
 
 import { connect } from 'react-redux';
-import * as action from '../../redux/actions';
 
 import { Row, Col, Input, Pagination } from 'antd';
 const { Search } = Input;
 
 const CoursesComponent = ({ getCourse, courses }) => {
-
-    useEffect(() => {
-        getCourse();
-    }, []);
 
     const [searchText, setSearchText] = useState("");    
     const renderCourses = (min, max) => {
@@ -67,12 +62,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        getCourse: () => {
-            dispatch(action.getCoursesAPI());
-        }
-    }
-}
 
-export  default connect(mapStateToProps,mapDispatchToProps)(CoursesComponent);
+
+export  default connect(mapStateToProps)(CoursesComponent);

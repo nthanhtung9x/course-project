@@ -3,8 +3,8 @@ import './css/main.css';
 import 'antd/dist/antd.css';
 
 import HeaderComponent from './components/Header';
-import { CarouselComponent } from './components/Carousel';
-import { HomeComponent } from './components/page/Home';
+import CarouselComponent from './components/Carousel';
+import HomeComponent from './components/page/Home';
 import { FooterComponent } from './components/Footer';
 import { RegisterComponent } from './components/Register';
 import LoginComponent from './components/Login';

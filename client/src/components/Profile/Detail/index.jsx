@@ -12,7 +12,7 @@ const ProfileDetail = ({ userLogin, profile }) => {
 
     const getDetailUser = () => {
         axios({
-            url:'http://localhost:8080/getDetailUser',
+            url:'https://courses-project-api.herokuapp.com/getDetailUser',
             method:'GET',
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,

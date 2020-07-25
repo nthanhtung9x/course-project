@@ -19,6 +19,7 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
     }
     useEffect(() => {
         getFindCourseById(match.params.id);
+        console.log('detail');
     },[]);
 
     useEffect(() => {

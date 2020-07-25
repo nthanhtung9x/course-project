@@ -28,9 +28,10 @@
                     @include setText(getColor('white'),getFontSize('size-24'),getFontWeight('regular'));
                     text-align: center;
                     padding: 12px;
+                    margin-bottom: 0;
                 }
                 label {
-                    @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('regular'));
+                    @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('regular'));
                     margin: 8px 0 4px;
                 }
                 select {
@@ -40,12 +41,16 @@
                     border: 1px solid;
                 }
                 button {
-                    @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('regular'));
+                    @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
                     background-color: transparent;
                     border: 1px solid;
                     border-radius: 4px;
                     padding: 8px 12px;
                     margin: 24px 0 12px;
+                    transition: all 0.2s;
+                    &:hover {
+                        outline: auto;
+                    }
                 }
             }
         }
