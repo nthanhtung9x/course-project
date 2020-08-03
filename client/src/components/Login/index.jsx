@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, message } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Link, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/index';
 import axios from 'axios';
+import {API} from '../../API/api';
 
 const LoginComponent = ({handleLogin}) => {
+    const [loadingStyle, setLoadingStyle] = useState(false);
+    
     const successLogin = () => {
         message.success('Đăng nhập thành công');
-    }
+    };
+    
 
     const errorLogin = () => {
         message.error('Tài khoản hoặc mật khẩu không đúng');
@@ -19,12 +23,12 @@ const LoginComponent = ({handleLogin}) => {
     const onFinish = values => {
         axios({
             method:"POST",
-            url:'https://courses-project-api.herokuapp.com/signin',
+            url:`${API}/signin`,
             headers: {
                 "Content-Type": "application/json",
             },
             data: {
-                username: values.username,
+                username: values.username.toLowerCase().trim(),
                 password: values.password
             }
         })
@@ -40,6 +44,11 @@ const LoginComponent = ({handleLogin}) => {
         .catch(err => {
             console.log(err);
         });
+
+        setLoadingStyle(true);
+        setTimeout(() => {
+            setLoadingStyle(false);
+        }, 2000);
     };
 
     return (
@@ -54,9 +63,15 @@ const LoginComponent = ({handleLogin}) => {
                 >
                     <Form.Item
                         name="username"
-                        rules={[{ required: true, message: 'Vui lòng nhập tên tài khoản!' }]}
+                        rules={[
+                            { required: true, message: 'Vui lòng nhập tên tài khoản!' },
+                            { 
+                                type: 'email',
+                                message: "Mail không hợp lệ"
+                            }    
+                        ]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Nhập tên tài khoản" />
+                        <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Nhập tên tài khoản" />
                     </Form.Item>
                     <Form.Item
                         name="password"
@@ -73,13 +88,13 @@ const LoginComponent = ({handleLogin}) => {
                         <Checkbox>Remember me</Checkbox>
                         </Form.Item>
 
-                        <Link className="login-form-forgot" to="/">
+                        <Link className="login-form-forgot" to="/authentication-password">
                         Quên mật khẩu?
                         </Link>
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
+                        <Button type="primary" htmlType="submit" className="login-form-button" loading={loadingStyle}>
                         Đăng nhập
                         </Button>
                         Hoặc <Link to="/signup">Đăng ký ngay!</Link>

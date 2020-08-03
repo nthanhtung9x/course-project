@@ -3,7 +3,7 @@ import { Table, Space, Button, Modal, Form, Input, Select, message, Tooltip, Pop
 import { connect } from 'react-redux';
 import * as action from '../../../../redux/actions';
 
-const TableUsers = ({ users, handleUpdateUser, handleDeleteUser, searchText, userLogin }) => {
+const TableUsers = ({ users, handleUpdateUser, handleDeleteUser, searchText, userLogin, checkRole }) => {
     const successUpdate = () => {
       message.success('Cập nhật thành công');
     };
@@ -46,7 +46,9 @@ const TableUsers = ({ users, handleUpdateUser, handleDeleteUser, searchText, use
                 return <p>Admin</p>
               } else if(item === '2') {
                 return <p>Giảng Viên</p>
-              } 
+              } else if(item === '3') {
+                return <p>Trợ giảng</p>
+              }
               return <p>Học Viên</p>
             }
         },
@@ -55,23 +57,29 @@ const TableUsers = ({ users, handleUpdateUser, handleDeleteUser, searchText, use
           key: 'action',
           render: (item, record) => (
             <Space size="middle" style={{width:'100%'}}>
-                <Button type="primary" block onClick={() => showModalUpdateUser(item)}>Chỉnh sửa</Button>
-                { item.id === userLogin.id ?
+              { checkRole.checkUpdateUser ?
+                  <Button type="primary" block onClick={() => showModalUpdateUser(item)}>Chỉnh sửa</Button>
+                :
+                  <></>
+              }
+              { checkRole.checkDeleteUser && item.id === userLogin.id ? 
                     <></>
-                  :
-                    <Popconfirm
-                      title="Bạn chắc chắn muốn xóa người dùng này?"
-                      onConfirm={async() => {
-                        await handleDeleteUser(JSON.parse(localStorage.getItem('token')).token,{id:item.id});
-                        await successDelete();
-                      }}
-                      onCancel={(e) => console.log(e)}
-                      okText="Có"
-                      cancelText="Hủy"
-                    >
-                      <Button type="primary" danger block>Xóa</Button>
-                    </Popconfirm>
-                }
+                  : !checkRole.checkDeleteUser ?
+                      <></>
+                    :
+                      <Popconfirm
+                        title="Bạn chắc chắn muốn xóa người dùng này?"
+                        onConfirm={async() => {
+                          await handleDeleteUser(JSON.parse(localStorage.getItem('token')).token,{id:item.id});
+                          await successDelete();
+                        }}
+                        onCancel={(e) => console.log(e)}
+                        okText="Có"
+                        cancelText="Hủy"
+                      >
+                        <Button type="primary" danger block>Xóa</Button>
+                      </Popconfirm>
+              }
             </Space>
           ),
         },
@@ -279,6 +287,7 @@ const TableUsers = ({ users, handleUpdateUser, handleDeleteUser, searchText, use
                         <Select.Option value="0">Admin</Select.Option>
                         <Select.Option value="1">Học Viên</Select.Option>
                         <Select.Option value="2">Giảng Viên</Select.Option>
+                        <Select.Option value="3">Trợ Giảng</Select.Option>
                       </Select>
                     </Form.Item>
                     <Form.Item>
@@ -299,7 +308,8 @@ const TableUsers = ({ users, handleUpdateUser, handleDeleteUser, searchText, use
 const mapStateToProps = state => {
   return {
     users: state.users,
-    userLogin: state.userLogin
+    userLogin: state.userLogin,
+    checkRole: state.checkRole
   }
 }
 

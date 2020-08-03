@@ -18,6 +18,9 @@
         box-shadow: 0 0 4px getColor('grey');
         padding: 24px;
         width: 30%;
+        @include mediaQuery($md) {
+            width: 80%;
+        }
         h1 {
             @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
         }
@@ -88,6 +91,9 @@
         right: 0;
         width: 50%;
         height: 50%;
+        @include mediaQuery($md) {
+            display:none;
+        }
         img {
             width: 400px;
             margin-left: 10%;

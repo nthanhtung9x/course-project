@@ -11,10 +11,13 @@ import LoginComponent from './components/Login';
 import CoursesComponent from './components/Courses';
 import DetailCourse from './components/DetailCourse';
 import ProfileComponent from './components/Profile';
+import AuthenticationPassword from './components/AuthenticationPassword';
 
 import { connect } from 'react-redux';
 import * as action from './redux/actions';
 import WOW from 'wow.js';
+import { BackTop } from 'antd';
+import { ArrowUpOutlined } from '@ant-design/icons';
 
 import {
   BrowserRouter as Router,
@@ -35,14 +38,25 @@ const App = ({ userLogin, checkUser, checkRole }) => {
         new WOW({
             live: false
         }).init();
-    },[]);
+	},[]);
+	
+	const style = {
+		height: 40,
+		width: 40,
+		lineHeight: '40px',
+		borderRadius: 4,
+		backgroundColor: '#22075e',
+		color: '#fff',
+		textAlign: 'center',
+		fontSize: 14,
+	  };
 
   return (
 	<Router>
 		<div>		
 			<Switch>
 				<Route path="/admin">
-					{ checkRole ? 
+					{ checkRole.managerSystem ? 
 							<AdminComponent/>
 						:
 							<>
@@ -73,6 +87,11 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 						: <Redirect to ="/"/>
 					}
 				</Route>
+				<Route path="/authentication-password">
+					<HeaderComponent/>		
+					<AuthenticationPassword/>
+					<FooterComponent/>
+				</Route>
 				<Route path="/courses">
 					<HeaderComponent/>
 					<CarouselComponent/>
@@ -86,7 +105,22 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 						<FooterComponent/>
 					</>
 				}}/>
-				<Route path="/profile/:id" render={({match}) => {
+				<Route path="/profile/friends/:id" render={({match}) => {
+					return <>
+						<HeaderComponent/>
+						<ProfileComponent match={match}/>
+						<FooterComponent/>
+					</>
+				}}></Route>
+				<Route path="/profile/coursesList/:id" render={({match}) => {
+					return <>
+						<HeaderComponent/>
+						<ProfileComponent match={match}/>
+						<FooterComponent/>
+					</>
+				}}>
+				</Route>
+				<Route path="/profile/wall/:id" render={({match}) => {
 					return <>
 						<HeaderComponent/>
 						<ProfileComponent match={match}/>
@@ -107,6 +141,9 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 					<h1>Page Not Found 404</h1>
 				</Router>
 			</Switch>
+			<BackTop style={{right:'50px'}}>
+				<div style={style}><ArrowUpOutlined /></div>
+			</BackTop>
 		</div>
 	</Router>
   );

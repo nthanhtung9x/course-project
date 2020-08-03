@@ -2,7 +2,7 @@
     margin-top: $height-header;
     &__top {
         background-color: getColor('secondary');
-        padding: 36px 0;
+        padding: 64px 0 36px;
         text-align: center;
         .profile__avatar {
             img {
@@ -14,6 +14,12 @@
         .profile__name {
             @include setText(getColor('primary'),getFontSize('size-24'),getFontWeight('medium'));
             padding-top: 12px;
+        }
+
+        .profile__control {
+            button {
+                margin: 0 8px;
+            }
         }
     }
     &__main {
@@ -43,47 +49,299 @@
                     padding: 24px 0;
                 }
 
-                .item {
-                    .ant-card-cover {
-                        img {
-                            height: 180px;
-                            object-fit: cover;
-                        }
+                &-post-wrap {
+                    width: 80%;
+                    margin: auto;
+                    border-right: unset;
+                    @include mediaQuery($md) {
+                        width: 100%;
                     }
-                    .ant-card-body {
+                }
+
+                &-create-post {
+                    h3 {
+                        @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                        background-color: getColor('secondary');
+                        color: getColor('white');
+                        margin: 0;
+                        padding: 8px;
+                        border-top-left-radius: 4px;
+                        border-top-right-radius: 4px;
+                    }
+                    textarea {
+                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
                         padding: 12px;
-                        margin-top: 8px;
-                        .ant-card-meta-title {
-                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
-                            margin: 0;
-                            
-                        }
-                        .ant-card-meta-description {
-                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
-                            opacity: 0.75;
-                            display:-webkit-box;
-                            -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 2;
+                        resize: none;
+                        outline: none;
+                        box-shadow: none;
+                    }
+                    .post__controls {
+                        display:flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        @include mediaQuery($md) {
+                            width: 100%;
                             overflow: hidden;
                         }
-                        .timeStart {
-                            @include setText(getColor('black'),getFontSize('size-14'),getFontWeight('regular'));
-                            margin: 8px 0;
-                        }
-                        .rating {
-                            @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
-                            margin: 8px 0;
-                            i {
-                                @include setText(getColor('yellow'),getFontSize('size-18'),getFontWeight('medium'));
-                                margin-left: 4px;
+                        button {
+                            @include setText(getColor('secondary'),getFontSize('size-18'),getFontWeight('regular'));
+                            background-color: rgba($color: getColor('grey'), $alpha: 0.2);
+                            height: 40px;
+                            flex: 1;
+                            @include mediaQuery($md) {
+                                font-size: getFontSize('size-12');
+                            }
+                            .anticon {
+                                margin-right: 4px;
                             }
                         }
-                        .accept {
-                            @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
-                            background-color: getColor('red');
-                            padding: 8px 16px;
-                            border: none;
-                            border-radius: 4px;
+                    }
+                }
+
+                &-post {
+                    border:1px solid getColor('grey');
+                    border-radius: 4px;
+                    margin: 16px 0;
+                    padding: 8px;
+                    .post__top {
+                        display:flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 1px solid getColor('grey');
+                        padding-bottom: 12px;
+                        .post__avatar {
+                            img {
+                                width: 64px;
+                                height: 64px;
+                                border-radius: 50%;
+                                @include mediaQuery($md) {
+                                    width: 48px;
+                                    height: 48px;
+                                }
+                            }
+                        }
+                        .post__user {
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            padding-left: 12px;
+                            @include mediaQuery($md) {
+                                padding-left: 8px;
+                            }
+                            h3 {
+                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                                margin: 0;
+                                @include mediaQuery($md) {
+                                    font-size: getFontSize('size-16');
+                                }
+                            }
+                            p {
+                                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                                margin: 0;
+                                @include mediaQuery($md) {
+                                    font-size: getFontSize('size-14');
+                                }
+                            }
+                        }
+                        .post__hashtag {
+                            text-align: right;
+                            .ant-btn {
+                                @include mediaQuery($md) {
+                                    height: 3rem;
+                                }
+                            }
+                            p {
+                                @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('regular'));
+                                background-color: getColor('red');
+                                border-radius: 8px;
+                                padding: 4px 8px;
+                                margin: 8px 0 0;
+                                @include mediaQuery($md) {
+                                    font-size: getFontSize('size-14');
+                                }
+                            }
+                        }
+                    }
+                    .post__main {
+                        padding: 16px 0;
+                        &-content {
+                            @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                            @include mediaQuery($md) {
+                                font-size: getFontSize('size-16');
+                            }
+                        }
+                        &-img {
+                            width: 100%;
+                            height: 400px;
+                            object-fit: fill;
+                            @include mediaQuery($md) {
+                                height: 320px;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                    .post__footer {
+                        &-statistic {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            .like {
+                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                                @include mediaQuery($md) {
+                                    font-size: getFontSize('size-16');
+                                }
+                                .anticon {
+                                    margin-right: 8px;
+                                }
+                            }
+                            .comment {
+                                cursor: pointer;
+                                @include setText(getColor('grey'),getFontSize('size-18'),getFontWeight('regular'));
+                                @include mediaQuery($md) {
+                                    font-size: getFontSize('size-16');
+                                }
+                            }
+                        }
+                        &-comment {
+                            display:flex;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            margin-top: 12px;
+                            button {
+                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                                flex:1;
+                                width: 50%;
+                                height: 40px;
+                                @include mediaQuery($md) {
+                                    font-size: getFontSize('size-16');
+                                    height: 36px;
+                                }
+                            }
+                            .comment__wrapper {
+                                width: 100%;
+                                margin: 8px 0;
+                                &-author {
+                                    display:flex; 
+                                    align-items: center;
+                                    img {
+                                        width: 50px;
+                                        height: 50px;
+                                        object-fit: fill;
+                                        border-radius: 50%;
+                                        
+                                    }
+                                    input {
+                                        @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+                                        background-color: getColor('comment');
+                                        border-radius: 24px;
+                                        padding: 8px 16px;
+                                        margin-left: 4px;
+                                        border: none;
+                                        outline: none;
+                                        flex: 1;
+                                        @include mediaQuery($md) {
+                                            font-size: getFontSize('size-16');
+                                        }
+                                    }
+                                    .ant-input-search-enter-button input + .ant-input-group-addon {
+                                        display:none;
+                                    }
+                                }
+                                &-item {
+                                    display:flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    margin: 8px 0;
+                                    img {
+                                        width: 50px;
+                                        height: 50px;
+                                        object-fit: fill;
+                                        border-radius: 50%;   
+                                        @include mediaQuery($md) {
+                                            width: 42px;
+                                            height: 42px;
+                                        }
+                                    }
+                                    p {
+                                        @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                                        background-color: getColor('comment');
+                                        border-radius: 24px;
+                                        padding: 8px 16px;
+                                        margin: 0 4px;
+                                        flex: 1;
+                                        @include mediaQuery($md) {
+                                            font-size: getFontSize('size-14');
+                                        }
+                                        span {
+                                            @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                                            @include mediaQuery($md) {
+                                                font-size: getFontSize('size-14');
+                                            }
+                                        }
+                                    }
+                                    button {
+                                        width: 6%;
+                                        flex: unset;
+                                        border: none;
+                                        @include mediaQuery($md) {
+                                            width: 10%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .item {
+                    height: 380px;
+                    max-height: 420px;
+                    overflow: hidden;
+                    .ant-card {
+                        height: 100%;
+                        border: 1px solid getColor('grey');
+                        .ant-card-cover {
+                            img {
+                                height: 180px;
+                                object-fit: cover;
+                            }
+                        }
+                        .ant-card-body {
+                            padding: 12px;
+                            margin-top: 8px;
+                            .ant-card-meta-title {
+                                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('medium'));
+                                margin: 0;
+                                
+                            }
+                            .ant-card-meta-description {
+                                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                                opacity: 0.75;
+                                display:-webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+                                overflow: hidden;
+                            }
+                            .timeStart {
+                                @include setText(getColor('black'),getFontSize('size-14'),getFontWeight('regular'));
+                                margin: 8px 0;
+                            }
+                            .rating {
+                                @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));
+                                margin: 8px 0;
+                                i {
+                                    @include setText(getColor('yellow'),getFontSize('size-18'),getFontWeight('medium'));
+                                    margin-left: 4px;
+                                }
+                            }
+                            .accept {
+                                @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
+                                background-color: getColor('red');
+                                padding: 8px 16px;
+                                border: none;
+                                border-radius: 4px;
+                            }
                         }
                     }
                 }
@@ -156,6 +414,40 @@
 
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+.ant-popover-title {
+    @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('regular'));
+}
+
+.ant-popover-inner-content {
+    input {
+        width: 100%;
+        border: 1px solid getColor('grey');
+        padding: 8px;
+        margin-bottom: 8px;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.modal__update__post {
+    .ant-modal-content {
+        .ant-modal-header {
+            .ant-modal-title {
+                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+            }
+        }
+        .ant-modal-body {
+            padding-bottom: 2px;
+            .ant-form-item {
+                .ant-form-item-label {
+                    text-align: left;
                 }
             }
         }

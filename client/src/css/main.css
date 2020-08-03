@@ -22,17 +22,22 @@ html {
     align-items: center;
     justify-content: space-between;
     padding: 0 24px; }
-    .header .nav .logo a {
-      display: inline-block; }
-      .header .nav .logo a img {
-        width: 150px;
-        height: 60px;
-        object-fit: cover; }
+    .header .nav .logo {
+      margin: 8px 0; }
+      .header .nav .logo a {
+        display: inline-block; }
+        .header .nav .logo a img {
+          width: 150px;
+          height: 60px;
+          object-fit: cover; }
     .header .nav .nav__list {
       display: flex;
       align-items: center;
       margin-right: 36px;
       margin-bottom: 0; }
+      @media (max-width: 767px) {
+        .header .nav .nav__list {
+          display: none; } }
       .header .nav .nav__list li {
         margin-left: 24px; }
         .header .nav .nav__list li a {
@@ -101,6 +106,18 @@ html {
               display: block;
               text-align: center;
               padding: 8px; }
+            .header .nav .nav__list li .cart .nav__cart::after {
+              content: "";
+              position: absolute;
+              top: calc(0% - 32px);
+              z-index: 1;
+              left: 50%;
+              transform: translateX(-50%);
+              border-bottom: 16px solid #22075e;
+              border-left: 16px solid transparent;
+              border-right: 16px solid transparent;
+              border-top: 16px solid transparent;
+              display: block; }
           .header .nav .nav__list li .cart:hover .nav__cart {
             display: block; }
           .header .nav .nav__list li .cart::before {
@@ -114,25 +131,15 @@ html {
             height: 50px;
             background-color: transparent;
             display: none; }
-          .header .nav .nav__list li .cart::after {
-            content: "";
-            position: absolute;
-            top: calc(0% + 16px);
-            z-index: 1;
-            left: 50%;
-            transform: translateX(-50%);
-            border-bottom: 16px solid #22075e;
-            border-left: 16px solid transparent;
-            border-right: 16px solid transparent;
-            border-top: 16px solid transparent;
-            display: none; }
-          .header .nav .nav__list li .cart:hover::after, .header .nav .nav__list li .cart:hover::before {
+          .header .nav .nav__list li .cart:hover::before {
             display: block; }
         .header .nav .nav__list li .user {
-          position: relative; }
+          position: relative;
+          min-width: 200px; }
           .header .nav .nav__list li .user .content {
             display: flex;
             align-items: center;
+            justify-content: space-around;
             margin: 0; }
             .header .nav .nav__list li .user .content i {
               color: #c5c5c5;
@@ -201,25 +208,54 @@ html {
             display: none; }
             .header .nav .nav__list li .information .information__wrapper .list li {
               margin: 0 0 8px 0;
-              border-bottom: 1px solid #c5c5c5; }
-              .header .nav .nav__list li .information .information__wrapper .list li a {
+              border-bottom: 1px solid #c5c5c5;
+              padding-bottom: 4px; }
+              .header .nav .nav__list li .information .information__wrapper .list li .item__wrap {
                 display: flex;
                 width: 300px; }
-                .header .nav .nav__list li .information .information__wrapper .list li a img {
+                .header .nav .nav__list li .information .information__wrapper .list li .item__wrap img {
                   width: 70px;
                   height: 60px;
-                  object-fit: cover; }
-                .header .nav .nav__list li .information .information__wrapper .list li a .item__info {
-                  flex: 1; }
-                  .header .nav .nav__list li .information .information__wrapper .list li a .item__info article {
+                  object-fit: revert; }
+                .header .nav .nav__list li .information .information__wrapper .list li .item__wrap .item__info {
+                  flex: 1;
+                  margin-left: 12px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center; }
+                  .header .nav .nav__list li .information .information__wrapper .list li .item__wrap .item__info article {
                     color: #22075e;
                     font-size: 1.6rem;
-                    font-weight: 600; }
-                  .header .nav .nav__list li .information .information__wrapper .list li a .item__info p {
-                    color: #c5c5c5;
-                    font-size: 1.4rem;
                     font-weight: 600;
-                    padding-top: 4px; }
+                    line-height: 1; }
+                  .header .nav .nav__list li .information .information__wrapper .list li .item__wrap .item__info div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between; }
+                    .header .nav .nav__list li .information .information__wrapper .list li .item__wrap .item__info div p {
+                      color: #c5c5c5;
+                      font-size: 1.4rem;
+                      font-weight: 600;
+                      padding-top: 4px; }
+                .header .nav .nav__list li .information .information__wrapper .list li .item__wrap .ant-btn {
+                  padding: 4px;
+                  outline: none;
+                  border: none; }
+                  .header .nav .nav__list li .information .information__wrapper .list li .item__wrap .ant-btn .anticon-delete {
+                    position: unset !important;
+                    font-size: 1.8rem; }
+            .header .nav .nav__list li .information .information__wrapper::after {
+              content: "";
+              position: absolute;
+              top: calc(0% - 32px);
+              z-index: 1;
+              left: 50%;
+              transform: translateX(-50%);
+              border-bottom: 16px solid #22075e;
+              border-left: 16px solid transparent;
+              border-right: 16px solid transparent;
+              border-top: 16px solid transparent;
+              display: block; }
           .header .nav .nav__list li .information:hover .information__wrapper {
             display: block; }
           .header .nav .nav__list li .information::before {
@@ -233,26 +269,75 @@ html {
             height: 50px;
             background-color: transparent;
             display: none; }
-          .header .nav .nav__list li .information::after {
-            content: "";
-            position: absolute;
-            top: calc(0% + 16px);
-            z-index: 1;
-            left: 50%;
-            transform: translateX(-50%);
-            border-bottom: 16px solid #22075e;
-            border-left: 16px solid transparent;
-            border-right: 16px solid transparent;
-            border-top: 16px solid transparent;
-            display: none; }
-          .header .nav .nav__list li .information:hover::after, .header .nav .nav__list li .information:hover::before {
+          .header .nav .nav__list li .information:hover::before {
             display: block; }
+    .header .nav .btn-menu-mobile {
+      display: none;
+      font-size: 2.4rem; }
+      @media (max-width: 767px) {
+        .header .nav .btn-menu-mobile {
+          display: block; } }
+    .header .nav .mobile__nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateX(100%);
+      width: 50%;
+      transition: all 0.4s;
+      z-index: 99999999999999;
+      background-color: #fff; }
+      @media (max-width: 767px) {
+        .header .nav .mobile__nav {
+          width: 80%; } }
+      .header .nav .mobile__nav .mobile__list {
+        padding: 12px; }
+        .header .nav .mobile__nav .mobile__list li {
+          margin: 12px 0; }
+          .header .nav .mobile__nav .mobile__list li a {
+            color: #000;
+            font-size: 2.4rem;
+            font-weight: 400; }
+          .header .nav .mobile__nav .mobile__list li .user .content {
+            display: flex;
+            align-items: center;
+            margin: 0; }
+            .header .nav .mobile__nav .mobile__list li .user .content i {
+              color: #c5c5c5;
+              font-size: 1.6rem;
+              font-weight: 600; }
+            .header .nav .mobile__nav .mobile__list li .user .content .avatar {
+              font-size: 3.2rem; }
+            .header .nav .mobile__nav .mobile__list li .user .content span {
+              color: #000;
+              font-size: 1.8rem;
+              font-weight: 600;
+              margin: 0 12px; }
+          .header .nav .mobile__nav .mobile__list li .user .user__feature {
+            display: flex;
+            flex-direction: column; }
+            .header .nav .mobile__nav .mobile__list li .user .user__feature a {
+              margin: 4px 0; }
+    .header .nav .bg-collapse {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      transform: translateX(100%);
+      width: 100%;
+      z-index: 9;
+      background-color: rgba(0, 0, 0, 0.6); }
+    .header .nav #collapse:checked ~ .mobile__nav, .header .nav #collapse:checked ~ .bg-collapse {
+      transform: translateX(0%); }
   .header .nav__courses {
     margin-top: 4px; }
     .header .nav__courses ul {
       display: flex;
       align-items: center;
       margin: 0; }
+      @media (max-width: 767px) {
+        .header .nav__courses ul {
+          flex-wrap: wrap; } }
       .header .nav__courses ul li {
         flex: 1; }
         .header .nav__courses ul li .ant-select {
@@ -288,6 +373,9 @@ html {
     box-shadow: 0 0 4px #c5c5c5;
     padding: 24px;
     width: 30%; }
+    @media (max-width: 767px) {
+      .carousel__banner .carousel__text {
+        width: 80%; } }
     .carousel__banner .carousel__text h1 {
       color: #000;
       font-size: 1.8rem;
@@ -319,6 +407,9 @@ html {
     right: 0;
     width: 50%;
     height: 50%; }
+    @media (max-width: 767px) {
+      .carousel__banner .carousel__img {
+        display: none; } }
     .carousel__banner .carousel__img img {
       width: 400px;
       margin-left: 10%;
@@ -330,8 +421,16 @@ html {
   display: flex;
   width: 80%;
   margin: 36px auto; }
+  @media (max-width: 767px) {
+    .home .welcome {
+      width: 90%;
+      justify-content: center;
+      flex-wrap: wrap; } }
   .home .welcome-left {
     width: 60%; }
+    @media (max-width: 767px) {
+      .home .welcome-left {
+        width: 100%; } }
     .home .welcome-left h1 {
       color: #000;
       font-size: 3.2rem;
@@ -344,6 +443,9 @@ html {
       line-height: 2.4rem; }
   .home .welcome-right {
     width: 40%; }
+    @media (max-width: 767px) {
+      .home .welcome-right {
+        width: 100%; } }
     .home .welcome-right form {
       background-color: #22075e;
       display: flex;
@@ -352,6 +454,9 @@ html {
       margin: auto;
       padding: 12px 24px;
       border-radius: 4px; }
+      @media (max-width: 767px) {
+        .home .welcome-right form {
+          width: 100%; } }
       .home .welcome-right form h4 {
         color: #fff;
         font-size: 2.4rem;
@@ -391,6 +496,9 @@ html {
     width: 80%;
     margin: auto;
     padding: 36px 0; }
+    @media (max-width: 767px) {
+      .home .special-bg {
+        width: 90%; } }
     .home .special-bg h1 {
       color: #000;
       font-size: 3.2rem;
@@ -406,6 +514,9 @@ html {
         width: 33.3333%;
         padding: 8px;
         margin-bottom: 12px; }
+        @media (max-width: 767px) {
+          .home .special-bg .special__row .special__col {
+            width: 100%; } }
         .home .special-bg .special__row .special__col .special__wrap {
           background-color: #fff;
           padding: 16px;
@@ -413,6 +524,9 @@ html {
           overflow: hidden;
           text-align: center;
           border-radius: 4px; }
+          @media (max-width: 767px) {
+            .home .special-bg .special__row .special__col .special__wrap {
+              height: 320px; } }
           .home .special-bg .special__row .special__col .special__wrap span {
             display: inline-block;
             padding: 12px;
@@ -443,6 +557,10 @@ html {
   width: 80%;
   margin: auto;
   padding: 36px 0; }
+  @media (max-width: 767px) {
+    .home .about__wrapper {
+      width: 90%;
+      padding: 36px 0 0; } }
   .home .about__wrapper h1 {
     color: #000;
     font-size: 3.2rem;
@@ -457,6 +575,9 @@ html {
       width: 50%;
       text-align: center;
       margin-bottom: 36px; }
+      @media (max-width: 767px) {
+        .home .about__wrapper .about__row .about__col {
+          width: 100%; } }
       .home .about__wrapper .about__row .about__col img {
         width: 90%;
         object-fit: cover; }
@@ -483,6 +604,9 @@ html {
   background: url("https://i.pinimg.com/originals/3f/54/94/3f54947eccae5188be4c05bc298a3ee8.png") no-repeat left bottom;
   background-size: 50%;
   border-top: 1px solid #c5c5c5; }
+  @media (max-width: 767px) {
+    .home .customer {
+      background-size: 200%; } }
   .home .customer .customer__wrapper {
     width: 80%;
     margin: auto;
@@ -513,6 +637,12 @@ html {
         padding: 12px; }
     .home .customer .customer__wrapper .slick-prev {
       left: -40px; }
+      @media (max-width: 767px) {
+        .home .customer .customer__wrapper .slick-prev {
+          display: none !important; } }
+    @media (max-width: 767px) {
+      .home .customer .customer__wrapper .slick-next {
+        display: none !important; } }
     .home .customer .customer__wrapper .slick-prev::before, .home .customer .customer__wrapper .slick-next::before {
       color: #22075e;
       font-size: 3.2rem;
@@ -532,21 +662,35 @@ html {
     padding: 36px 0;
     display: flex;
     flex-wrap: wrap; }
+    @media (max-width: 767px) {
+      .home .contact .contact__wrapper {
+        width: 90%; } }
     .home .contact .contact__wrapper-left {
       width: 50%;
       display: flex;
       align-items: center; }
+      @media (max-width: 767px) {
+        .home .contact .contact__wrapper-left {
+          width: 100%;
+          justify-content: center;
+          margin-bottom: 12px; } }
       .home .contact .contact__wrapper-left img {
         width: 80%;
         object-fit: cover;
         filter: drop-shadow(2px 6px 6px #000); }
     .home .contact .contact__wrapper-right {
       width: 50%; }
+      @media (max-width: 767px) {
+        .home .contact .contact__wrapper-right {
+          width: 100%; } }
       .home .contact .contact__wrapper-right form {
         background-color: #fff;
         width: 80%;
         margin: auto;
         padding: 24px; }
+        @media (max-width: 767px) {
+          .home .contact .contact__wrapper-right form {
+            width: 100%; } }
         .home .contact .contact__wrapper-right form h1 {
           color: #DC3545;
           font-size: 2.4rem;
@@ -606,6 +750,9 @@ html {
     margin: 48px auto;
     width: 30%;
     padding: 24px; }
+    @media (max-width: 767px) {
+      .login .login__wrapper {
+        width: 100%; } }
     .login .login__wrapper h1 {
       color: #000;
       font-size: 2.4rem;
@@ -631,6 +778,9 @@ html {
     margin: 48px auto;
     width: 40%;
     padding: 24px; }
+    @media (max-width: 767px) {
+      .register .register__wrapper {
+        width: 100%; } }
     .register .register__wrapper h1 {
       color: #000;
       font-size: 2.4rem;
@@ -675,22 +825,35 @@ html {
           width: 100%; } }
       .courses__wrapper-top .ant-input-group-wrapper .ant-input-group {
         width: 100%; }
+  @media (max-width: 767px) {
+    .courses__wrapper-main .ant-row {
+      width: 90%;
+      margin: auto !important; } }
   .courses__wrapper-main .item {
     border: 1px solid #c5c5c5;
     border-radius: 4px;
     max-height: 500px;
     height: 360px;
     overflow: hidden; }
+    @media (max-width: 767px) {
+      .courses__wrapper-main .item {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto 12px; } }
     .courses__wrapper-main .item .ant-card {
       height: 100%; }
     .courses__wrapper-main .item .ant-card-cover {
       height: 50%; }
       .courses__wrapper-main .item .ant-card-cover img {
         height: 180px;
-        object-fit: cover; }
+        object-fit: revert; }
     .courses__wrapper-main .item .ant-card-body {
       padding: 12px;
       margin-top: 8px; }
+      @media (max-width: 767px) {
+        .courses__wrapper-main .item .ant-card-body {
+          margin: 0;
+          padding: 0 4px; } }
       .courses__wrapper-main .item .ant-card-body .ant-card-meta-title {
         color: #000;
         font-size: 1.8rem;
@@ -726,6 +889,12 @@ html {
           font-size: 1.8rem;
           font-weight: 600;
           margin-left: 4px; }
+          @media (max-width: 767px) {
+            .courses__wrapper-main .item .ant-card-body .rating i {
+              color: yellow;
+              font-size: 1.4rem;
+              font-weight: 600;
+              margin-left: 2px; } }
       .courses__wrapper-main .item .ant-card-body .detail {
         color: #fff;
         font-size: 1.8rem;
@@ -734,6 +903,10 @@ html {
         padding: 8px 16px;
         border: none;
         border-radius: 4px; }
+        @media (max-width: 767px) {
+          .courses__wrapper-main .item .ant-card-body .detail {
+            margin-top: 8px;
+            display: inline-block; } }
   .courses__wrapper-main .ant-pagination {
     text-align: center;
     margin-top: 24px; }
@@ -744,6 +917,13 @@ html {
     width: 80%;
     margin: 24px auto;
     padding: 24px; }
+    @media (max-width: 767px) {
+      .DetailCourse__wrapper {
+        width: 90%;
+        padding: 54px 0; } }
+    @media (max-width: 767px) {
+      .DetailCourse__wrapper .DetailCourse__content {
+        margin-bottom: 12px; } }
     .DetailCourse__wrapper .DetailCourse__content .detail__name {
       color: #000;
       font-size: 3.2rem;
@@ -791,6 +971,9 @@ html {
       color: #000;
       font-size: 1.8rem;
       font-weight: 600; }
+      @media (max-width: 767px) {
+        .DetailCourse__wrapper .DetailCourse__content .detail__course-other h4 {
+          margin: 0; } }
     .DetailCourse__wrapper .DetailCourse__content .detail__course-other .rating i {
       color: yellow;
       margin-left: 4px; }
@@ -843,11 +1026,13 @@ html {
           font-weight: 600;
           background-color: #DC3545; }
         .DetailCourse__wrapper .DetailCourse__control__content .btn-buy {
-          color: #22075e;
+          color: #fff;
           font-size: 1.8rem;
-          font-weight: 600;
-          background-color: transparent;
-          border: 1px solid #22075e; }
+          font-weight: 600; }
+          .DetailCourse__wrapper .DetailCourse__control__content .btn-buy.outline {
+            color: #22075e;
+            background-color: transparent;
+            border: 1px solid #22075e; }
         .DetailCourse__wrapper .DetailCourse__control__content p {
           color: #000;
           font-size: 1.6rem;
@@ -873,7 +1058,7 @@ html {
   margin-top: 11.8rem; }
   .profile__top {
     background-color: #22075e;
-    padding: 36px 0;
+    padding: 64px 0 36px;
     text-align: center; }
     .profile__top .profile__avatar img {
       width: 150px;
@@ -884,6 +1069,8 @@ html {
       font-size: 2.4rem;
       font-weight: 600;
       padding-top: 12px; }
+    .profile__top .profile__control button {
+      margin: 0 8px; }
   .profile__main__control {
     width: 90%;
     margin: auto; }
@@ -909,49 +1096,282 @@ html {
         font-weight: 400;
         text-align: center;
         padding: 24px 0; }
-      .profile__main .wall-col .item .ant-card-cover img, .profile__main .profile__courses-col .item .ant-card-cover img, .profile__main .profile__friends-col .item .ant-card-cover img, .profile__main .profile__detail-col .item .ant-card-cover img {
-        height: 180px;
-        object-fit: cover; }
-      .profile__main .wall-col .item .ant-card-body, .profile__main .profile__courses-col .item .ant-card-body, .profile__main .profile__friends-col .item .ant-card-body, .profile__main .profile__detail-col .item .ant-card-body {
+      .profile__main .wall-col-post-wrap, .profile__main .profile__courses-col-post-wrap, .profile__main .profile__friends-col-post-wrap, .profile__main .profile__detail-col-post-wrap {
+        width: 80%;
+        margin: auto;
+        border-right: unset; }
+        @media (max-width: 767px) {
+          .profile__main .wall-col-post-wrap, .profile__main .profile__courses-col-post-wrap, .profile__main .profile__friends-col-post-wrap, .profile__main .profile__detail-col-post-wrap {
+            width: 100%; } }
+      .profile__main .wall-col-create-post h3, .profile__main .profile__courses-col-create-post h3, .profile__main .profile__friends-col-create-post h3, .profile__main .profile__detail-col-create-post h3 {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 400;
+        background-color: #22075e;
+        color: #fff;
+        margin: 0;
+        padding: 8px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px; }
+      .profile__main .wall-col-create-post textarea, .profile__main .profile__courses-col-create-post textarea, .profile__main .profile__friends-col-create-post textarea, .profile__main .profile__detail-col-create-post textarea {
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 400;
         padding: 12px;
-        margin-top: 8px; }
-        .profile__main .wall-col .item .ant-card-body .ant-card-meta-title, .profile__main .profile__courses-col .item .ant-card-body .ant-card-meta-title, .profile__main .profile__friends-col .item .ant-card-body .ant-card-meta-title, .profile__main .profile__detail-col .item .ant-card-body .ant-card-meta-title {
-          color: #000;
-          font-size: 1.6rem;
-          font-weight: 600;
-          margin: 0; }
-        .profile__main .wall-col .item .ant-card-body .ant-card-meta-description, .profile__main .profile__courses-col .item .ant-card-body .ant-card-meta-description, .profile__main .profile__friends-col .item .ant-card-body .ant-card-meta-description, .profile__main .profile__detail-col .item .ant-card-body .ant-card-meta-description {
-          color: #000;
-          font-size: 1.6rem;
-          font-weight: 400;
-          opacity: 0.75;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden; }
-        .profile__main .wall-col .item .ant-card-body .timeStart, .profile__main .profile__courses-col .item .ant-card-body .timeStart, .profile__main .profile__friends-col .item .ant-card-body .timeStart, .profile__main .profile__detail-col .item .ant-card-body .timeStart {
-          color: #000;
-          font-size: 1.4rem;
-          font-weight: 400;
-          margin: 8px 0; }
-        .profile__main .wall-col .item .ant-card-body .rating, .profile__main .profile__courses-col .item .ant-card-body .rating, .profile__main .profile__friends-col .item .ant-card-body .rating, .profile__main .profile__detail-col .item .ant-card-body .rating {
-          color: #000;
-          font-size: 1.6rem;
-          font-weight: 400;
-          margin: 8px 0; }
-          .profile__main .wall-col .item .ant-card-body .rating i, .profile__main .profile__courses-col .item .ant-card-body .rating i, .profile__main .profile__friends-col .item .ant-card-body .rating i, .profile__main .profile__detail-col .item .ant-card-body .rating i {
-            color: yellow;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-left: 4px; }
-        .profile__main .wall-col .item .ant-card-body .accept, .profile__main .profile__courses-col .item .ant-card-body .accept, .profile__main .profile__friends-col .item .ant-card-body .accept, .profile__main .profile__detail-col .item .ant-card-body .accept {
-          color: #fff;
+        resize: none;
+        outline: none;
+        box-shadow: none; }
+      .profile__main .wall-col-create-post .post__controls, .profile__main .profile__courses-col-create-post .post__controls, .profile__main .profile__friends-col-create-post .post__controls, .profile__main .profile__detail-col-create-post .post__controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; }
+        @media (max-width: 767px) {
+          .profile__main .wall-col-create-post .post__controls, .profile__main .profile__courses-col-create-post .post__controls, .profile__main .profile__friends-col-create-post .post__controls, .profile__main .profile__detail-col-create-post .post__controls {
+            width: 100%;
+            overflow: hidden; } }
+        .profile__main .wall-col-create-post .post__controls button, .profile__main .profile__courses-col-create-post .post__controls button, .profile__main .profile__friends-col-create-post .post__controls button, .profile__main .profile__detail-col-create-post .post__controls button {
+          color: #22075e;
           font-size: 1.8rem;
-          font-weight: 600;
-          background-color: #DC3545;
-          padding: 8px 16px;
-          border: none;
-          border-radius: 4px; }
+          font-weight: 400;
+          background-color: rgba(197, 197, 197, 0.2);
+          height: 40px;
+          flex: 1; }
+          @media (max-width: 767px) {
+            .profile__main .wall-col-create-post .post__controls button, .profile__main .profile__courses-col-create-post .post__controls button, .profile__main .profile__friends-col-create-post .post__controls button, .profile__main .profile__detail-col-create-post .post__controls button {
+              font-size: 1.2rem; } }
+          .profile__main .wall-col-create-post .post__controls button .anticon, .profile__main .profile__courses-col-create-post .post__controls button .anticon, .profile__main .profile__friends-col-create-post .post__controls button .anticon, .profile__main .profile__detail-col-create-post .post__controls button .anticon {
+            margin-right: 4px; }
+      .profile__main .wall-col-post, .profile__main .profile__courses-col-post, .profile__main .profile__friends-col-post, .profile__main .profile__detail-col-post {
+        border: 1px solid #c5c5c5;
+        border-radius: 4px;
+        margin: 16px 0;
+        padding: 8px; }
+        .profile__main .wall-col-post .post__top, .profile__main .profile__courses-col-post .post__top, .profile__main .profile__friends-col-post .post__top, .profile__main .profile__detail-col-post .post__top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #c5c5c5;
+          padding-bottom: 12px; }
+          .profile__main .wall-col-post .post__top .post__avatar img, .profile__main .profile__courses-col-post .post__top .post__avatar img, .profile__main .profile__friends-col-post .post__top .post__avatar img, .profile__main .profile__detail-col-post .post__top .post__avatar img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__top .post__avatar img, .profile__main .profile__courses-col-post .post__top .post__avatar img, .profile__main .profile__friends-col-post .post__top .post__avatar img, .profile__main .profile__detail-col-post .post__top .post__avatar img {
+                width: 48px;
+                height: 48px; } }
+          .profile__main .wall-col-post .post__top .post__user, .profile__main .profile__courses-col-post .post__top .post__user, .profile__main .profile__friends-col-post .post__top .post__user, .profile__main .profile__detail-col-post .post__top .post__user {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 12px; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__top .post__user, .profile__main .profile__courses-col-post .post__top .post__user, .profile__main .profile__friends-col-post .post__top .post__user, .profile__main .profile__detail-col-post .post__top .post__user {
+                padding-left: 8px; } }
+            .profile__main .wall-col-post .post__top .post__user h3, .profile__main .profile__courses-col-post .post__top .post__user h3, .profile__main .profile__friends-col-post .post__top .post__user h3, .profile__main .profile__detail-col-post .post__top .post__user h3 {
+              color: #000;
+              font-size: 1.8rem;
+              font-weight: 600;
+              margin: 0; }
+              @media (max-width: 767px) {
+                .profile__main .wall-col-post .post__top .post__user h3, .profile__main .profile__courses-col-post .post__top .post__user h3, .profile__main .profile__friends-col-post .post__top .post__user h3, .profile__main .profile__detail-col-post .post__top .post__user h3 {
+                  font-size: 1.6rem; } }
+            .profile__main .wall-col-post .post__top .post__user p, .profile__main .profile__courses-col-post .post__top .post__user p, .profile__main .profile__friends-col-post .post__top .post__user p, .profile__main .profile__detail-col-post .post__top .post__user p {
+              color: #000;
+              font-size: 1.6rem;
+              font-weight: 400;
+              margin: 0; }
+              @media (max-width: 767px) {
+                .profile__main .wall-col-post .post__top .post__user p, .profile__main .profile__courses-col-post .post__top .post__user p, .profile__main .profile__friends-col-post .post__top .post__user p, .profile__main .profile__detail-col-post .post__top .post__user p {
+                  font-size: 1.4rem; } }
+          .profile__main .wall-col-post .post__top .post__hashtag, .profile__main .profile__courses-col-post .post__top .post__hashtag, .profile__main .profile__friends-col-post .post__top .post__hashtag, .profile__main .profile__detail-col-post .post__top .post__hashtag {
+            text-align: right; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__top .post__hashtag .ant-btn, .profile__main .profile__courses-col-post .post__top .post__hashtag .ant-btn, .profile__main .profile__friends-col-post .post__top .post__hashtag .ant-btn, .profile__main .profile__detail-col-post .post__top .post__hashtag .ant-btn {
+                height: 3rem; } }
+            .profile__main .wall-col-post .post__top .post__hashtag p, .profile__main .profile__courses-col-post .post__top .post__hashtag p, .profile__main .profile__friends-col-post .post__top .post__hashtag p, .profile__main .profile__detail-col-post .post__top .post__hashtag p {
+              color: #fff;
+              font-size: 1.8rem;
+              font-weight: 400;
+              background-color: #DC3545;
+              border-radius: 8px;
+              padding: 4px 8px;
+              margin: 8px 0 0; }
+              @media (max-width: 767px) {
+                .profile__main .wall-col-post .post__top .post__hashtag p, .profile__main .profile__courses-col-post .post__top .post__hashtag p, .profile__main .profile__friends-col-post .post__top .post__hashtag p, .profile__main .profile__detail-col-post .post__top .post__hashtag p {
+                  font-size: 1.4rem; } }
+        .profile__main .wall-col-post .post__main, .profile__main .profile__courses-col-post .post__main, .profile__main .profile__friends-col-post .post__main, .profile__main .profile__detail-col-post .post__main {
+          padding: 16px 0; }
+          .profile__main .wall-col-post .post__main-content, .profile__main .profile__courses-col-post .post__main-content, .profile__main .profile__friends-col-post .post__main-content, .profile__main .profile__detail-col-post .post__main-content {
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 400; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__main-content, .profile__main .profile__courses-col-post .post__main-content, .profile__main .profile__friends-col-post .post__main-content, .profile__main .profile__detail-col-post .post__main-content {
+                font-size: 1.6rem; } }
+          .profile__main .wall-col-post .post__main-img, .profile__main .profile__courses-col-post .post__main-img, .profile__main .profile__friends-col-post .post__main-img, .profile__main .profile__detail-col-post .post__main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: fill; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__main-img, .profile__main .profile__courses-col-post .post__main-img, .profile__main .profile__friends-col-post .post__main-img, .profile__main .profile__detail-col-post .post__main-img {
+                height: 320px;
+                object-fit: cover; } }
+        .profile__main .wall-col-post .post__footer-statistic, .profile__main .profile__courses-col-post .post__footer-statistic, .profile__main .profile__friends-col-post .post__footer-statistic, .profile__main .profile__detail-col-post .post__footer-statistic {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; }
+          .profile__main .wall-col-post .post__footer-statistic .like, .profile__main .profile__courses-col-post .post__footer-statistic .like, .profile__main .profile__friends-col-post .post__footer-statistic .like, .profile__main .profile__detail-col-post .post__footer-statistic .like {
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 400; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__footer-statistic .like, .profile__main .profile__courses-col-post .post__footer-statistic .like, .profile__main .profile__friends-col-post .post__footer-statistic .like, .profile__main .profile__detail-col-post .post__footer-statistic .like {
+                font-size: 1.6rem; } }
+            .profile__main .wall-col-post .post__footer-statistic .like .anticon, .profile__main .profile__courses-col-post .post__footer-statistic .like .anticon, .profile__main .profile__friends-col-post .post__footer-statistic .like .anticon, .profile__main .profile__detail-col-post .post__footer-statistic .like .anticon {
+              margin-right: 8px; }
+          .profile__main .wall-col-post .post__footer-statistic .comment, .profile__main .profile__courses-col-post .post__footer-statistic .comment, .profile__main .profile__friends-col-post .post__footer-statistic .comment, .profile__main .profile__detail-col-post .post__footer-statistic .comment {
+            cursor: pointer;
+            color: #c5c5c5;
+            font-size: 1.8rem;
+            font-weight: 400; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__footer-statistic .comment, .profile__main .profile__courses-col-post .post__footer-statistic .comment, .profile__main .profile__friends-col-post .post__footer-statistic .comment, .profile__main .profile__detail-col-post .post__footer-statistic .comment {
+                font-size: 1.6rem; } }
+        .profile__main .wall-col-post .post__footer-comment, .profile__main .profile__courses-col-post .post__footer-comment, .profile__main .profile__friends-col-post .post__footer-comment, .profile__main .profile__detail-col-post .post__footer-comment {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          margin-top: 12px; }
+          .profile__main .wall-col-post .post__footer-comment button, .profile__main .profile__courses-col-post .post__footer-comment button, .profile__main .profile__friends-col-post .post__footer-comment button, .profile__main .profile__detail-col-post .post__footer-comment button {
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 400;
+            flex: 1;
+            width: 50%;
+            height: 40px; }
+            @media (max-width: 767px) {
+              .profile__main .wall-col-post .post__footer-comment button, .profile__main .profile__courses-col-post .post__footer-comment button, .profile__main .profile__friends-col-post .post__footer-comment button, .profile__main .profile__detail-col-post .post__footer-comment button {
+                font-size: 1.6rem;
+                height: 36px; } }
+          .profile__main .wall-col-post .post__footer-comment .comment__wrapper, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper {
+            width: 100%;
+            margin: 8px 0; }
+            .profile__main .wall-col-post .post__footer-comment .comment__wrapper-author, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-author, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-author, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-author {
+              display: flex;
+              align-items: center; }
+              .profile__main .wall-col-post .post__footer-comment .comment__wrapper-author img, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-author img, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-author img, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-author img {
+                width: 50px;
+                height: 50px;
+                object-fit: fill;
+                border-radius: 50%; }
+              .profile__main .wall-col-post .post__footer-comment .comment__wrapper-author input, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-author input, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-author input, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-author input {
+                color: #000;
+                font-size: 1.8rem;
+                font-weight: 400;
+                background-color: #F2F3F5;
+                border-radius: 24px;
+                padding: 8px 16px;
+                margin-left: 4px;
+                border: none;
+                outline: none;
+                flex: 1; }
+                @media (max-width: 767px) {
+                  .profile__main .wall-col-post .post__footer-comment .comment__wrapper-author input, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-author input, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-author input, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-author input {
+                    font-size: 1.6rem; } }
+              .profile__main .wall-col-post .post__footer-comment .comment__wrapper-author .ant-input-search-enter-button input + .ant-input-group-addon, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-author .ant-input-search-enter-button input + .ant-input-group-addon, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-author .ant-input-search-enter-button input + .ant-input-group-addon, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-author .ant-input-search-enter-button input + .ant-input-group-addon {
+                display: none; }
+            .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin: 8px 0; }
+              .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item img, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item img, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item img, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item img {
+                width: 50px;
+                height: 50px;
+                object-fit: fill;
+                border-radius: 50%; }
+                @media (max-width: 767px) {
+                  .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item img, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item img, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item img, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item img {
+                    width: 42px;
+                    height: 42px; } }
+              .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item p, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item p, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item p, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item p {
+                color: #000;
+                font-size: 1.6rem;
+                font-weight: 400;
+                background-color: #F2F3F5;
+                border-radius: 24px;
+                padding: 8px 16px;
+                margin: 0 4px;
+                flex: 1; }
+                @media (max-width: 767px) {
+                  .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item p, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item p, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item p, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item p {
+                    font-size: 1.4rem; } }
+                .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item p span, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item p span, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item p span, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item p span {
+                  color: #000;
+                  font-size: 1.8rem;
+                  font-weight: 600; }
+                  @media (max-width: 767px) {
+                    .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item p span, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item p span, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item p span, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item p span {
+                      font-size: 1.4rem; } }
+              .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item button, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item button, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item button, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item button {
+                width: 6%;
+                flex: unset;
+                border: none; }
+                @media (max-width: 767px) {
+                  .profile__main .wall-col-post .post__footer-comment .comment__wrapper-item button, .profile__main .profile__courses-col-post .post__footer-comment .comment__wrapper-item button, .profile__main .profile__friends-col-post .post__footer-comment .comment__wrapper-item button, .profile__main .profile__detail-col-post .post__footer-comment .comment__wrapper-item button {
+                    width: 10%; } }
+      .profile__main .wall-col .item, .profile__main .profile__courses-col .item, .profile__main .profile__friends-col .item, .profile__main .profile__detail-col .item {
+        height: 380px;
+        max-height: 420px;
+        overflow: hidden; }
+        .profile__main .wall-col .item .ant-card, .profile__main .profile__courses-col .item .ant-card, .profile__main .profile__friends-col .item .ant-card, .profile__main .profile__detail-col .item .ant-card {
+          height: 100%;
+          border: 1px solid #c5c5c5; }
+          .profile__main .wall-col .item .ant-card .ant-card-cover img, .profile__main .profile__courses-col .item .ant-card .ant-card-cover img, .profile__main .profile__friends-col .item .ant-card .ant-card-cover img, .profile__main .profile__detail-col .item .ant-card .ant-card-cover img {
+            height: 180px;
+            object-fit: cover; }
+          .profile__main .wall-col .item .ant-card .ant-card-body, .profile__main .profile__courses-col .item .ant-card .ant-card-body, .profile__main .profile__friends-col .item .ant-card .ant-card-body, .profile__main .profile__detail-col .item .ant-card .ant-card-body {
+            padding: 12px;
+            margin-top: 8px; }
+            .profile__main .wall-col .item .ant-card .ant-card-body .ant-card-meta-title, .profile__main .profile__courses-col .item .ant-card .ant-card-body .ant-card-meta-title, .profile__main .profile__friends-col .item .ant-card .ant-card-body .ant-card-meta-title, .profile__main .profile__detail-col .item .ant-card .ant-card-body .ant-card-meta-title {
+              color: #000;
+              font-size: 1.6rem;
+              font-weight: 600;
+              margin: 0; }
+            .profile__main .wall-col .item .ant-card .ant-card-body .ant-card-meta-description, .profile__main .profile__courses-col .item .ant-card .ant-card-body .ant-card-meta-description, .profile__main .profile__friends-col .item .ant-card .ant-card-body .ant-card-meta-description, .profile__main .profile__detail-col .item .ant-card .ant-card-body .ant-card-meta-description {
+              color: #000;
+              font-size: 1.6rem;
+              font-weight: 400;
+              opacity: 0.75;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden; }
+            .profile__main .wall-col .item .ant-card .ant-card-body .timeStart, .profile__main .profile__courses-col .item .ant-card .ant-card-body .timeStart, .profile__main .profile__friends-col .item .ant-card .ant-card-body .timeStart, .profile__main .profile__detail-col .item .ant-card .ant-card-body .timeStart {
+              color: #000;
+              font-size: 1.4rem;
+              font-weight: 400;
+              margin: 8px 0; }
+            .profile__main .wall-col .item .ant-card .ant-card-body .rating, .profile__main .profile__courses-col .item .ant-card .ant-card-body .rating, .profile__main .profile__friends-col .item .ant-card .ant-card-body .rating, .profile__main .profile__detail-col .item .ant-card .ant-card-body .rating {
+              color: #000;
+              font-size: 1.6rem;
+              font-weight: 400;
+              margin: 8px 0; }
+              .profile__main .wall-col .item .ant-card .ant-card-body .rating i, .profile__main .profile__courses-col .item .ant-card .ant-card-body .rating i, .profile__main .profile__friends-col .item .ant-card .ant-card-body .rating i, .profile__main .profile__detail-col .item .ant-card .ant-card-body .rating i {
+                color: yellow;
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-left: 4px; }
+            .profile__main .wall-col .item .ant-card .ant-card-body .accept, .profile__main .profile__courses-col .item .ant-card .ant-card-body .accept, .profile__main .profile__friends-col .item .ant-card .ant-card-body .accept, .profile__main .profile__detail-col .item .ant-card .ant-card-body .accept {
+              color: #fff;
+              font-size: 1.8rem;
+              font-weight: 600;
+              background-color: #DC3545;
+              padding: 8px 16px;
+              border: none;
+              border-radius: 4px; }
       .profile__main .wall-col .list-loadmore-edit, .profile__main .profile__courses-col .list-loadmore-edit, .profile__main .profile__friends-col .list-loadmore-edit, .profile__main .profile__detail-col .list-loadmore-edit {
         padding: 8px;
         background-color: #22075e;
@@ -1006,6 +1426,28 @@ html {
                   -webkit-line-clamp: 1;
                   overflow: hidden;
                   transition: all 0.2s; }
+
+.ant-popover-title {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 400; }
+
+.ant-popover-inner-content input {
+  width: 100%;
+  border: 1px solid #c5c5c5;
+  padding: 8px;
+  margin-bottom: 8px; }
+  .ant-popover-inner-content input:focus {
+    outline: none; }
+
+.modal__update__post .ant-modal-content .ant-modal-header .ant-modal-title {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 600; }
+.modal__update__post .ant-modal-content .ant-modal-body {
+  padding-bottom: 2px; }
+  .modal__update__post .ant-modal-content .ant-modal-body .ant-form-item .ant-form-item-label {
+    text-align: left; }
 
 .admin .logo img {
   width: 100%;
@@ -1082,6 +1524,15 @@ html {
       text-align: center;
       padding: 8px 0;
       margin: 0; }
+      @media (max-width: 767px) {
+        .admin .site-layout .site__wrapper .manager__courses h1 {
+          color: #fff;
+          font-size: 2.4rem;
+          font-weight: 600; } }
+    @media (max-width: 767px) {
+      .admin .site-layout .site__wrapper .manager__courses .ant-btn {
+        width: 100% !important;
+        margin: 0 !important; } }
     .admin .site-layout .site__wrapper .manager__courses .search__courses {
       width: 100%; }
     .admin .site-layout .site__wrapper .manager__courses .manager__course-item {
@@ -1124,16 +1575,18 @@ html {
           color: #fff;
           font-size: 1.6rem;
           font-weight: 600;
-          padding: 4px 12px;
           display: block;
           width: 80%;
           margin: 4px auto;
+          padding: 4px 12px;
           border: none;
           border-radius: 4px;
           outline: none;
+          cursor: pointer;
           transition: all 0.2s; }
           .admin .site-layout .site__wrapper .manager__courses .manager__course-item .item-feature .btn-feature:hover {
-            opacity: 0.9; }
+            opacity: 0.9;
+            transform: scale(1.1); }
       .admin .site-layout .site__wrapper .manager__courses .manager__course-item:hover .item-feature {
         opacity: 1; }
     .admin .site-layout .site__wrapper .manager__users h1 {
@@ -1156,7 +1609,9 @@ html {
       color: #000;
       font-size: 1.4rem;
       font-weight: 400;
-      text-align: center; }
+      text-align: center;
+      max-width: 200px;
+      width: 16.6667%; }
       .admin .site-layout .site__wrapper .manager__users .ant-table-cell .ant-space-item button span {
         font-size: 1.6rem; }
     .admin .site-layout .site__wrapper .manager__users .ant-pagination.mini .ant-pagination-item {
@@ -1189,6 +1644,26 @@ html {
   .modal__addCourse .ant-modal-body .ant-form .ant-btn, .modal__updateCourse .ant-modal-body .ant-form .ant-btn, .modal__addUser .ant-modal-body .ant-form .ant-btn {
     margin: 12px 4px; }
   .modal__addCourse .ant-modal-body .ant-form .ant-btn-icon-only, .modal__updateCourse .ant-modal-body .ant-form .ant-btn-icon-only, .modal__addUser .ant-modal-body .ant-form .ant-btn-icon-only {
+    margin: 0; }
+
+.modal__addRole .ant-modal-header .ant-modal-title {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 600; }
+.modal__addRole .ant-modal-body {
+  padding: 16px 24px 0px; }
+  .modal__addRole .ant-modal-body .ant-form .ant-form-item-label {
+    text-align: left; }
+    .modal__addRole .ant-modal-body .ant-form .ant-form-item-label label {
+      color: #000;
+      font-size: 1.8rem;
+      font-weight: 400; }
+  .modal__addRole .ant-modal-body .ant-form .ant-btn {
+    margin: 12px 4px; }
+  .modal__addRole .ant-modal-body .ant-form .ant-btn-icon-only {
+    margin: 0; }
+  .modal__addRole .ant-modal-body .ant-form .ant-form-item-control .ant-form-item-control-input .ant-checkbox-group .ant-checkbox-group-item {
+    width: 50%;
     margin: 0; }
 
 .ant-modal.modal__addUser {
@@ -1227,6 +1702,10 @@ html {
     width: 80%;
     margin: auto;
     padding: 36px 0 48px; }
+    @media (max-width: 767px) {
+      .footer__wrapper {
+        width: 90%;
+        padding: 0 0 48px; } }
     .footer__wrapper .footer__row {
       display: flex;
       flex-wrap: wrap;
@@ -1234,6 +1713,9 @@ html {
       .footer__wrapper .footer__row .footer__col {
         width: 33.3333%;
         padding: 8px; }
+        @media (max-width: 767px) {
+          .footer__wrapper .footer__row .footer__col {
+            width: 100%; } }
         .footer__wrapper .footer__row .footer__col__item {
           text-align: center; }
           .footer__wrapper .footer__row .footer__col__item img {

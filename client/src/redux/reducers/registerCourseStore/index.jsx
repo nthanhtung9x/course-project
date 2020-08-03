@@ -12,6 +12,10 @@ const registerCourse = (state = initialState, action) => {
             state = result;
             return state;
         }
+        case types.DEFAULT_REGISTER_COURSE: {
+            state= null;
+            return state;
+        }
         default: {
             return state;
         }

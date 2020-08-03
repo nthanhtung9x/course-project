@@ -12,6 +12,8 @@ import { Layout, Menu, Avatar } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,
+  TeamOutlined,
+  ApartmentOutlined
 } from '@ant-design/icons';
 import { 
     BrowserRouter as Router,
@@ -21,10 +23,11 @@ import {
     useHistory, 
     useLocation
 } from 'react-router-dom';
+import ManagerRoles from './ManagerRoles';
 
 const { Sider } = Layout;
 
-const AdminComponent = ({ userLogin, getUsers, getCourses, users, courses }) => {
+const AdminComponent = ({ userLogin, getUsers, getCourses, users, courses, checkRole }) => {
 
     const [collapsed,setCollapsed] = useState(false);
     const history = useHistory();
@@ -67,12 +70,22 @@ const AdminComponent = ({ userLogin, getUsers, getCourses, users, courses }) => 
                                 <Link to="/admin/courses">
                                     Quản lý khóa học
                                 </Link>
+                                
                             </Menu.Item>
-                            <Menu.Item key="/admin/users" icon={<DesktopOutlined />}>
+                            <Menu.Item key="/admin/users" icon={<TeamOutlined />}>
                                 <Link to="/admin/users">
                                     Quản lý người dùng
                                 </Link>
                             </Menu.Item>
+                            { checkRole.checkManagerRole ? 
+                                    <Menu.Item key="/admin/roles" icon={<ApartmentOutlined />}>
+                                        <Link to="/admin/roles">
+                                            Quản lý chức vụ
+                                        </Link>
+                                    </Menu.Item>
+                                :
+                                    <></>
+                            }
                         </Menu>
                     </Sider>
 
@@ -89,6 +102,9 @@ const AdminComponent = ({ userLogin, getUsers, getCourses, users, courses }) => 
                                 <Route path="/admin/users">
                                     <ManagerUsers/>
                                 </Route>
+                                <Route path="/admin/roles">
+                                    <ManagerRoles/>
+                                </Route>
                                 <Route exact path="/admin">
                                     <AdminCommon/>
                                 </Route>
@@ -104,7 +120,8 @@ const mapStateToProps = state => {
     return {
         userLogin: state.userLogin,
         users: state.users,
-        courses: state.courses
+        courses: state.courses,
+        checkRole: state.checkRole
     }
 }
 

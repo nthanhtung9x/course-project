@@ -8,13 +8,20 @@ export const DELETE_USER = 'DELETE_USER';
 
 
 export const CHECK_ROLE = 'CHECK_ROLE';
+export const GET_ROLE = 'GET_ROLE';
+export const ADD_ROLE = 'ADD_ROLE';
+export const UPDATE_ROLE = 'UPDATE_ROLE';
+export const DELETE_ROLE = 'DELETE_ROLE';
 
 
+
+export const GET_FEATURES = 'GET_FEATURES';
 
 
 export const GET_COURSES = 'GET_COURSES';
 export const FIND_COURSE = 'FIND_COURSE';
 export const REGISTER_COURSE = 'REGISTER_COURSE';
+export const DEFAULT_REGISTER_COURSE = 'DEFAULT_REGISTER_COURSE';
 export const ADD_COURSE = 'ADD_COURSE';
 export const UPDATE_COURSE = 'UPDATE_COURSE';
 export const DELETE_COURSE = 'DELETE_COURSE';
@@ -22,5 +29,18 @@ export const DELETE_COURSE = 'DELETE_COURSE';
 export const GET_COURSES_USER = 'GET_COURSES_USER';
 
 
+export const GET_POST_ID = 'GET_POST_ID';
+export const CREATE_POST = 'CREATE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const UPDATE_POST_AFTER_LIKE = 'UPDATE_POST_AFTER_LIKE';
 
 
+export const GET_LIKE_POST = 'GET_LIKE_POST';
+export const UPDATE_LIKE_LIST = 'UPDATE_LIKE_LIST';
+
+
+export const GET_COMMENT_BY_ID_POST = 'GET_COMMENT_BY_ID_POST';
+export const CREATE_COMMENT_BY_ID_POST = 'CREATE_COMMENT_BY_ID_POST';
+export const DELETE_COMMENT_BY_ID_POST = 'DELETE_COMMENT_BY_ID_POST';
+export const UPDATE_COMMENT_BY_ID_POST = 'UPDATE_COMMENT_BY_ID_POST';

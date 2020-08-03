@@ -1,26 +1,62 @@
 import * as types from '../../actions/actionType';
 
-let initialState = false;
+let initialState = {
+    managerSystem: false,
+    checkAddCourse: false,
+    checkAddRegister: false,
+    checkUpdateCourse: false,
+    checkCreateUser: false,
+    checkUpdateUser: false,
+    checkDeleteUser:false,
+    checkManagerRole: false
+};
 
 const checkRole = (state = initialState, action) => {
     switch(action.type) {
         case types.CHECK_ROLE: {
-            let temp = action.user.features.findIndex(item => 
-                item === "5f1015df39a6feaad03f4982"	
-            );
-            console.log(temp);
-            if(temp >= 0) {
-                state = true;
-                return state;
-            }
-            return state;
+            if(action.user.checkManagerSystem) {
+                state = {...state, managerSystem: true};
+            };
+            if(action.user.checkAddCourse) {
+                state = {...state, checkAddCourse: true};
+            };
+            if(action.user.checkAddRegister) {
+                state = {...state, checkAddRegister: true};
+            };
+            if(action.user.checkUpdateCourse) {
+                state = {...state, checkUpdateCourse: true};
+            };
+            if(action.user.checkCreateUser) {
+                state = {...state, checkCreateUser: true};
+            };
+            if(action.user.checkUpdateUser) {
+                state = {...state, checkUpdateUser: true};
+            };
+            if(action.user.checkDeleteUser) {
+                state = {...state, checkDeleteUser: true};
+            };
+            if(action.user.checkManagerRole) {
+                state = {...state, checkManagerRole: true};
+            };
+
+            return {...state};
         }
         case types.LOGOUT_USER: {
-            state = false;
-            return state;
+            state ={
+                ...state, 
+                managerSystem: false,
+                checkAddCourse: false,
+                checkAddRegister: false,
+                checkUpdateCourse:false,
+                checkCreateUser: false,
+                checkUpdateUser: false,
+                checkDeleteUser:false,
+                checkManagerRole: false
+            };
+            return {...state};
         }
         default:
-            return state;
+            return {...state};
     }
 }
 

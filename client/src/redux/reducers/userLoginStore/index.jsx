@@ -2,22 +2,29 @@ import * as types from '../../actions/actionType';
 
 let initialState = {
     username: "",
+    name:"",
     role: "",
-    features: []
+    id: ""
 };
 
 const userLogin = (state = initialState, action) => {
     switch(action.type) {
         case types.SAVE_USER: {
-            let temp = {...action.user};
+            let temp = {
+                username: action.user.username,
+                name: action.user.name,
+                role: action.user.role,
+                id: action.user.id
+            };
             state = temp;
             return {...state};
         }
         case types.LOGOUT_USER: {
             let temp = {
                 username:"",
+                name:"",
                 role: "",
-                features: []
+                id:""
             };
             state = temp;
             return {...state};

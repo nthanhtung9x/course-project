@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { List, Avatar, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {API} from '../../../API/api';
 
 const VideoCourse = ({ match }) => {
 
@@ -20,7 +21,7 @@ const VideoCourse = ({ match }) => {
         let id = match.params.id;
         axios({
             method:'GET',
-            url:`https://courses-project-api.herokuapp.com/getVideoCourse/${id}`,
+            url:`${API}/getVideoCourse/${id}`,
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,
                 "Content-Type": "application/json",
@@ -58,12 +59,12 @@ const VideoCourse = ({ match }) => {
         <div className="profile__courses video__courses">
             <h1>Bài {playVideo.serial}: {playVideo.name}</h1>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                <Col className="gutter-row" span={16}>
+                <Col className="gutter-row" xs={{span:24}} md={{span:16}}>
                     <div className="wall-col">
                         <iframe style={{width:'100%'}} height="500" src={playVideo.videoURL} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </div>
                 </Col>
-                <Col className="gutter-row" span={8} >
+                <Col className="gutter-row" xs={{span:24}} md={{span:8}} >
                     <div className="wall-col">
                         <List
                             itemLayout="horizontal"

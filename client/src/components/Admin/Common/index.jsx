@@ -39,19 +39,19 @@ const AdminCommon = ({ courses, users }) => {
     return (
         <div className="common">
             <Row gutter={[16, 16]}>
-                <Col span={8}>
+                <Col xs={{span:24}} md={{span:8}}>
                     <div className="common__item">
                         <BookOutlined />
                         <p>{courses.length} Khóa học</p>
                     </div>
                 </Col>
-                <Col span={8}>
+                <Col xs={{span:24}} md={{span:8}}>
                     <div className="common__item">
                         <UserOutlined />
                         <p>{memberList.length} Học viên</p>
                     </div>
                 </Col>
-                <Col span={8}>
+                <Col xs={{span:24}} md={{span:8}}>
                     <div className="common__item">
                         <CodepenOutlined />
                         <p>{teacherList.length} Giảng viên</p>
@@ -59,10 +59,10 @@ const AdminCommon = ({ courses, users }) => {
                 </Col>
             </Row>
             <Row gutter={[16,16]}>
-                <Col span={14}>
+                <Col xs={{span:24}} md={{span:14}}>
                     <CommonUsers/>
                 </Col>
-                <Col span={10}>
+                <Col xs={{span:24}} md={{span:10}}>
                     <CommonCourses/>
                 </Col>
             </Row>

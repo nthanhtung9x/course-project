@@ -5,6 +5,7 @@ import * as action from '../../../redux/actions';
 
 import { Descriptions } from 'antd';
 import axios from 'axios';
+import {API} from '../../../API/api';
 
 
 const ProfileDetail = ({ userLogin, profile }) => {
@@ -12,7 +13,7 @@ const ProfileDetail = ({ userLogin, profile }) => {
 
     const getDetailUser = () => {
         axios({
-            url:'https://courses-project-api.herokuapp.com/getDetailUser',
+            url:`${API}/getDetailUser`,
             method:'GET',
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('token')).token,

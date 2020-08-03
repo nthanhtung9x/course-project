@@ -3,8 +3,17 @@
         display:flex;
         width: 80%;
         margin: 36px auto;
+        
+        @include mediaQuery($md) {
+            width: 90%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
         &-left {
             width: 60%;
+            @include mediaQuery($md) {
+                width: 100%;
+            }
             h1 {
                 @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('regular'));
             }
@@ -16,6 +25,9 @@
         }
         &-right {
             width: 40%;
+            @include mediaQuery($md) {
+                width: 100%;
+            }
             form {
                 background-color: getColor('secondary');
                 display:flex;
@@ -24,6 +36,9 @@
                 margin: auto;
                 padding: 12px 24px;
                 border-radius: 4px;
+                @include mediaQuery($md) {
+                    width: 100%;
+                }
                 h4 {
                     @include setText(getColor('white'),getFontSize('size-24'),getFontWeight('regular'));
                     text-align: center;
@@ -64,6 +79,9 @@
             width: 80%;
             margin: auto;
             padding: 36px 0;
+            @include mediaQuery($md) {
+                width: 90%;
+            }
             h1 {
                 @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('regular'));
                 text-align: center;
@@ -78,6 +96,9 @@
                     width: 33.3333%;
                     padding: 8px;
                     margin-bottom: 12px;
+                    @include mediaQuery($md) {
+                        width: 100%;
+                    }
                     .special__wrap {
                         background-color: getColor('primary');
                         padding: 16px;
@@ -85,6 +106,9 @@
                         overflow: hidden;
                         text-align: center;
                         border-radius: 4px;
+                        @include mediaQuery($md) {
+                            height: 320px;
+                        }
                         span {
                             display:inline-block;
                             padding: 12px;
@@ -122,6 +146,10 @@
             width: 80%;
             margin: auto;
             padding: 36px 0;
+            @include mediaQuery($md) {
+                width: 90%;
+                padding: 36px 0 0;
+            }
             h1 {
                 @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('medium'));
                 text-align: center;
@@ -135,6 +163,9 @@
                     width: 50%;
                     text-align: center;
                     margin-bottom: 36px;
+                    @include mediaQuery($md) {
+                        width: 100%;
+                    }
                     img {
                         width: 90%;
                         object-fit: cover;
@@ -164,6 +195,10 @@
         background: url('https://i.pinimg.com/originals/3f/54/94/3f54947eccae5188be4c05bc298a3ee8.png') no-repeat left bottom;
         background-size: 50%;
         border-top: 1px solid getColor('grey');
+        @include mediaQuery($md) {
+            background-size: 200%;
+
+        }
         .customer__wrapper {
             width: 80%;
             margin: auto;
@@ -193,6 +228,14 @@
             }
             .slick-prev {
                 left: -40px;
+                @include mediaQuery($md) {
+                    display: none !important;
+                }
+            }
+            .slick-next {
+                @include mediaQuery($md) {
+                    display:none !important;
+                }
             }
             .slick-prev::before, .slick-next::before {
                 @include setText(getColor('secondary'),getFontSize('size-32'),getFontWeight('medium'));
@@ -217,10 +260,18 @@
             padding: 36px 0;
             display:flex;
             flex-wrap: wrap;
+            @include mediaQuery($md) {
+                width: 90%;
+            }
             &-left {
                 width: 50%;
                 display:flex;
                 align-items: center;
+                @include mediaQuery($md) {
+                    width: 100%;
+                    justify-content: center;
+                    margin-bottom: 12px;
+                }
                 img {
                     width: 80%;
                     object-fit: cover;
@@ -229,11 +280,17 @@
             }
             &-right {
                 width: 50%;
+                @include mediaQuery($md) {
+                    width: 100%;
+                }
                 form {
                     background-color: getColor('white');
                     width: 80%;
                     margin: auto;
                     padding: 24px;
+                    @include mediaQuery($md) {
+                        width: 100%;
+                    }
                     h1 {
                         @include setText(getColor('red'),getFontSize('size-24'),getFontWeight('medium'));
                         text-align: center;

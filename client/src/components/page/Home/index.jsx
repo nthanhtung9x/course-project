@@ -17,7 +17,14 @@ const HomeComponent = ({ courses }) => {
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToScroll: 3,
+        responsive: [{
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }]
     };
 
     useEffect(() => {
@@ -157,7 +164,7 @@ const HomeComponent = ({ courses }) => {
                         </div>
                         <div className="about__col">
                             <h4>
-                                <span>KHƠI DẬY</span>
+                                <span>KHƠI DẬY </span>
                                 đam mê lập trình
                             </h4>
                             <p>Hệ thống khóa học được trau chuốt kĩ lưỡng với phương pháp giảng dạy dễ hiểu, xúc tích giúp học viên tiếp thu nhanh chóng.</p> 
@@ -167,7 +174,7 @@ const HomeComponent = ({ courses }) => {
                     <div className="about__row wow slideInUp">
                         <div className="about__col">
                             <h4>
-                                <span>SỨ MỆNH</span>
+                                <span>SỨ MỆNH </span>
                                 đào tạo chuyên gia lập trình
                             </h4>
                             <p>Hệ thống khóa học được trau chuốt kĩ lưỡng với phương pháp giảng dạy dễ hiểu, xúc tích giúp học viên tiếp thu nhanh chóng.</p> 

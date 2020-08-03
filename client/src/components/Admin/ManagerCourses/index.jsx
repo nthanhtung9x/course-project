@@ -9,10 +9,11 @@ import CourseItem from './CourseItem';
 import { connect } from 'react-redux';
 import * as action from '../../../redux/actions';
 import axios from 'axios';
+import {API} from '../../../API/api';
 
 const { Option } = Select;
 
-const ManagerCourses = ({ courses, createCourseAPI }) => {
+const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
     // modal
     const [modalStyle, setModalStyle] = useState({
         visible: false,
@@ -25,7 +26,7 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
 
     const getTeacher = (token) => {
         return axios({
-            url:'https://courses-project-api.herokuapp.com/getTeacher',
+            url:`${API}/getTeacher`,
             method:'GET',
             headers: {
                 'Authorization': token,
@@ -118,7 +119,7 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
         if(searchType !== "FE" && searchType !== "BE"){
             return courses.map((item,index) => {
                 if(item.name.toLowerCase().trim().indexOf(searchType.toLowerCase().trim()) !== -1) {
-                    return  <Col span={6} key={index}>
+                    return  <Col xs={{span:24}} md={{span:8}} xl={{span:6}} xxl={{span:4}} key={index}>
                                 <CourseItem item={item}/>
                             </Col>
                 }
@@ -126,7 +127,7 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
         }
         return courses.map((item,index) => {
             if(item.type.toLowerCase().trim().indexOf(searchType.toLowerCase().trim()) !== -1) {
-                return  <Col span={6} key={index}>
+                return  <Col xs={{span:24}} md={{span:8}} xl={{span:6}} xxl={{span:4}} key={index}>
                             <CourseItem item={item}/>
                         </Col>
             }
@@ -138,7 +139,7 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
             <h1>QUẢN LÝ KHÓA HỌC</h1>
             <div className="manager__courses__control">
                 <Row gutter={[16,16]}>
-                    <Col span={9}>
+                    <Col xs={{span:24}} md={{span:9}}>
                         <Select
                             showSearch
                             placeholder="Tìm kiếm theo loại"
@@ -155,7 +156,7 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
                             <Option value="BE">Back-End</Option>
                         </Select>
                     </Col>
-                    <Col span={9}>
+                    <Col xs={{span:24}} md={{span:9}}>
                         <Select
                             showSearch
                             placeholder="Tìm kiếm theo tên"
@@ -171,10 +172,14 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
                             {renderNameCourse()}
                         </Select>
                     </Col>
-                    <Col span={6}>
-                        <Button type="primary" danger shape="round" icon={<AppstoreAddOutlined />} size="large" style={{width:'90%',marginLeft:'10%'}} onClick={showModalAddCourse}>
-                            THÊM KHÓA HỌC
-                        </Button>
+                    <Col xs={{span:24}} md={{span:6}}>
+                        { checkRole.checkAddCourse ? 
+                            <Button type="primary" danger shape="round" icon={<AppstoreAddOutlined />} size="large" style={{width:'90%',marginLeft:'10%'}} onClick={showModalAddCourse}>
+                                THÊM KHÓA HỌC
+                            </Button>
+                        : 
+                            <></>
+                        }
                     </Col>
                 </Row>
                 <Row gutter ={[16,16]}>
@@ -297,7 +302,8 @@ const ManagerCourses = ({ courses, createCourseAPI }) => {
 
 const mapStateToProps = state => {
     return {
-        courses: state.courses
+        courses: state.courses,
+        checkRole: state.checkRole
     }
 }
 

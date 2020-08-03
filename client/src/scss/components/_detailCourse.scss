@@ -4,7 +4,14 @@
         width: 80%;
         margin: 24px auto;
         padding: 24px;
+        @include mediaQuery($md) {
+            width: 90%;
+            padding: 54px 0;
+        }
         .DetailCourse__content {
+            @include mediaQuery($md) {
+                margin-bottom: 12px;
+            }
             .detail__name {
                 @include setText(getColor('black'),getFontSize('size-32'),getFontWeight('medium'));
                 margin: 0;
@@ -49,6 +56,9 @@
             .detail__course-other {
                 h4 {
                     @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                    @include mediaQuery($md) {
+                        margin: 0;
+                    }
                 }
                 .rating {
                     i {
@@ -109,9 +119,14 @@
                     background-color: getColor('red');
                 }
                 .btn-buy {
-                    @include setText(getColor('secondary'),getFontSize('size-18'),getFontWeight('medium'));
-                    background-color: transparent;
-                    border: 1px solid getColor('secondary');
+                    @include setText(getColor('white'),getFontSize('size-18'),getFontWeight('medium'));
+                    // background-color: transparent;
+                    // border: 1px solid getColor('secondary');
+                    &.outline {
+                        color: getColor('secondary');
+                        background-color: transparent;
+                        border: 1px solid getColor('secondary');
+                    }
                 }
                 p {
                     @include setText(getColor('black'),getFontSize('size-16'),getFontWeight('regular'));

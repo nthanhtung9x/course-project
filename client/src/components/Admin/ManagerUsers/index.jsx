@@ -12,7 +12,7 @@ const { Search } = Input;
 const { Option } = Select;
 
 
-const ManagerUsers = ({ users, handleCreateUser }) => {
+const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
 
     // modal add user
     const [modalStyle, setModalStyle] = useState({
@@ -103,13 +103,17 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
             <h1>Quản lý người dùng</h1>
             <div className="manager__users__control">
                 <Row gutter={[16,16]}>
-                    <Col span={18}>
+                    <Col span={18} xs={{span:24}} md={{span:18}}>
                         <Search placeholder="Nhập tên người dùng cần tìm" onSearch={searchByName} enterButton size="large"/>
                     </Col>
-                    <Col span={6}>
-                        <Button type="primary" danger shape="round" icon={<AppstoreAddOutlined />} size="large" style={{width:'90%',marginLeft:'10%'}} onClick={showModalAddUser}>
-                            THÊM HỌC VIÊN
-                        </Button>
+                    <Col xs={{span:24}} md={{span:6}}>
+                        { checkRole.checkCreateUser ? 
+                                <Button type="primary" danger shape="round" icon={<AppstoreAddOutlined />} size="large" style={{width:'90%',marginLeft:'10%'}} onClick={showModalAddUser}>
+                                    THÊM HỌC VIÊN
+                                </Button>
+                            :
+                                <></>
+                        }
                     </Col>
                 </Row>
                 <Row>
@@ -147,6 +151,14 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
                             required: true,
                             message: 'Vui lòng nhập tên tài khoản!',
                         },
+                        {
+                            min:8,
+                            message: 'Tên tài khoản tối thiểu 8 ký tự!'
+                        },
+                        {
+                            max:50,
+                            message: 'Tên tài khoản tối đa 50 ký tự'
+                        }
                         ]}
                     >
                         <Input />
@@ -160,6 +172,10 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
                             required: true,
                             message: 'Vui lòng nhập mật khẩu!',
                         },
+                        {
+                            pattern:new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"),
+                            message: 'Mật khẩu có ít nhất 8 ký tự, gồm 1 chữ viết hoa, 1 số và 1 ký tự đặc biệt'
+                        }
                         ]}
                         hasFeedback
                     >
@@ -201,6 +217,14 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
                             required: true,
                             message: 'Vui lòng nhập họ tên!',
                         },
+                        {
+                            min:8,
+                            message: 'Họ tên tối thiểu 8 ký tự!'
+                        },
+                        {
+                            max:50,
+                            message: 'Họ tên tối đa 50 ký tự'
+                        }
                         ]}
                     >
                         <Input />
@@ -209,7 +233,16 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
                     <Form.Item
                         name="phone"
                         label="Số điện thoại"
-                        rules={[{ required: true, message: 'Vui lòng nhập số điện thoại!' }]}
+                        rules={[
+                            { 
+                                required: true, 
+                                message: 'Vui lòng nhập số điện thoại!' 
+                            },
+                            {
+                                pattern: new RegExp("^[0-9]+$"),
+                                message: "Số điện thoại chỉ được nhập số!"
+                            }      
+                        ]}
                     >
                         <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
                     </Form.Item>
@@ -231,18 +264,6 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
                         <Input />
                     </Form.Item>
 
-                    <Form.Item
-                        name="agreement"
-                        valuePropName="checked"
-                        rules={[
-                        { validator:(_, value) => value ? Promise.resolve() : Promise.reject('Should accept agreement') },
-                        ]}
-                        {...tailFormItemLayout}
-                    >
-                        <Checkbox>
-                        I have read the <Link to="">agreement</Link>
-                        </Checkbox>
-                    </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
                         <Button key="back" onClick={handleCancel}>
                             Thoát
@@ -259,7 +280,8 @@ const ManagerUsers = ({ users, handleCreateUser }) => {
 
 const mapStateToProps = state => {
     return {
-        users: state.users
+        users: state.users,
+        checkRole: state.checkRole
     }
 }
 

@@ -10,8 +10,10 @@ import {
 } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import {API} from '../../API/api';
 
 export const RegisterComponent = () => {
+    const [loadingStyle, setLoadingStyle] = useState(false);
     const [messageSignUp, setMessageSignUp] = useState("");
     const { Option } = Select;
 
@@ -52,7 +54,7 @@ export const RegisterComponent = () => {
         setMessageSignUp("");
         axios({
             method:"POST",
-            url:'https://courses-project-api.herokuapp.com/signup',
+            url:`${API}/signup`,
             data: values
         }).then(res => {
             console.log(res.data.message);
@@ -63,6 +65,10 @@ export const RegisterComponent = () => {
                 error();
             }
         }).catch(err => console.log(err));
+        setLoadingStyle(true);
+        setTimeout(() => {
+            setLoadingStyle(false);
+        }, 2000);
     };
 
     const handleRedirect = () => {
@@ -105,6 +111,14 @@ export const RegisterComponent = () => {
                             required: true,
                             message: 'Vui lòng nhập tên tài khoản!',
                         },
+                        {
+                            min:8,
+                            message: 'Tên tài khoản tối thiểu 8 ký tự!'
+                        },
+                        {
+                            max:50,
+                            message: 'Tên tài khoản tối đa 50 ký tự'
+                        }
                         ]}
                     >
                         <Input />
@@ -114,10 +128,14 @@ export const RegisterComponent = () => {
                         name="password"
                         label="Mật khẩu"
                         rules={[
-                        {
-                            required: true,
-                            message: 'Vui lòng nhập mật khẩu!',
-                        },
+                            {
+                                required: true,
+                                message: 'Vui lòng nhập mật khẩu!',
+                            },
+                            {
+                                pattern:new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"),
+                                message: 'Mật khẩu có ít nhất 8 ký tự, gồm 1 chữ viết hoa, 1 số và 1 ký tự đặc biệt'
+                            }
                         ]}
                         hasFeedback
                     >
@@ -159,6 +177,14 @@ export const RegisterComponent = () => {
                             required: true,
                             message: 'Vui lòng nhập họ tên!',
                         },
+                        {
+                            min:8,
+                            message: 'Họ tên tối thiểu 8 ký tự!'
+                        },
+                        {
+                            max:50,
+                            message: 'Họ tên tối đa 50 ký tự'
+                        }
                         ]}
                     >
                         <Input />
@@ -167,7 +193,16 @@ export const RegisterComponent = () => {
                     <Form.Item
                         name="phone"
                         label="Số điện thoại"
-                        rules={[{ required: true, message: 'Vui lòng nhập số điện thoại!' }]}
+                        rules={[
+                            { 
+                                required: true, 
+                                message: 'Vui lòng nhập số điện thoại!' 
+                            },
+                            {
+                                pattern: new RegExp("^[0-9]+$"),
+                                message: "Số điện thoại chỉ được nhập số!"
+                            }        
+                        ]}
                     >
                         <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
                     </Form.Item>
@@ -184,6 +219,7 @@ export const RegisterComponent = () => {
                             required: true,
                             message: 'Vui lòng nhập địa chỉ!',
                         },
+
                         ]}
                     >
                         <Input />
@@ -193,16 +229,16 @@ export const RegisterComponent = () => {
                         name="agreement"
                         valuePropName="checked"
                         rules={[
-                        { validator:(_, value) => value ? Promise.resolve() : Promise.reject('Should accept agreement') },
+                        { validator:(_, value) => value ? Promise.resolve() : Promise.reject('Bạn chưa xác nhận điều khoản') },
                         ]}
                         {...tailFormItemLayout}
                     >
                         <Checkbox>
-                        I have read the <Link to="">agreement</Link>
+                        Tôi đã đọc <Link to="">điều khoản</Link>
                         </Checkbox>
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" loading={loadingStyle}>
                             Đăng ký
                         </Button>
                     </Form.Item>

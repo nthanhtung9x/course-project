@@ -10,9 +10,7 @@ const CoursesComponent = ({ getCourse, courses }) => {
 
     const [searchText, setSearchText] = useState("");    
     const renderCourses = (min, max) => {
-
         let showCountCoursePerPage = courses.slice(min,max);
-        console.log(showCountCoursePerPage);
         return showCountCoursePerPage.map((item,index) => {
             if(item.name.toLowerCase().trim().indexOf(searchText.toLowerCase().trim()) !== -1) {
                 return <Col key={index} xs={{span:12}} md={{span:8}} xl={{span:6}} xxl={{span:4}} className="gutter-row">

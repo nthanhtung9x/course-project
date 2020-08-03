@@ -7,8 +7,10 @@ import ProfileDetail from './Detail';
 
 import { connect } from 'react-redux';
 import * as action from '../../redux/actions';
+import axios from 'axios';
+import { API } from '../../API/api';
 
-import { Menu } from 'antd';
+import { Menu, Button, message, Popover, Input } from 'antd';
 import { FormOutlined, AppstoreOutlined, SettingOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import {
     BrowserRouter as Router,
@@ -30,6 +32,79 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
         findUser(match.params.id);
     },[]);
 
+    const handleAddToPendingFriendsAPI = (token, idUserAdd, nameUserAdd, idUserAdded) => {
+        axios({
+            method:'POST',
+            url:`${API}/addPendingFriend`,
+            headers: {
+                'Authorization': token,
+                "Content-Type": "application/json",
+            },
+            data: {
+                idUserAdd,
+                nameUserAdd,
+                idUserAdded
+            }
+        }).then(res => {
+            if(res.data.message === 'Chờ duyệt') {
+                message.warning('Đang chờ duyệt');
+            } else if(res.data.message === 'Đã là bạn bè') {
+                message.error('Đã là bạn bè');
+            } else {
+                message.success('Gửi lời mời kết bạn thành công');
+            }
+        }).catch(err => console.log(err)); 
+    }
+
+    const contentMessage = (idSend, idReceive) => (
+        <div>
+            <Input 
+                placeholder="Nhập lời nhắn" 
+                name="content"
+                value={contentMess}
+                onChange={(e)=> {
+                    setContentMess(e.target.value)
+                }}
+            ></Input>
+            <Button size="large" className="ant-btn ant-btn-primary" onClick={async() => {
+                handleSendMessage(JSON.parse(localStorage.getItem('token')).token, idSend, idReceive, contentMess)
+                await hide();
+                await setContentMess("");
+            }}>Gửi</Button>
+        </div>
+    );
+
+    const [visible, setVisible] = useState(false);
+    const handleVisibleChange = (visible) => {
+        setVisible(visible);
+    }
+    const hide = () => {
+        setVisible(false);
+    }
+
+    const [contentMess, setContentMess] = useState("");
+    const handleSendMessage = (token, idSend, idReceive, content) => {
+        return axios({
+            method:'POST',
+            url:`${API}/sendMessage`,
+            headers: {
+                'Authorization': token,
+                "Content-Type": "application/json",
+            },
+            data: {
+                idSend,
+                idReceive,
+                content
+            }
+        }).then(res => {
+            if(res.data.message) {
+                message.success('Gửi tin nhắn thành công');
+            } else {
+                message.error('Vui lòng gửi tin nhắn có nội dung');
+            }
+        }).catch(err => console.log(err));
+    }
+
     return (
 	    <Router>
             {
@@ -43,24 +118,24 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                         </div>
                         <div className="profile__main">
                         <div className="profile__main__control">
-                            <Menu mode="horizontal" onClick={handleClick} selectedKeys={[current]}>
-                                <Menu.Item key="wall" icon={<FormOutlined />}>
-                                    <Link to="/profile/wall">
+                            <Menu mode="horizontal" onClick={handleClick} selectedKeys={[match.url]}>
+                                <Menu.Item key={`/profile/wall/${match.params.id}`} icon={<FormOutlined />}>
+                                    <Link to={`/profile/wall/${profileUser.id}`}>
                                         Trang cá nhân
                                     </Link>
                                 </Menu.Item>
-                                <Menu.Item key="friends" icon={<UsergroupAddOutlined />}>
-                                    <Link to="/profile/friends">
+                                <Menu.Item key={`/profile/friends/${match.params.id}`} icon={<UsergroupAddOutlined />}>
+                                    <Link to={`/profile/friends/${match.params.id}`}>
                                         Danh sách bạn bè
                                     </Link>
                                 </Menu.Item>
 
-                                <Menu.Item key="courses" icon={<AppstoreOutlined />}>
-                                    <Link to="/profile/coursesList">
+                                <Menu.Item key={`/profile/coursesList/${match.params.id}`} icon={<AppstoreOutlined />}>
+                                    <Link to={`/profile/coursesList/${profileUser.id}`}>
                                         Danh sách khóa học
                                     </Link>
                                 </Menu.Item>
-                                <Menu.Item key="detail" icon={<SettingOutlined />}>
+                                <Menu.Item key={`/profile/detail/${match.params.id}`} icon={<SettingOutlined />}>
                                     <Link to="/profile/detail">
                                         Thông tin tài khoản
                                     </Link>
@@ -69,15 +144,16 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                             </Menu>
                         </div>
                         <Switch>
-                            <Route path="/profile/wall">
-                                <WallComponent/>
+                            <Route path="/profile/wall/:id" render={({match}) => {
+                                return <WallComponent match={match}/>
+                            }}/>
+                            <Route path="/profile/coursesList/:id" render={({match}) => {
+                                return <ProfileCourses match={match}/>
+                            }}>  
                             </Route>
-                            <Route path="/profile/coursesList">
-                                <ProfileCourses/>
-                            </Route>
-                            <Route path="/profile/friends">
-                                <ProfileFriendsList/>
-                            </Route>
+                            <Route path="/profile/friends/:id" render={({match}) => {
+                                return <ProfileFriendsList match={match}/>
+                            }}/>
                             <Route path="/profile/detail">
                                 <ProfileDetail/>
                             </Route>
@@ -96,12 +172,26 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png" alt=""></img>
                             </div>
                             <p className="profile__name">{profileUser.name}</p>
+                            <div className="profile__control">
+                                <Button size="large" className="ant-btn-primary" onClick={() => {
+                                    handleAddToPendingFriendsAPI(JSON.parse(localStorage.getItem('token')).token, userLogin.id, userLogin.name, profileUser.id)
+                                }}>Thêm bạn bè</Button>
+                                <Popover 
+                                    content={contentMessage(userLogin.id, profileUser.id)} 
+                                    title="Tin nhắn" 
+                                    trigger="click"
+                                    visible={visible}
+                                    onVisibleChange={handleVisibleChange}
+                                >
+                                    <Button size="large" className="ant-btn-danger">Nhắn tin</Button>
+                                </Popover>
+                            </div>
                         </div>
                         <div className="profile__main">
                         <div className="profile__main__control">
                             <Menu mode="horizontal" onClick={handleClick} selectedKeys={[current]}>
                                 <Menu.Item key="wall" icon={<FormOutlined />}>
-                                    <Link to="/profile/wall">
+                                    <Link to={`/profile/wall/${profileUser.id}`}>
                                         Trang cá nhân
                                     </Link>
                                 </Menu.Item>
@@ -113,9 +203,9 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                             </Menu>
                         </div>
                         <Switch>
-                            <Route path="/profile/wall">
-                                <WallComponent/>
-                            </Route>
+                            <Route path="/profile/wall/:id" render={({match}) => {
+                                return <WallComponent match={match}/>
+                            }}/>
                             
                             <Route path="/profile/friends">
                                 <ProfileFriendsList/>

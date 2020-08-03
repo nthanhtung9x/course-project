@@ -28,10 +28,10 @@ export const FooterComponent = () => {
                     <div className="footer__col">
                         <div className="footer__col__item wow flipInX">
                             <h1>Danh mục khóa học</h1>
-                            <Link to="/courses/detail/react-js">Lập trình ReactJS</Link>
-                            <Link to="/courses/detail/tu-duy">Lập trình tư duy</Link>
-                            <Link to="/courses/detail/java-web">Lập trình Java Web</Link>
-                            <Link to="/courses/detail/node-js">Lập trình NodeJS</Link>
+                            <Link to="/course/detail/5f13c51edd95c08d5212ad81">Lập trình ReactJS</Link>
+                            <Link to="/course/detail/5f17f5e929b4f01184ca74dc">Lập trình C++</Link>
+                            <Link to="/course/detail/5f17f52f29b4f01184ca74db">Lập trình Python</Link>
+                            <Link to="/course/detail/5f17f2fd29b4f01184ca74da">Lập trình NodeJS</Link>
                         </div>
                     </div>
                     <div className="footer__col">
