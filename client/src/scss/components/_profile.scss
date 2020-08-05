@@ -453,3 +453,16 @@
         }
     }
 }
+
+.modal__update {
+    .ant-modal-content {
+        .ant-modal-body {
+            padding-bottom: 2px;
+            .ant-form-item {
+                .ant-form-item-label {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

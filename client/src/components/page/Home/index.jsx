@@ -67,6 +67,46 @@ const HomeComponent = ({ courses }) => {
         return message.error('Vui lòng chọn đầy đủ!');
     };
 
+    // contact
+    const [contact, setContact] = useState({
+        hoTen: "",
+        Email: "",
+        soDT: "",
+        content: ""
+    })
+
+    const handleChange = (e) => {
+        let { name, value } = e.target;
+        setContact({
+            ...contact,
+            [name]: value
+        });
+    }
+
+    const handleSubmitContact = (e) => {
+        e.preventDefault();
+        let valid = true;
+        for(let key in contact) {
+            if(contact[key] === "") {
+                valid = false;
+                break;
+            }
+        }
+
+        if(!valid) {
+            return message.error('Vui lòng nhập đầy đủ thông tin');
+        }
+        let subject = `Khách hàng ${contact.hoTen} cần tư vấn qua số điện thoại ${contact.soDT}`;
+        let body = `Nội dung: ${contact.content}`;
+        window.location.href = `mailto:tcreation.work@gmail.com?subject=${subject}&body=${body}`;   
+        setContact({
+            hoTen: "",
+            Email: "",
+            soDT: "",
+            content: ""
+        })
+    }
+
     return (
         <div className="home">
             <div className="welcome">
@@ -218,29 +258,29 @@ const HomeComponent = ({ courses }) => {
                         <img src={Contact} alt=""/>
                     </div>
                     <div className="contact__wrapper-right wow rotateInUpRight">
-                        <form>
+                        <form onSubmit={handleSubmitContact}>
                             <h1>LIÊN HỆ TƯ VẤN</h1>
                             <hr/>
                             <div className="form-group">
                                 <span>
                                     <i className="fa fa-user-alt"></i>
                                 </span>
-                                <input type="text" placeholder="Họ và tên *"></input>
+                                <input type="text" placeholder="Họ và tên *" name="hoTen" value={contact.hoTen} onChange={handleChange}></input>
                             </div>
                             <div className="form-group">
                                 <span>
                                     <i className="fa fa-envelope"></i>
                                 </span>
-                                <input type="text" placeholder="Email liên hệ *"></input>
+                                <input type="email" placeholder="Email liên hệ *" name="Email" value={contact.Email} onChange={handleChange}></input>
                             </div>
                             <div className="form-group">
                                 <span>
                                     <i className="fa fa-phone"></i>
                                 </span>
-                                <input type="text" placeholder="Điện thoại liên hệ *"></input>
+                                <input type="text" placeholder="Điện thoại liên hệ *" name="soDT" value={contact.soDT} onChange={handleChange}></input>
                             </div>
                             <div className="form-group">
-                                <textarea rows="10" placeholder="Bạn cần tư vấn thêm về chương trình, vui lòng để lại tin nhắn tại đây..."></textarea>
+                                <textarea rows="10" placeholder="Bạn cần tư vấn thêm về chương trình, vui lòng để lại tin nhắn tại đây..." name="content" value={contact.content} onChange={handleChange}></textarea>
                             </div>
                             <button type="submit">ĐĂNG KÝ TƯ VẤN</button>
                         </form>

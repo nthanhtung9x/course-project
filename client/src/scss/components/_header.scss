@@ -13,6 +13,53 @@
         padding: 0 24px;
         .logo {
             margin: 8px 0;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            .search__header {
+                position: relative;
+                width: 100%;
+                @include mediaQuery($md) {
+                    display:none;
+                }
+                .ant-input-search {
+                    border-radius: 8px;
+                }
+                .search__header__wrap {
+                    position: absolute;
+                    top: calc(100% + 4px);
+                    left:0;
+                    right: 0;
+                    z-index: 10;
+                    background-color: getColor('white');
+                    box-shadow: 0 0 2px getColor('grey');
+                    border-radius: 4px;
+                    .ant-list-item {
+                        padding: 0;
+                        a {
+                            display: block;
+                            width: 100%;
+                            padding: 12px 0;
+                            transition: all 0.2s;
+                            &:hover {
+                                background-color: rgba($color: getColor('grey'), $alpha: 0.6);
+                            }
+                        }
+                        .ant-list-item-meta {
+                            align-items: center;
+                            padding: 0 12px;
+                            .ant-list-item-meta-avatar {
+                                .ant-avatar-image {
+                                    img {
+                                        width: 100%;
+                                        height: unset;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             a {
                 display:inline-block;
                 img {

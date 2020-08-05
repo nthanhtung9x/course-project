@@ -11,11 +11,12 @@ import {
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import {API} from '../../API/api';
+const { Option } = Select;
+
 
 export const RegisterComponent = () => {
     const [loadingStyle, setLoadingStyle] = useState(false);
     const [messageSignUp, setMessageSignUp] = useState("");
-    const { Option } = Select;
 
     const formItemLayout = {
         labelCol: {
@@ -104,12 +105,12 @@ export const RegisterComponent = () => {
                         label="Tên tài khoản"
                         rules={[
                         {
-                            type: 'string',
-                            message: 'Vui lòng nhập tên tài khoản!',
+                            type: 'email',
+                            message: 'Vui lòng nhập tên tài khoản mail',
                         },
                         {
                             required: true,
-                            message: 'Vui lòng nhập tên tài khoản!',
+                            message: 'Vui lòng nhập tên tài khoản mail',
                         },
                         {
                             min:8,
@@ -121,7 +122,7 @@ export const RegisterComponent = () => {
                         }
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Nhập tên tài khoản mail"/>
                     </Form.Item>
 
                     <Form.Item
@@ -139,7 +140,7 @@ export const RegisterComponent = () => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Nhập mật khẩu"/>
                     </Form.Item>
 
                     <Form.Item
@@ -162,7 +163,7 @@ export const RegisterComponent = () => {
                         }),
                         ]}
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Nhập lại mật khẩu"/>
                     </Form.Item>
 
                     <Form.Item
@@ -187,7 +188,7 @@ export const RegisterComponent = () => {
                         }
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Nhập họ tên"/>
                     </Form.Item>
 
                     <Form.Item
@@ -204,7 +205,7 @@ export const RegisterComponent = () => {
                             }        
                         ]}
                     >
-                        <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+                        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder="Nhập số điện thoại"/>
                     </Form.Item>
 
                     <Form.Item
@@ -222,7 +223,7 @@ export const RegisterComponent = () => {
 
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Nhập địa chỉ"/>
                     </Form.Item>
 
                     <Form.Item

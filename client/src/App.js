@@ -120,6 +120,14 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 					</>
 				}}>
 				</Route>
+				<Route path="/profile/detail/:id" render={({match}) => {
+					return <>
+						<HeaderComponent/>
+						<ProfileComponent match={match}/>
+						<FooterComponent/>
+					</>
+				}}>
+				</Route>
 				<Route path="/profile/wall/:id" render={({match}) => {
 					return <>
 						<HeaderComponent/>
@@ -141,7 +149,7 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 					<h1>Page Not Found 404</h1>
 				</Router>
 			</Switch>
-			<BackTop style={{right:'50px'}}>
+			<BackTop style={{right:'34px', top: '588px'}}>
 				<div style={style}><ArrowUpOutlined /></div>
 			</BackTop>
 		</div>

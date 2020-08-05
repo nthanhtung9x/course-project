@@ -22,7 +22,7 @@ import {
 import VideoCourse from './VideoCourse';
 
 const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
-    const [current, setCurrent] = useState('wall');
+    const [current, setCurrent] = useState("");
 
     const handleClick = e => {
         setCurrent(e.key);
@@ -31,6 +31,8 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
     useEffect(() => {
         findUser(match.params.id);
     },[]);
+
+    useEffect(() => console.log(match.url), [current]);
 
     const handleAddToPendingFriendsAPI = (token, idUserAdd, nameUserAdd, idUserAdded) => {
         axios({
@@ -118,7 +120,7 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                         </div>
                         <div className="profile__main">
                         <div className="profile__main__control">
-                            <Menu mode="horizontal" onClick={handleClick} selectedKeys={[match.url]}>
+                            <Menu mode="horizontal" onClick={handleClick} selectedKeys={[current ? current : match.url]}>
                                 <Menu.Item key={`/profile/wall/${match.params.id}`} icon={<FormOutlined />}>
                                     <Link to={`/profile/wall/${profileUser.id}`}>
                                         Trang cá nhân
@@ -136,7 +138,7 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key={`/profile/detail/${match.params.id}`} icon={<SettingOutlined />}>
-                                    <Link to="/profile/detail">
+                                    <Link to={`/profile/detail/${match.params.id}`}>
                                         Thông tin tài khoản
                                     </Link>
                                 </Menu.Item>
@@ -154,9 +156,10 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                             <Route path="/profile/friends/:id" render={({match}) => {
                                 return <ProfileFriendsList match={match}/>
                             }}/>
-                            <Route path="/profile/detail">
-                                <ProfileDetail/>
-                            </Route>
+                            <Route path="/profile/detail/:id" render={({match}) => {
+                                return <ProfileDetail match={match}/>
+                            }}/>
+                                
                             <Route exact path="/profile/course/:id" render={({match}) => {
                                 return <VideoCourse match={match}/>
                                 }}
@@ -189,14 +192,14 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                         </div>
                         <div className="profile__main">
                         <div className="profile__main__control">
-                            <Menu mode="horizontal" onClick={handleClick} selectedKeys={[current]}>
-                                <Menu.Item key="wall" icon={<FormOutlined />}>
+                            <Menu mode="horizontal" onClick={handleClick} selectedKeys={[current ? current : match.url]}>
+                                <Menu.Item key={`/profile/wall/${profileUser.id}`} icon={<FormOutlined />}>
                                     <Link to={`/profile/wall/${profileUser.id}`}>
                                         Trang cá nhân
                                     </Link>
                                 </Menu.Item>
-                                <Menu.Item key="friends" icon={<UsergroupAddOutlined />}>
-                                    <Link to="/profile/friends">
+                                <Menu.Item key={`/profile/friends/${match.params.id}`} icon={<UsergroupAddOutlined />}>
+                                    <Link to={`/profile/friends/${match.params.id}`}>
                                         Danh sách bạn bè
                                     </Link>
                                 </Menu.Item>
@@ -207,9 +210,9 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
                                 return <WallComponent match={match}/>
                             }}/>
                             
-                            <Route path="/profile/friends">
-                                <ProfileFriendsList/>
-                            </Route>
+                            <Route path="/profile/friends/:id" render={({match}) => {
+                                return <ProfileFriendsList match={match}/>
+                            }}/>
                         </Switch>
                     </div>
                     </div>

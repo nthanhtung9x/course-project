@@ -23,7 +23,42 @@ html {
     justify-content: space-between;
     padding: 0 24px; }
     .header .nav .logo {
-      margin: 8px 0; }
+      margin: 8px 0;
+      width: 50%;
+      display: flex;
+      align-items: center; }
+      .header .nav .logo .search__header {
+        position: relative;
+        width: 100%; }
+        @media (max-width: 767px) {
+          .header .nav .logo .search__header {
+            display: none; } }
+        .header .nav .logo .search__header .ant-input-search {
+          border-radius: 8px; }
+        .header .nav .logo .search__header .search__header__wrap {
+          position: absolute;
+          top: calc(100% + 4px);
+          left: 0;
+          right: 0;
+          z-index: 10;
+          background-color: #fff;
+          box-shadow: 0 0 2px #c5c5c5;
+          border-radius: 4px; }
+          .header .nav .logo .search__header .search__header__wrap .ant-list-item {
+            padding: 0; }
+            .header .nav .logo .search__header .search__header__wrap .ant-list-item a {
+              display: block;
+              width: 100%;
+              padding: 12px 0;
+              transition: all 0.2s; }
+              .header .nav .logo .search__header .search__header__wrap .ant-list-item a:hover {
+                background-color: rgba(197, 197, 197, 0.6); }
+            .header .nav .logo .search__header .search__header__wrap .ant-list-item .ant-list-item-meta {
+              align-items: center;
+              padding: 0 12px; }
+              .header .nav .logo .search__header .search__header__wrap .ant-list-item .ant-list-item-meta .ant-list-item-meta-avatar .ant-avatar-image img {
+                width: 100%;
+                height: unset; }
       .header .nav .logo a {
         display: inline-block; }
         .header .nav .logo a img {
@@ -1447,6 +1482,11 @@ html {
 .modal__update__post .ant-modal-content .ant-modal-body {
   padding-bottom: 2px; }
   .modal__update__post .ant-modal-content .ant-modal-body .ant-form-item .ant-form-item-label {
+    text-align: left; }
+
+.modal__update .ant-modal-content .ant-modal-body {
+  padding-bottom: 2px; }
+  .modal__update .ant-modal-content .ant-modal-body .ant-form-item .ant-form-item-label {
     text-align: left; }
 
 .admin .logo img {

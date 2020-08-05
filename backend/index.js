@@ -819,6 +819,53 @@ connectMongo.then(client => {
         });
     });
 
+    app.put('/updateDetailUser', async(req,res) => {
+        jwt.verify(req.headers.authorization, "my_secret_key", async(err,data) => {
+            if(err) {
+                res.sendStatus(403);
+            } else {
+                let checkRole = await users.findOne({
+                    _id: new ObjectId(data.id)
+                });
+                if(checkRole) {
+                    let updateUser = await users.findOneAndUpdate(
+                        {
+                            _id: new ObjectId(req.body.id)
+                        },
+                        {
+                            $set: {
+                                username: req.body.username,
+                                name:req.body.name,
+                                password:req.body.password,
+                                idrole: checkRole.idRole,
+                                phone: req.body.phone,
+                                address:  req.body.address,
+                                courses: checkRole.courses,
+                                friendList: checkRole.friendList
+                            }
+                        },
+                        {
+                            upsert: false
+                        }   
+                    );
+                    if(updateUser.value) {
+                        let roleUser = await role.findOne({
+                            idRole: checkRole.idRole 
+                        });
+                        let userAfter = await users.findOne({
+                            _id: new ObjectId(req.body.id)
+                        })
+                        return res.json({
+                            detailUser: {...userAfter,roleName:roleUser.name}
+                        })
+                    }
+                    return res.sendStatus(403);
+                }
+                return res.sendStatus(403);
+            }
+        });
+    });
+
     app.get('/getVideoCourse/:id', async(req,res) => {
         jwt.verify(req.headers.authorization, "my_secret_key", async(err,data) => {
             if(err) {
@@ -1656,7 +1703,15 @@ connectMongo.then(client => {
                     let checkIndex = await list.findIndex(item => {
                         return item.toString() === req.params.id.toString()
                     });
-                    if(checkIndex !== -1) {
+
+                    let checkRole2 = await users.findOne({
+                        _id: new ObjectId(req.params.id)
+                    });
+                    let listUser2 = checkRole2.friendList;
+                    let checkIndex2 = await listUser2.findIndex(item => {
+                        return item.toString() === checkRole._id.toString()
+                    });
+                    if(checkIndex !== -1 && checkIndex2 !== -1) {
                         await list.splice(checkIndex, 1);
                         let updateFriendList = await users.findOneAndUpdate(
                             {
@@ -1672,7 +1727,23 @@ connectMongo.then(client => {
                                 upsert:false
                             }
                         )
-                        if(updateFriendList.value) {
+
+                        await listUser2.splice(checkIndex, 1);
+                        let updateFriendList2 = await users.findOneAndUpdate(
+                            {
+                                _id: new ObjectId(req.params.id)
+                            },
+                            {
+                                $set: {
+                                    ...checkRole2,
+                                    friendList: listUser2
+                                }
+                            },
+                            {
+                                upsert:false
+                            }
+                        )
+                        if(updateFriendList.value && updateFriendList2.value) {
                             let getFriendList = await users.findOne({
                                 _id: new ObjectId(checkRole._id)
                             });
@@ -1789,9 +1860,18 @@ connectMongo.then(client => {
               
             let mailDetails = { 
                 from: 'tcreation.work@gmail.com', 
-                to: req.body.username, 
-                subject: 'Quên mật khẩu', 
-                text: `Mật khẩu của bạn: ${isCheckMail.password} `
+                to: req.body.username.toLowerCase().trim(), 
+                subject: 'Lấy lại mật khẩu', 
+                html: `
+                    <div 
+                        style="border:1px solid black;padding: 0 12px;color:black;border-radius: 8px;background: lemonchiffon;text-align: center;"
+                    >
+                        <h2 style="margin: 8px 0 4px;font-size:16px">TCREATION đã nhận thông tin và phản hồi:</h2>
+                        <div style="font-size:16px">Mật khẩu của bạn: <strong>${isCheckMail.password}</strong></div>
+                        <p style="margin: 4px 0;font-size:16px">Chúc bạn học hành tốt !!!</p>
+                        <article style="margin-bottom: 8px;font-size:16px">Happy Coding, <br/> <strong>TCREATION</strong></article>
+                    </div>
+                `
             }; 
 
             mailTransporter.sendMail(mailDetails, function(err, data) { 
@@ -1815,6 +1895,15 @@ connectMongo.then(client => {
 
           
     });
+
+    app.get('/searchUser/:name', async(req,res) => {
+        let name = req.params.name;
+        let userList = await users.find().toArray();
+        let findUser = userList.filter(item => {
+            return item.name.toLowerCase().trim().indexOf(name.toLowerCase().trim()) !== -1;
+        });
+        return res.json(findUser);
+    })
 
 }).catch(error => console.error(error))
 

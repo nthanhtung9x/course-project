@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -9,7 +9,7 @@ import * as action from '../../redux/actions';
 import { API } from '../../API/api';
 import axios from 'axios';
 
-import { Select, Input, message } from 'antd';
+import { Select, Input, message, List, Avatar } from 'antd';
 import { DeleteOutlined, MenuOutlined } from '@ant-design/icons'
 const { Option } = Select;
 const { Search } = Input;
@@ -260,6 +260,40 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
         return history.push(`/course/detail/${value}`);
     };
 
+
+    // search
+    const [searchText, setSearchText] = useState("");
+    const [listSearch, setListSearch] = useState([]);
+    const [visible, setVisible] = useState(false);
+    const data = [...listSearch];
+
+    const typingTime = useRef(null);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const value = e.target.value;
+        setSearchText(value);
+        if(!value) {
+            setVisible(false);
+            return;
+        }
+        if(typingTime.current) {
+            clearTimeout(typingTime.current);
+        }
+        typingTime.current = setTimeout(() => {
+            axios({
+                url:`${API}/searchUser/${value}`,
+                method:'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }).then(res => {
+                setListSearch(res.data);
+                setVisible(true);
+            }).catch(err => console.log(err));
+        }, 1000);
+    }
+
     return (
         <div className="header">
             <nav className="nav">
@@ -268,6 +302,36 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
                         <Link to="/">
                             <img src={Logo} alt="Logo"></img>
                         </Link>
+                    </li>
+                    <li className="search__header">
+                        <Search
+                            placeholder="Tìm kiếm tại đây"
+                            size="large"
+                            onChange={handleSearch}
+                            value={searchText}
+                            onFocus={visible}
+                            onBlur={() => setVisible(false)}
+                        />
+                        { visible ? 
+                                <div className="search__header__wrap">
+                                    <List
+                                        itemLayout="horizontal"
+                                        dataSource={data}
+                                        renderItem={item => (
+                                            <List.Item>
+                                            <Link to={`/profile/wall/${item._id}`}>
+                                                <List.Item.Meta
+                                                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                                                title={item.name}
+                                                />
+                                            </Link>
+                                            </List.Item>
+                                        )}
+                                    />
+                                </div>
+                            :
+                                <></>
+                        }
                     </li>
                 </ul>
                 <ul className="nav__list">

@@ -144,12 +144,12 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                         label="Tên tài khoản"
                         rules={[
                         {
-                            type: 'string',
-                            message: 'Vui lòng nhập tên tài khoản!',
+                            type: 'email',
+                            message: 'Vui lòng nhập tên tài khoản mail',
                         },
                         {
                             required: true,
-                            message: 'Vui lòng nhập tên tài khoản!',
+                            message: 'Vui lòng nhập tên tài khoản mail',
                         },
                         {
                             min:8,
@@ -161,7 +161,7 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                         }
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Nhập tên tài khoản mail"/>
                     </Form.Item>
 
                     <Form.Item
@@ -179,7 +179,7 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Nhập mật khẩu"/>
                     </Form.Item>
 
                     <Form.Item
@@ -202,7 +202,7 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                         }),
                         ]}
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Nhập lại mật khẩu"/>
                     </Form.Item>
 
                     <Form.Item
@@ -227,7 +227,7 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                         }
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Nhập họ tên"/>
                     </Form.Item>
 
                     <Form.Item
@@ -244,7 +244,7 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                             }      
                         ]}
                     >
-                        <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+                        <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder="Nhập số điện thoại"/>
                     </Form.Item>
 
                     <Form.Item
@@ -261,7 +261,7 @@ const ManagerUsers = ({ users, handleCreateUser, checkRole }) => {
                         },
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Nhập địa chỉ"/>
                     </Form.Item>
 
                     <Form.Item {...tailFormItemLayout}>

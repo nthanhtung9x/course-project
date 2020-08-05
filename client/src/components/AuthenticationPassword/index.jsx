@@ -9,7 +9,7 @@ const AuthenticationPassword = () => {
     const [loadingStyle, setLoadingStyle] = useState(false);
 
     const onFinish = data => {
-        console.log(data);
+        data.username = data.username.toLowerCase().trim();
         axios({
             method:"POST",
             url:`${API}/getPassword`,
