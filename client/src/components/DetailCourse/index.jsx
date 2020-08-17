@@ -16,6 +16,7 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
         message.error('Bạn đã ghi danh khóa học này');
     }
     useEffect(() => {
+        handleScrollTop();
         setDefaultRegisterCourse();
         getFindCourseById(match.params.id);
         setVisible(false);
@@ -24,6 +25,10 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
     // useEffect(() => {
         
     // },[registerCourse]);
+
+    const handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
 
     const handleRegisterCourse = async(data) => {
         if(userLogin.username) {

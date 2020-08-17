@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -7,6 +7,14 @@ import { Redirect, useHistory } from 'react-router-dom';
 
 const AuthenticationPassword = () => {
     const [loadingStyle, setLoadingStyle] = useState(false);
+
+    const handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
+
+    useEffect(() => {
+        handleScrollTop();
+    },[])
 
     const onFinish = data => {
         data.username = data.username.toLowerCase().trim();

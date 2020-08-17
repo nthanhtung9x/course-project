@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 
 import Logo from "../../images/logo.jpg";
 
@@ -294,6 +294,8 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
         }, 1000);
     }
 
+    const [collapse, setCollapse] = useState(false);
+
     return (
         <div className="header">
             <nav className="nav">
@@ -309,22 +311,25 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
                             size="large"
                             onChange={handleSearch}
                             value={searchText}
-                            onFocus={visible}
-                            onBlur={() => setVisible(false)}
+                            // onBlur={() => setVisible(false)}
                         />
                         { visible ? 
                                 <div className="search__header__wrap">
                                     <List
+                                        onMouseLeave={() => setVisible(false)}
                                         itemLayout="horizontal"
                                         dataSource={data}
                                         renderItem={item => (
                                             <List.Item>
-                                            <Link to={`/profile/wall/${item._id}`}>
-                                                <List.Item.Meta
-                                                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                                title={item.name}
-                                                />
-                                            </Link>
+                                                <Link to={`/profile/wall/${item._id}`} onClick={() => {
+                                                    findUser(item._id);
+                                                    setVisible(false);
+                                                }}>
+                                                    <List.Item.Meta
+                                                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                                                    title={item.name}
+                                                    />
+                                                </Link>
                                             </List.Item>
                                         )}
                                     />
@@ -435,15 +440,15 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
                 <label htmlFor="collapse" className="btn-menu-mobile">
                     <MenuOutlined />
                 </label>
-                <input type="checkbox" id="collapse" hidden></input> 
-                <label htmlFor="collapse" className="bg-collapse"></label>
-                <div className="mobile__nav">
+                <input type="checkbox" id="collapse" onClick={() => setCollapse(true)} hidden></input> 
+                <label className="bg-collapse"  onClick={() => setCollapse(false)} style={collapse ? {transform:'translateX(0%)'} : {transform: 'translateX(100%)'}}></label>
+                <div className="mobile__nav" style={collapse ? {transform:'translateX(0%)'} : {transform: 'translateX(100%)'}}>
                     <ul className="mobile__list">
                         <li>
-                            <Link to="/">Trang chủ</Link>
+                            <Link to="/" onClick={() => setCollapse(false)}>Trang chủ</Link>
                         </li>
                         <li>
-                            <Link to="/courses">Danh sách khóa học</Link>
+                            <Link to="/courses" onClick={() => setCollapse(false)}>Danh sách khóa học</Link>
                         </li>
                         { userLogin.username ?
                                 <>
@@ -457,15 +462,21 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
                                             <div className="user__feature">
                                                 <Link to={`/profile/wall/${userLogin.id}`} onClick={() => {
                                                     findUser(`${userLogin.id}`);
+                                                    setCollapse(false);
                                                 }}>Thông tin cá nhân</Link>
-                                                 <Link to={`/profile/coursesList/${userLogin.id}`}>Khóa học của tôi</Link>
+                                                 <Link to={`/profile/coursesList/${userLogin.id}`} onClick={() => {
+                                                     setCollapse(false);
+                                                 }}>Khóa học của tôi</Link>
                                                 {   checkRole.managerSystem ? 
-                                                        <Link to="/admin">Quản lý hệ thống</Link>
+                                                        <Link to="/admin" onClick={() => {
+                                                            setCollapse(false);
+                                                        }}>Quản lý hệ thống</Link>
                                                     :
                                                         <></>
                                                 }
                                                 <Link to="/logout" onClick={() => {
                                                     localStorage.removeItem('token');
+                                                    setCollapse(false);
                                                     logOut();
                                                 }}>Đăng xuất</Link>
                                             </div>
@@ -475,10 +486,10 @@ const HeaderComponent = ({ userLogin, logOut, findUser, checkRole, getCourse, co
                             :
                                 <>
                                     <li>
-                                        <Link to="/signup">Đăng ký</Link>
+                                        <Link to="/signup" onClick={() => setCollapse(false)}>Đăng ký</Link>
                                     </li>
                                     <li>
-                                        <Link to="/signin">Đăng nhập</Link>
+                                        <Link to="/signin" onClick={() => setCollapse(false)}>Đăng nhập</Link>
                                     </li>
                                 </>
                         }   

@@ -200,7 +200,7 @@ const HomeComponent = ({ courses }) => {
                     <h1>GIỚI THIỆU VỀ TCREATION</h1>
                     <div className="about__row wow slideInUp">
                         <div className="about__col">
-                            <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/81466641_1544934908997251_7312469481169616896_o.jpg?_nc_cat=105&_nc_sid=dd9801&_nc_oc=AQlgUtEuIOVBEQtafXTC8cXhlps-JGmrCqYaExmDDa1lIdDYyASuUrGOTHqb_kgyqR04Cih4QsJCvUo_cudp7J7p&_nc_ht=scontent.fsgn2-1.fna&oh=d5953b2c4d5f74a628b38098044ceeed&oe=5F2CA20D" alt=""/>
+                            <img src="https://cybersoft.edu.vn/wp-content/uploads/2019/01/IMG_1410-new.jpg" alt=""/>
                         </div>
                         <div className="about__col">
                             <h4>
@@ -235,18 +235,18 @@ const HomeComponent = ({ courses }) => {
                         <p>"Hệ thống support linh hoạt, hỗ trợ, phản hồi thắc mắc học viên nhanh chóng."</p>
                     </div>
                     <div className="item">
-                        <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t1.0-9/84324918_1324934517690272_2715086206349082624_n.jpg?_nc_cat=108&_nc_sid=85a577&_nc_oc=AQkArQPCDDiWc-ubHgu6oy99UiVn29D879305uGXLyWeDHLUrxVoWEp6CJ7Ic2lJyPWktpje4e_TXOdtr4HS0De_&_nc_ht=scontent.fsgn2-3.fna&oh=588584efad5b8e36cf67f865ee91ab1b&oe=5F2C937A" alt=""/>
-                        <h4>Nguyễn Thế Vương</h4>
+                        <img src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/s960x960/46446135_1150662458434545_8956736932361011200_o.jpg?_nc_cat=103&_nc_sid=110474&_nc_ohc=ou9-3s21Hi4AX8jeXXN&_nc_ht=scontent.fsgn2-2.fna&_nc_tp=7&oh=04d69bcbcab2e6e1c97ad9b47400e9f2&oe=5F55FF66" alt=""/>
+                        <h4>Lương Triều Vỹ</h4>
                         <p>"Các khóa học dễ hiểu, phù hợp với các nhu cầu tuyển dụng ngày nay."</p>
                     </div>
                     <div className="item">
-                        <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.0-9/p720x720/107496691_2727043327532783_2639331551042149083_o.jpg?_nc_cat=106&_nc_sid=85a577&_nc_oc=AQntZiHpoJABfKs-A_fY_BehvCTTgqP-K86NPYjuHcsHBPjL4yM_tJvGA0c02GAB2WWlba7w3iNOuYDQ6YESvaFY&_nc_ht=scontent.fsgn2-5.fna&_nc_tp=6&oh=017726c16dc0fc0c9a09c4c9666f4520&oe=5F2C3DD7" alt=""/>
-                        <h4>Trần Quang Vinh</h4>
+                        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/p960x960/83517932_1291883977680915_6998308725299609600_o.jpg?_nc_cat=107&_nc_sid=85a577&_nc_ohc=3kCC4nPjPhkAX-nw4-v&_nc_ht=scontent.fsgn2-1.fna&_nc_tp=6&oh=cf17d9ac9ed07c5e9ee5c62ebc4337f4&oe=5F5625E7" alt=""/>
+                        <h4>Lê Minh Toàn</h4>
                         <p>"Nhờ các khóa học mà em bổ sung được nhiều kiến thức phù hợp xu hướng hiện nay."</p>
                     </div>
                     <div className="item">
-                        <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.0-9/p720x720/107496691_2727043327532783_2639331551042149083_o.jpg?_nc_cat=106&_nc_sid=85a577&_nc_oc=AQntZiHpoJABfKs-A_fY_BehvCTTgqP-K86NPYjuHcsHBPjL4yM_tJvGA0c02GAB2WWlba7w3iNOuYDQ6YESvaFY&_nc_ht=scontent.fsgn2-5.fna&_nc_tp=6&oh=017726c16dc0fc0c9a09c4c9666f4520&oe=5F2C3DD7" alt=""/>
-                        <h4>Trần Quang Vinh</h4>
+                        <img src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/s960x960/31417014_2118577611489659_4308137435256061952_o.jpg?_nc_cat=103&_nc_sid=110474&_nc_ohc=jjhaPaRa-BsAX9yLh8q&_nc_ht=scontent.fsgn2-2.fna&_nc_tp=7&oh=67ab10223a11e6d2f976a2afac79d65c&oe=5F52AEBC" alt=""/>
+                        <h4>Trần Đại Chí</h4>
                         <p>"Nhờ các khóa học mà em bổ sung được nhiều kiến thức phù hợp xu hướng hiện nay."</p>
                     </div>
                 </Slider>

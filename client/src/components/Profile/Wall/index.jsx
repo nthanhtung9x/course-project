@@ -133,21 +133,27 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
         await message.success('Xóa bình luận thành công !!!')
     }
 
-    const contentUpdateComment = (item) => {
-        return <>
-            <Popconfirm
-                title="Bạn có chắc muốn xóa bình luận này?"
-                onConfirm={() => confirmDeleteComment(item._id)}
-                onCancel={cancel}
-                okText="Có"
-                cancelText="Không"
-            >
-                <button className="ant-btn ant-btn-block">Xóa</button>
-            </Popconfirm>
-            <button className="ant-btn ant-btn-block" onClick={() => {
-                showModalComment(item)
-            }}>Chỉnh Sửa</button>
-        </>
+    const contentUpdateComment = (item, idUserPost) => {
+        if(item.idUser === userLogin.id || userLogin.id === idUserPost) {
+            return <>
+                <Popconfirm
+                    title="Bạn có chắc muốn xóa bình luận này?"
+                    onConfirm={() => confirmDeleteComment(item._id)}
+                    onCancel={cancel}
+                    okText="Có"
+                    cancelText="Không"
+                >
+                    <button className="ant-btn ant-btn-block">Xóa</button>
+                </Popconfirm>
+                { item.idUser === userLogin.id ?  
+                        <button className="ant-btn ant-btn-block" onClick={() => {
+                            showModalComment(item)
+                        }}>Chỉnh Sửa</button>
+                    :
+                        <></>
+                }
+            </>
+        }
     };
 
     const countComment = (idPost) => {
@@ -158,7 +164,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
         }).length;
     }
 
-    const renderCommentPost = (idPost) => {
+    const renderCommentPost = (idPost, idUser) => {
         return commentList.map((item,index) => {
             if(item.idPost === idPost) {
                 return  <div className="comment__wrapper-item" key={index}>
@@ -167,9 +173,13 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                 <span>{item.name}: </span>
                                 {item.content}
                             </p>
-                            <Popover content={() => contentUpdateComment(item)} trigger="click">
-                                <Button><DashOutlined /></Button>
-                            </Popover>
+                            { userLogin.id === item.idUser || userLogin.id === idUser ? 
+                                    <Popover content={() => contentUpdateComment(item, idUser)} trigger="click">
+                                        <Button><DashOutlined /></Button>
+                                    </Popover>
+                                :
+                                    <></>
+                            }
                         </div>   
             }
         })
@@ -268,7 +278,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                                         }}    
                                                                     />
                                                                 </div>
-                                                                { renderCommentPost(postList[i]._id) }
+                                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                             </div>
                                                         :
@@ -360,7 +370,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                                         })
                                                                     }}      />
                                                             </div>
-                                                                { renderCommentPost(postList[i]._id) }
+                                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
                                                                 {/* <div className="comment__wrapper-item">
                                                                     <img src="https://picsum.photos/200" alt=""/>
                                                                     <p>
@@ -461,7 +471,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                                     }}      />
                                                             </div>
                                                                 
-                                                                { renderCommentPost(postList[i]._id) }
+                                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                             </div>
                                                         :
@@ -553,7 +563,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                             }}      />
                                                     </div>
                                                         
-                                                        { renderCommentPost(postList[i]._id) }
+                                                        { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                     </div>
                                                 :
@@ -654,7 +664,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                                     }}      />
                                                             </div>
                                                                 
-                                                                { renderCommentPost(postList[i]._id) }
+                                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                             </div>
                                                         :
@@ -747,7 +757,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                                     }}      />
                                                             </div>
                                                                 
-                                                                { renderCommentPost(postList[i]._id) }
+                                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                             </div>
                                                         :
@@ -838,7 +848,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                                     }}      />
                                                             </div>
                                                                 
-                                                                { renderCommentPost(postList[i]._id) }
+                                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                             </div>
                                                         :
@@ -930,7 +940,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                             }}      />
                                                     </div>
                                                         
-                                                        { renderCommentPost(postList[i]._id) }
+                                                        { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                     </div>
                                                 :
@@ -1029,7 +1039,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                             }}      />
                                                     </div>
                                                         
-                                                        { renderCommentPost(postList[i]._id) }
+                                                        { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                     </div>
                                                 :
@@ -1122,7 +1132,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                             }}      />
                                                     </div>
                                                         
-                                                        { renderCommentPost(postList[i]._id) }
+                                                        { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                     </div>
                                                 :
@@ -1213,7 +1223,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                             }}      />
                                                     </div>
                                                         
-                                                        { renderCommentPost(postList[i]._id) }
+                                                        { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                                     </div>
                                                 :
@@ -1305,7 +1315,7 @@ const WallComponent = ({ userLogin, profile, postList, getPostAPI, likePost, cre
                                                     }}      />
                                             </div>
                                                 
-                                                { renderCommentPost(postList[i]._id) }
+                                                { renderCommentPost(postList[i]._id, postList[i].idUser) }
 
                                             </div>
                                         :

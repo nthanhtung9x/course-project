@@ -137,9 +137,9 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 				}}
 				/>
 				<Route path="/logout">
-					<Redirect to="/"/>
+					<Redirect to="/signin"/>
 				</Route>
-				<Route exact path="/">
+				<Route path="/">
 					<HeaderComponent/>
 					<CarouselComponent/>
 					<HomeComponent/>

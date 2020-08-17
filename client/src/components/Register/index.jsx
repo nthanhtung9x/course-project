@@ -43,6 +43,14 @@ export const RegisterComponent = () => {
 
     const [form] = Form.useForm();
 
+    const handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
+
+    useEffect(() => {
+        handleScrollTop();
+    },[])
+
 
     const success = () => {
         message.success('Tạo tài khoản thành công');

@@ -72,7 +72,7 @@
     }
 
     .special {
-        background:url('../images/background.jpg') no-repeat;
+        background:url('../images/background2.png') no-repeat;
         background-size: cover;
         background-attachment: fixed;
         &-bg {
@@ -101,6 +101,7 @@
                     }
                     .special__wrap {
                         background-color: getColor('primary');
+                        box-shadow: 0 0 4px getColor('grey');
                         padding: 16px;
                         height: 300px;
                         overflow: hidden;

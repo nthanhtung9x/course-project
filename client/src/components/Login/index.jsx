@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Link, Redirect } from 'react-router-dom';
@@ -50,6 +50,14 @@ const LoginComponent = ({handleLogin}) => {
             setLoadingStyle(false);
         }, 2000);
     };
+
+    const handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
+
+    useEffect(() => {
+        handleScrollTop();
+    },[])
 
     return (
         <div className="login">

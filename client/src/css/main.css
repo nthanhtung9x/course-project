@@ -7,7 +7,8 @@
   font-family: 'Roboto', sans-serif; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
 
 .header {
   position: fixed;
@@ -321,31 +322,37 @@ html {
       width: 50%;
       transition: all 0.4s;
       z-index: 99999999999999;
-      background-color: #fff; }
+      background: url("../images/background-mobile.jpg") no-repeat;
+      background-size: cover; }
       @media (max-width: 767px) {
         .header .nav .mobile__nav {
           width: 80%; } }
       .header .nav .mobile__nav .mobile__list {
         padding: 12px; }
         .header .nav .mobile__nav .mobile__list li {
-          margin: 12px 0; }
+          margin: 12px 0;
+          text-align: center;
+          transition: all 0.2s; }
+          .header .nav .mobile__nav .mobile__list li:hover {
+            background-color: #22075e; }
           .header .nav .mobile__nav .mobile__list li a {
-            color: #000;
+            color: #fff;
             font-size: 2.4rem;
-            font-weight: 400; }
+            font-weight: 600; }
           .header .nav .mobile__nav .mobile__list li .user .content {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin: 0; }
             .header .nav .mobile__nav .mobile__list li .user .content i {
-              color: #c5c5c5;
+              color: #fff;
               font-size: 1.6rem;
               font-weight: 600; }
             .header .nav .mobile__nav .mobile__list li .user .content .avatar {
               font-size: 3.2rem; }
             .header .nav .mobile__nav .mobile__list li .user .content span {
-              color: #000;
-              font-size: 1.8rem;
+              color: #fff;
+              font-size: 2.4rem;
               font-weight: 600;
               margin: 0 12px; }
           .header .nav .mobile__nav .mobile__list li .user .user__feature {
@@ -524,7 +531,7 @@ html {
         .home .welcome-right form button:hover {
           outline: auto; }
 .home .special {
-  background: url("../images/background.jpg") no-repeat;
+  background: url("../images/background2.png") no-repeat;
   background-size: cover;
   background-attachment: fixed; }
   .home .special-bg {
@@ -554,6 +561,7 @@ html {
             width: 100%; } }
         .home .special-bg .special__row .special__col .special__wrap {
           background-color: #fff;
+          box-shadow: 0 0 4px #c5c5c5;
           padding: 16px;
           height: 300px;
           overflow: hidden;
@@ -774,7 +782,7 @@ html {
 
 .login {
   margin-top: 11.8rem;
-  background: url("../images/background.jpg") no-repeat;
+  background: url("../images/background1.jpg") no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   padding: 24px; }
@@ -802,7 +810,7 @@ html {
 
 .register {
   margin-top: 11.8rem;
-  background: url("../images/background.jpg") no-repeat;
+  background: url("../images/background1.jpg") no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   padding: 24px; }

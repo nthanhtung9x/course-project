@@ -30,9 +30,13 @@ const ProfileComponent = ({ userLogin, findUser, match, profileUser }) => {
 
     useEffect(() => {
         findUser(match.params.id);
+        handleScrollTop();
     },[]);
 
-    useEffect(() => console.log(match.url), [current]);
+    const handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
+
 
     const handleAddToPendingFriendsAPI = (token, idUserAdd, nameUserAdd, idUserAdded) => {
         axios({

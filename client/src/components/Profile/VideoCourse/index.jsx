@@ -39,7 +39,12 @@ const VideoCourse = ({ match }) => {
         }).catch(err => console.log(err));
     }
 
+    const handleScrollTop = () => {
+        window.scrollTo(0,0);
+    }
+    
     useEffect(() => {
+        handleScrollTop();
         getVideoCourse();
     },[]);
 

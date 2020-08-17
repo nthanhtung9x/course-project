@@ -375,7 +375,9 @@
             width: 50%;
             transition: all 0.4s;
             z-index: 99999999999999;
-            background-color: getColor('white');
+
+            background: url('../images/background-mobile.jpg') no-repeat;
+            background-size: cover;
             @include mediaQuery($md) {
                 width: 80%;
             }
@@ -383,22 +385,28 @@
                 padding: 12px;
                 li {
                     margin: 12px 0;
+                    text-align: center;
+                    transition: all 0.2s;
+                    &:hover {
+                        background-color: getColor('secondary');
+                    }
                     a {
-                        @include setText(getColor('black'),getFontSize('size-24'),getFontWeight('regular'));
+                        @include setText(getColor('white'),getFontSize('size-24'),getFontWeight('medium'));
                     }
                     .user {
                         .content {
                             display:flex;
                             align-items: center;
+                            justify-content: center;
                             margin: 0;
                             i {
-                                @include setText(getColor('grey'),getFontSize('size-16'),getFontWeight('medium'));
+                                @include setText(getColor('white'),getFontSize('size-16'),getFontWeight('medium'));
                             }
                             .avatar {
                                 font-size: getFontSize('size-32');
                             }
                             span {
-                                @include setText(getColor('black'),getFontSize('size-18'),getFontWeight('medium'));
+                                @include setText(getColor('white'),getFontSize('size-24'),getFontWeight('medium'));
                                 margin: 0 12px;
                             }
                         }
