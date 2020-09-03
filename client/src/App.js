@@ -26,6 +26,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import AdminComponent from './components/Admin';
+import { HomeTemplates } from './templates/HomeTemplates';
 
 const App = ({ userLogin, checkUser, checkRole }) => {
 	useEffect(() => {
@@ -55,6 +56,10 @@ const App = ({ userLogin, checkUser, checkRole }) => {
 	<Router>
 		<div>		
 			<Switch>
+				{/* <HomeTemplates exact path="/authentication-password" Component={AuthenticationPassword} />
+				<HomeTemplates exact path="/courses" Component={AuthenticationPassword} /> */}
+				
+
 				<Route path="/admin">
 					{ checkRole.managerSystem ? 
 							<AdminComponent/>

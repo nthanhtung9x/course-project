@@ -230,7 +230,7 @@ const HomeComponent = ({ courses }) => {
                     <h1>Cảm nhận học viên</h1>
                     <Slider {...settings}>
                     <div className="item">
-                        <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t1.0-9/106265144_948046725655679_5143631993035164012_n.jpg?_nc_cat=108&_nc_sid=85a577&_nc_oc=AQl7T7YYT7dV7_HqSouivZQ46-L5IDGw9YKtHGPJzWPXdSW2EHR7ly0a68SKB_7X69caNOb5Y0v_9zwjaUwMSUb6&_nc_ht=scontent.fsgn2-3.fna&oh=81bc9fe7cf4a2d7b1c5186259f992cfb&oe=5F2DD44E" alt=""/>
+                        <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t1.0-9/106265144_948046725655679_5143631993035164012_n.jpg?_nc_cat=108&_nc_sid=09cbfe&_nc_ohc=jFcvE0x3N10AX_Ko_Vd&_nc_ht=scontent.fsgn2-3.fna&oh=15090d9fc3df3de9496451a50a1fdf6c&oe=5F6927CE" alt=""/>
                         <h4>Trương Minh Tiến</h4>
                         <p>"Hệ thống support linh hoạt, hỗ trợ, phản hồi thắc mắc học viên nhanh chóng."</p>
                     </div>

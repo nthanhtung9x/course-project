@@ -38,7 +38,7 @@ const CoursesComponent = ({ getCourse, courses }) => {
                     <h1>Danh sách khóa học</h1>
                     <Search
                         placeholder="Nhập tên khóa học cần tìm"
-                        enterButton="Search"
+                        enterButton="Tìm"
                         size="large"
                         onSearch={value => setSearchText(value)}
                     />

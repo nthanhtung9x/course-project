@@ -5,6 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer'); 
+const smtpTransport = require('nodemailer-smtp-transport');
 
 const app = express();
 require('dotenv').config();  
@@ -50,7 +51,7 @@ connectMongo.then(client => {
             });
         } 
         let result = await users.insertOne({
-            username: req.body.username,
+            username: req.body.username.toLowerCase().trim(),
             password: req.body.password,
             name: req.body.name,
             phone: req.body.phone,
@@ -114,6 +115,7 @@ connectMongo.then(client => {
     });
 
     app.post('/signin', async(req,res) => {
+        console.log(req.body);
         const checkUser = await users.findOne({
             $and: [
                 {username : req.body.username},
@@ -1876,6 +1878,8 @@ connectMongo.then(client => {
 
             mailTransporter.sendMail(mailDetails, function(err, data) { 
                 if(err) { 
+                    console.log(err);
+
                     console.log('Error Occurs');
                     return res.json({
                         message: false
@@ -1910,12 +1914,12 @@ connectMongo.then(client => {
 //  jwt.verify(req.token, "my_secret_key", function (err, data) {
 // const token = await jwt.verify(ctx.token, "my_secret_key");
 
-let mailTransporter = nodemailer.createTransport({ 
+let mailTransporter = nodemailer.createTransport(smtpTransport({ 
     service: 'gmail', 
     auth: { 
         user: 'tcreation.work@gmail.com', 
         pass: 'Tung1998@'
     }
-}); 
+})); 
 
 app.listen(process.env.PORT || 8080);
