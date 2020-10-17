@@ -4,7 +4,8 @@ let initialState = {
     username: "",
     name:"",
     role: "",
-    id: ""
+    id: "",
+    logout: true
 };
 
 const userLogin = (state = initialState, action) => {
@@ -14,7 +15,8 @@ const userLogin = (state = initialState, action) => {
                 username: action.user.username,
                 name: action.user.name,
                 role: action.user.role,
-                id: action.user.id
+                id: action.user.id,
+                logout: false
             };
             state = temp;
             return {...state};
@@ -24,7 +26,8 @@ const userLogin = (state = initialState, action) => {
                 username:"",
                 name:"",
                 role: "",
-                id:""
+                id:"",
+                logout: true
             };
             state = temp;
             return {...state};

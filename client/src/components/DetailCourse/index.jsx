@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, message, Modal  } from 'antd';
-import CourseItem from '../CourseItem';
+import { Row, Col, message, Modal, Spin } from 'antd';
 
 import { connect } from 'react-redux';
 import * as action from '../../redux/actions';
 
 import { SmallDashOutlined } from '@ant-design/icons';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
 const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actionRegisterCourse, registerCourse, setDefaultRegisterCourse }) => {
-    const successRegister =() => {
+    const [isLoading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (detailCourse._id) {
+            setLoading(false);
+            return;
+        }
+    }, [detailCourse._id]);
+
+    const successRegister = () => {
         message.success('Ghi danh thành công, chờ xét duyệt !');
     }
-    const errorRegister =() => {
+    const errorRegister = () => {
         message.error('Bạn đã ghi danh khóa học này');
     }
     useEffect(() => {
@@ -20,24 +32,24 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
         setDefaultRegisterCourse();
         getFindCourseById(match.params.id);
         setVisible(false);
-    },[]);
+    }, []);
 
     // useEffect(() => {
-        
+
     // },[registerCourse]);
 
     const handleScrollTop = () => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
-    const handleRegisterCourse = async(data) => {
-        if(userLogin.username) {
-            await actionRegisterCourse(JSON.parse(localStorage.getItem('token')).token,data);
-            if(registerCourse === false) {
+    const handleRegisterCourse = async (data) => {
+        if (userLogin.username) {
+            await actionRegisterCourse(JSON.parse(localStorage.getItem('token')).token, data);
+            if (registerCourse === false) {
                 await errorRegister();
-            }  else if(registerCourse) {
+            } else if (registerCourse) {
                 await successRegister();
-                
+
             }
         } else {
             showModal();
@@ -46,11 +58,11 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
 
     const [visible, setVisible] = useState(false);
     const history = useHistory();
-    
-    const showModal = async() => {
+
+    const showModal = async () => {
         setVisible(true);
     };
-    
+
     const hideModal = () => {
         setVisible(false);
     };
@@ -58,123 +70,139 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
     return (
         <>
             {
+                isLoading && <div className="overlay__wrapper">
+                    <Spin
+                        style={{
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%,-50%)'
+                        }}
+                        tip="Loading..."
+                        size="large"
+                        indicator={antIcon}
+                    >
+                    </Spin>
+                </div>
+            }
+            {
                 detailCourse._id ?
-                        <div className="DetailCourse">
-                            <div className="DetailCourse__wrapper">
-                                <Row gutter={16}>
-                                    <Col className="gutter-row" xs={{span:24}} md={{span:16}}>
-                                        <div className="DetailCourse__content">
-                                            <h1 className="detail__name">{detailCourse.name}</h1>
-                                            <p className="detail__subcribe">{detailCourse.description}</p>
-                                            <p className="detail__subcribe">Tác giả: {detailCourse.author}</p>
-                                            <p className="detail__rating">
-                                                Đánh giá:
+                    <div className="DetailCourse">
+                        <div className="DetailCourse__wrapper">
+                            <Row gutter={16}>
+                                <Col className="gutter-row" xs={{ span: 24 }} md={{ span: 16 }}>
+                                    <div className="DetailCourse__content">
+                                        <h1 className="detail__name">{detailCourse.name}</h1>
+                                        <p className="detail__subcribe">{detailCourse.description}</p>
+                                        <p className="detail__subcribe">Tác giả: {detailCourse.author}</p>
+                                        <p className="detail__rating">
+                                            Đánh giá:
                                                 <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                                <i className="fa fa-star"></i>
-                                            </p>
-                                            <p className="detail__subcribe">Thời gian cập nhật mới nhất: {detailCourse.timeStart}</p>
-                                            <div className="detail__description">
-                                                <h4>Bạn sẽ học được gì?</h4>
-                                                <ul className="detail__description__list">
-                                                    <li>
-                                                        <span>
-                                                            <i className="fa fa-check-circle"></i>
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                        </p>
+                                        <p className="detail__subcribe">Thời gian cập nhật mới nhất: {detailCourse.timeStart}</p>
+                                        <div className="detail__description">
+                                            <h4>Bạn sẽ học được gì?</h4>
+                                            <ul className="detail__description__list">
+                                                <li>
+                                                    <span>
+                                                        <i className="fa fa-check-circle"></i>
+                                                    </span>
+                                                    <span>
+                                                        Nắm được cách hoạt động của {detailCourse.name}.
                                                         </span>
-                                                        <span>
-                                                            Nắm được cách hoạt động của {detailCourse.name}.
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                        <i className="fa fa-check-circle"></i>
+                                                    </span>
+                                                    <span>
+                                                        Dễ dàng xây dựng giao diện 1 cách nhanh chóng.
                                                         </span>
-                                                    </li>
-                                                    <li>
-                                                        <span>
-                                                            <i className="fa fa-check-circle"></i>
-                                                        </span>
-                                                        <span>
-                                                            Dễ dàng xây dựng giao diện 1 cách nhanh chóng.
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            
-                                            <div className="detail__course-other">
-                                                <h4>1 số khóa học khác:</h4>
-                                                <Row gutter={[{ xs: 8, sm: 16, md: 16 },{xs: 8, sm: 16, md: 16}]}>
-                                                    <Col xs={{span:12}} xl={{span:8}} className="gutter-row">
-                                                        {/* <CourseItem/> */}
-                                                    </Col>
-                                                    <Col xs={{span:12}} xl={{span:8}} className="gutter-row">
-                                                        {/* <CourseItem/> */}
-                                                    </Col>
-                                                    <Col xs={{span:12}} xl={{span:8}} className="gutter-row">
-                                                        {/* <CourseItem/> */}
-                                                    </Col>
-                                                </Row>
-                                                <Link to="/courses" className="btn-back">
-                                                    <SmallDashOutlined />
-                                                </Link>
-                                            </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </Col>
-                                    <Col className="gutter-row" xs={{span:24}} md={{span:8}}>
-                                        <div  className="DetailCourse__control">
-                                            <div className="DetailCourse__control__img">
-                                                <img src={detailCourse.image} alt={detailCourse.image}></img>
-                                            </div>
-                                            <div className="DetailCourse__control__content">
-                                                {/* <p className="detail__price">
+
+                                        <div className="detail__course-other">
+                                            <h4>1 số khóa học khác:</h4>
+                                            <Row gutter={[{ xs: 8, sm: 16, md: 16 }, { xs: 8, sm: 16, md: 16 }]}>
+                                                <Col xs={{ span: 12 }} xl={{ span: 8 }} className="gutter-row">
+                                                    {/* <CourseItem/> */}
+                                                </Col>
+                                                <Col xs={{ span: 12 }} xl={{ span: 8 }} className="gutter-row">
+                                                    {/* <CourseItem/> */}
+                                                </Col>
+                                                <Col xs={{ span: 12 }} xl={{ span: 8 }} className="gutter-row">
+                                                    {/* <CourseItem/> */}
+                                                </Col>
+                                            </Row>
+                                            <Link to="/courses" className="btn-back">
+                                                <SmallDashOutlined />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col className="gutter-row" xs={{ span: 24 }} md={{ span: 8 }}>
+                                    <div className="DetailCourse__control">
+                                        <div className="DetailCourse__control__img">
+                                            <img src={detailCourse.image} alt={detailCourse.image}></img>
+                                        </div>
+                                        <div className="DetailCourse__control__content">
+                                            {/* <p className="detail__price">
                                                     <span className="detail__price-new">{detailCourse.price} VNĐ</span>
                                                     <span className="detail__price-old">800.000 VNĐ</span>
                                                 </p> */}
-                                                {/* <button className="btn-cart">Thêm vào giỏ hàng</button> */}
-                                                {   registerCourse ? 
-                                                        <button 
-                                                            className="btn-buy outline"
-                                                            disabled>
-                                                        Đã ghi danh</button>
-                                                    :
-                                                        <button 
-                                                            className="btn-buy ant-btn-danger" 
-                                                            onClick={() => {
-                                                                handleRegisterCourse({
-                                                                    idCourse: detailCourse._id,
-                                                                    idUser: userLogin.id
-                                                                })
-                                                        }}>Ghi danh</button>
-                                                }
-                                                <p>Khóa học bao gồm</p>
-                                                <ul>
-                                                    <li>
-                                                        <span>
-                                                            <i className="fa fa-clock"></i>
+                                            {/* <button className="btn-cart">Thêm vào giỏ hàng</button> */}
+                                            {registerCourse ?
+                                                <button
+                                                    className="btn-buy outline"
+                                                    disabled>
+                                                    Đã ghi danh</button>
+                                                :
+                                                <button
+                                                    className="btn-buy ant-btn-danger"
+                                                    onClick={() => {
+                                                        handleRegisterCourse({
+                                                            idCourse: detailCourse._id,
+                                                            idUser: userLogin.id
+                                                        })
+                                                    }}>Ghi danh</button>
+                                            }
+                                            <p>Khóa học bao gồm</p>
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i className="fa fa-clock"></i>
+                                                    </span>
+                                                    <span>
+                                                        48 giờ học
                                                         </span>
-                                                        <span>
-                                                            48 giờ học
+                                                </li>
+                                                <li>
+                                                    <span>
+                                                        <i className="fa fa-file-video"></i>
+                                                    </span>
+                                                    <span>
+                                                        22 video
                                                         </span>
-                                                    </li>
-                                                    <li>
-                                                        <span>
-                                                            <i className="fa fa-file-video"></i>
-                                                        </span>
-                                                        <span>
-                                                            22 video
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </Col>
-                                </Row>
-                            </div>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
+                    </div>
                     :
-                        <h1 style={{marginTop:'120px'}}>Không tìm thấy</h1>
+                    <h1 style={{ marginTop: '120px' }}>Không tìm thấy</h1>
             }
             <Modal
                 title="TCREATION"
                 visible={visible}
-                onOk={async() => {
+                onOk={async () => {
                     await setVisible(false);
                     await history.push('/signin');
                 }}
@@ -182,10 +210,10 @@ const DetailCourse = ({ detailCourse, getFindCourseById, match, userLogin, actio
                 okText="Đăng nhập"
                 cancelText="Thoát"
             >
-                <p style={{textAlign:'center'}}>Vui lòng đăng nhập để ghi danh khóa học</p>
+                <p style={{ textAlign: 'center' }}>Vui lòng đăng nhập để ghi danh khóa học</p>
             </Modal>
         </>
-           
+
     )
 }
 
@@ -203,7 +231,7 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(action.findCourseById(id));
         },
         actionRegisterCourse: (token, data) => {
-            dispatch(action.registerCourseAPI(token,data));
+            dispatch(action.registerCourseAPI(token, data));
         },
         setDefaultRegisterCourse: () => {
             dispatch(action.setDefaultRegisterCourse());
@@ -211,4 +239,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(DetailCourse);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailCourse);

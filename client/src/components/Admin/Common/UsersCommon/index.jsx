@@ -1,30 +1,41 @@
 import React, { useState, useEffect } from 'react';
 
-import { Table } from 'antd';
+import { Spin, Table } from 'antd';
 import { connect } from 'react-redux';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
 
-const CommonUsers = ( {users} ) => {
+const CommonUsers = ({ users }) => {
+    const [isLoading, setLoading] = useState(true);
+
     const [listMember, setListMember] = useState([]);
     const renderMembers = () => {
         let temp = users.filter(item => {
             return item.idRole === "1";
         })
         let result = [];
-        for(let i = 0; i < temp.length; i++) {
+        for (let i = 0; i < temp.length; i++) {
             let item = {
-                key:i,
+                key: i,
                 ...temp[i]
             }
             result.push(item);
         }
-        setListMember([...result]);
+        setListMember([...result]); 
     };
 
     useEffect(() => {
         renderMembers();
-    },[users.length]);
-    
+    }, [users.length]);
+
+    useEffect(() => {
+        if(listMember.length > 0) {
+            setLoading(false);
+        }
+    },[listMember.length]);
+
     const columns = [
         {
             title: 'Tên người dùng',
@@ -48,16 +59,37 @@ const CommonUsers = ( {users} ) => {
             sortDirections: ['descend', 'ascend'],
         },
     ];
-    
+
     function onChange(pagination, filters, sorter, extra) {
         console.log('params', pagination, filters, sorter, extra);
     }
 
     return (
-        <div className="common__users">
-            <h1>Danh sách học viên</h1>
-            <Table columns={columns} dataSource={listMember} onChange={onChange} scroll={{ y: 480 }} />
-        </div>
+        <>
+            {
+                isLoading && <div className="overlay__wrapper">
+                    <Spin
+                        style={{
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%,-50%)'
+                        }}
+                        tip="Loading..."
+                        size="large"
+                        indicator={antIcon}
+                    >
+                    </Spin>
+                </div>
+            }
+            {
+                !isLoading &&  <div className="common__users">
+                <h1>Danh sách học viên</h1>
+                <Table columns={columns} dataSource={listMember} onChange={onChange} scroll={{ y: 480 }} />
+            </div>
+            }
+           
+        </>
     )
 }
 

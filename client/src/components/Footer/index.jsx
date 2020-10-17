@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import WOW from 'wow.js';
 
-export const FooterComponent = () => {
+const FooterComponent = () => {
 
     useEffect(() => {
         new WOW({
@@ -46,3 +46,5 @@ export const FooterComponent = () => {
         </div>
     )
 };
+
+export default FooterComponent;

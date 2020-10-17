@@ -14,7 +14,7 @@ import {API} from '../../API/api';
 const { Option } = Select;
 
 
-export const RegisterComponent = () => {
+const RegisterComponent = () => {
     const [loadingStyle, setLoadingStyle] = useState(false);
     const [messageSignUp, setMessageSignUp] = useState("");
 
@@ -256,3 +256,5 @@ export const RegisterComponent = () => {
         </div>
     )
 };
+
+export default RegisterComponent;

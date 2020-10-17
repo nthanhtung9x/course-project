@@ -12,11 +12,9 @@ const { Meta } = Card;
 
 
 
-
-const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
-
-
 const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse, checkRole }) => {
+
+
     // modal register
     const [modalRegisterStyle, setModalRegisterStyle] = useState({
         visibleRegister: false,
@@ -1008,8 +1006,7 @@ const CourseItem = ({ item, handleUpdateCourse, handleDeleteCourse, checkRole })
                         </Button>
                     </Form.Item>
                 </Form>
-            </Modal>
-            
+            </Modal>   
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { Select, Row, Col, Button, Modal, Form, Input, DatePicker, Upload, message } from 'antd';
-import { AppstoreAddOutlined, UploadOutlined  } from '@ant-design/icons';
+import { Select, Row, Col, Button, Modal, Form, Input, DatePicker, Upload, message, Spin } from 'antd';
+import { AppstoreAddOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import moment from 'moment';
 
@@ -9,11 +9,16 @@ import CourseItem from './CourseItem';
 import { connect } from 'react-redux';
 import * as action from '../../../redux/actions';
 import axios from 'axios';
-import {API} from '../../../API/api';
+import { API } from '../../../API/api';
 
 const { Option } = Select;
 
+const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
+
 const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
+    const [isLoading, setLoading] = useState(true);
+
+
     // modal
     const [modalStyle, setModalStyle] = useState({
         visible: false,
@@ -26,8 +31,8 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
 
     const getTeacher = (token) => {
         return axios({
-            url:`${API}/getTeacher`,
-            method:'GET',
+            url: `${API}/getTeacher`,
+            method: 'GET',
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json",
@@ -38,8 +43,8 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
     };
 
     const renderTeacher = () => {
-        return teacherList.map((item,index) => {
-            return  <Select.Option value={item._id} key={index}>{item.name}</Select.Option>
+        return teacherList.map((item, index) => {
+            return <Select.Option value={item._id} key={index}>{item.name}</Select.Option>
         })
     };
 
@@ -60,12 +65,12 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
 
     const formItemLayout = {
         labelCol: {
-          xs: { span: 24 },
-          sm: { span: 7 },
+            xs: { span: 24 },
+            sm: { span: 7 },
         },
         wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 17 },
+            xs: { span: 24 },
+            sm: { span: 17 },
         },
     };
 
@@ -74,7 +79,7 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
 
     const onFinish = values => {
         console.log('Received values of form: ', values['dateCourse'].format('DD/MM/YYYY'));
-        createCourseAPI(JSON.parse(localStorage.getItem('token')).token,{
+        createCourseAPI(JSON.parse(localStorage.getItem('token')).token, {
             ...values,
             dateCourse: values['dateCourse'].format('DD/MM/YYYY')
         });
@@ -94,7 +99,7 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
 
     useEffect(() => {
         renderCourses();
-    },[courses.length]);
+    }, [courses.length]);
 
     // end Modal
 
@@ -106,7 +111,7 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
     };
 
     const renderNameCourse = () => {
-        return courses.map((item,index) => {
+        return courses.map((item, index) => {
             return <Option value={item.name} key={index}>{item.name}</Option>
         })
     }
@@ -116,30 +121,53 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
     };
 
     const renderCourses = () => {
-        if(searchType !== "FE" && searchType !== "BE"){
-            return courses.map((item,index) => {
-                if(item.name.toLowerCase().trim().indexOf(searchType.toLowerCase().trim()) !== -1) {
-                    return  <Col xs={{span:24}} md={{span:8}} xl={{span:6}} xxl={{span:4}} key={index}>
-                                <CourseItem item={item}/>
-                            </Col>
+        if (searchType !== "FE" && searchType !== "BE") {
+            return courses.map((item, index) => {
+                if (item.name.toLowerCase().trim().indexOf(searchType.toLowerCase().trim()) !== -1) {
+                    return <Col xs={{ span: 24 }} md={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} key={index}>
+                        <CourseItem item={item} />
+                    </Col>
                 }
             })
         }
-        return courses.map((item,index) => {
-            if(item.type.toLowerCase().trim().indexOf(searchType.toLowerCase().trim()) !== -1) {
-                return  <Col xs={{span:24}} md={{span:8}} xl={{span:6}} xxl={{span:4}} key={index}>
-                            <CourseItem item={item}/>
-                        </Col>
+        return courses.map((item, index) => {
+            if (item.type.toLowerCase().trim().indexOf(searchType.toLowerCase().trim()) !== -1) {
+                return <Col xs={{ span: 24 }} md={{ span: 8 }} xl={{ span: 6 }} xxl={{ span: 4 }} key={index}>
+                    <CourseItem item={item} />
+                </Col>
             }
         })
     };
 
+    useEffect(() => {
+        if (courses.length > 0) {
+            setLoading(false);
+        }
+    }, [courses.length]);
+
     return (
         <div className="manager__courses">
+            {
+                isLoading && <div className="overlay__wrapper">
+                    <Spin
+                        style={{
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%,-50%)'
+                        }}
+                        tip="Loading..."
+                        size="large"
+                        indicator={antIcon}
+                    >
+                    </Spin>
+                </div>
+            }
+
             <h1>QUẢN LÝ KHÓA HỌC</h1>
             <div className="manager__courses__control">
-                <Row gutter={[16,16]}>
-                    <Col xs={{span:24}} md={{span:9}}>
+                <Row gutter={[16, 16]}>
+                    <Col xs={{ span: 24 }} md={{ span: 9 }}>
                         <Select
                             showSearch
                             placeholder="Tìm kiếm theo loại"
@@ -156,7 +184,7 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             <Option value="BE">Back-End</Option>
                         </Select>
                     </Col>
-                    <Col xs={{span:24}} md={{span:9}}>
+                    <Col xs={{ span: 24 }} md={{ span: 9 }}>
                         <Select
                             showSearch
                             placeholder="Tìm kiếm theo tên"
@@ -172,17 +200,17 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             {renderNameCourse()}
                         </Select>
                     </Col>
-                    <Col xs={{span:24}} md={{span:6}}>
-                        { checkRole.checkAddCourse ? 
-                            <Button type="primary" danger shape="round" icon={<AppstoreAddOutlined />} size="large" style={{width:'90%',marginLeft:'10%'}} onClick={showModalAddCourse}>
+                    <Col xs={{ span: 24 }} md={{ span: 6 }}>
+                        {checkRole.checkAddCourse ?
+                            <Button type="primary" danger shape="round" icon={<AppstoreAddOutlined />} size="large" style={{ width: '90%', marginLeft: '10%' }} onClick={showModalAddCourse}>
                                 THÊM KHÓA HỌC
                             </Button>
-                        : 
+                            :
                             <></>
                         }
                     </Col>
                 </Row>
-                <Row gutter ={[16,16]}>
+                <Row gutter={[16, 16]}>
                     {renderCourses(searchType)}
                 </Row>
             </div>
@@ -193,42 +221,42 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                 footer=""
                 onCancel={handleCancel}
                 className="modal__addCourse"
-                >
+            >
                 <Form
                     {...formItemLayout}
                     form={form}
                     name="register"
-                    onFinish={onFinish} 
+                    onFinish={onFinish}
                     scrollToFirstError
                 >
                     <Form.Item
                         name="nameCourse"
                         label="Tên khóa học"
                         rules={[
-                        {
-                            type: 'string',
-                            message: 'Nhập tên khóa học',
-                        },
-                        {
-                            required: true,
-                            message: 'Vui lòng nhập tên khóa học!',
-                        },
+                            {
+                                type: 'string',
+                                message: 'Nhập tên khóa học',
+                            },
+                            {
+                                required: true,
+                                message: 'Vui lòng nhập tên khóa học!',
+                            },
                         ]}
                     >
-                        <Input placeholder="Nhập tên khóa học"/>
+                        <Input placeholder="Nhập tên khóa học" />
                     </Form.Item>
                     <Form.Item
                         name="typeCourse"
                         label="Loại khóa học"
                         rules={[
-                        {
-                            type: 'string',
-                            message: 'Chọn loại khóa học',
-                        },
-                        {
-                            required: true,
-                            message: 'Vui lòng chọn loại khóa học!',
-                        },
+                            {
+                                type: 'string',
+                                message: 'Chọn loại khóa học',
+                            },
+                            {
+                                required: true,
+                                message: 'Vui lòng chọn loại khóa học!',
+                            },
                         ]}
                     >
                         <Select placeholder="Chọn loại khóa học">
@@ -236,9 +264,9 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             <Select.Option value="BE">Back-End</Select.Option>
                         </Select>
                     </Form.Item>
-                    <Form.Item 
-                        name="dateCourse" 
-                        label="Thời gian tạo" 
+                    <Form.Item
+                        name="dateCourse"
+                        label="Thời gian tạo"
                         rules={[
                             {
                                 required: true,
@@ -246,7 +274,7 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             }
                         ]}
                     >
-                        <DatePicker format={dateFormat} defaultValue={moment(new Date(),dateFormat)}/>
+                        <DatePicker format={dateFormat} defaultValue={moment(new Date(), dateFormat)} />
                     </Form.Item>
                     <Form.Item name="uploadCourse" label="Hình ảnh" rules={[
                         {
@@ -257,8 +285,8 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             required: true,
                             message: 'Vui lòng chọn hình ảnh!',
                         },
-                        ]}>
-                        <Input placeholder="Nhập link ảnh"/>
+                    ]}>
+                        <Input placeholder="Nhập link ảnh" />
                     </Form.Item>
                     <Form.Item name="descCourse" label="Mô tả" rules={[
                         {
@@ -269,8 +297,8 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             required: true,
                             message: 'Vui lòng nhập mô tả khóa học!',
                         },
-                        ]}>
-                        <Input placeholder="Nhập mô tả khóa học"/>
+                    ]}>
+                        <Input placeholder="Nhập mô tả khóa học" />
                     </Form.Item>
                     <Form.Item name="authorCourse" label="Giảng viên" rules={[
                         {
@@ -281,7 +309,7 @@ const ManagerCourses = ({ courses, createCourseAPI, checkRole }) => {
                             required: true,
                             message: 'Vui lòng chọn giảng viên!',
                         },
-                        ]}>
+                    ]}>
                         <Select placeholder="Chọn giảng viên">
                             {renderTeacher()}
                         </Select>
@@ -309,8 +337,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        createCourseAPI: (token,data) => {
-            dispatch(action.createCourseAPI(token,data));
+        createCourseAPI: (token, data) => {
+            dispatch(action.createCourseAPI(token, data));
         }
     }
 }
